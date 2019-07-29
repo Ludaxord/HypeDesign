@@ -1,74 +1,25 @@
 package com.ludaxord.projectsup.library.utilities
 
 import android.view.View
-import com.ludaxord.projectsup.library.utilities.Utils.setThemeFromResources
-import com.ludaxord.projectsup.library.utilities.Utils.setViewCorners
+import com.ludaxord.projectsup.R
+import com.ludaxord.projectsup.library.utilities.ThemeUtils.setThemeFromResources
+import com.ludaxord.projectsup.library.utilities.ViewUtils.setViewCorners
+import com.ludaxord.projectsup.library.utilities.ViewUtils.setViewCustomCorners
 
 fun View.initTheme(res: Int) {
     setThemeFromResources(this, res)
 }
 
-fun View.setCorners(corners: Int) {
+fun View.setCorners(corners: Float) {
     setViewCorners(this, corners)
 }
 
-fun View.setCorners(corners: List<Int>) {
-    for (corner in corners) {
-        try {
-            setViewCorners(this, corner)
-        } catch (exception: UtilsException) {
-
+fun View.setCorners(corners: List<Float>) {
+    if (corners.size == 4) {
+        for (corner in corners) {
+            setViewCustomCorners(this, corners)
         }
-    }
-}
-
-private object Utils {
-
-    fun setViewCorners(view: View, corner: Int) {
-
-    }
-
-    fun setThemeFromResources(view: View, res: Int) {
-        when (res) {
-            com.ludaxord.projectsup.R.integer.sup_default_style -> {
-
-            }
-            com.ludaxord.projectsup.R.integer.sup_box_style -> {
-
-            }
-            com.ludaxord.projectsup.R.integer.sup_arc_style -> {
-
-            }
-            com.ludaxord.projectsup.R.integer.sup_s_style -> {
-
-            }
-            com.ludaxord.projectsup.R.integer.sup_script_style -> {
-
-            }
-            com.ludaxord.projectsup.R.integer.sup_photo_style -> {
-
-            }
-            com.ludaxord.projectsup.R.integer.sup_mini_box_style -> {
-
-            }
-            com.ludaxord.projectsup.R.integer.sup_swoosh_style -> {
-
-            }
-            com.ludaxord.projectsup.R.integer.sup_jump_man_style -> {
-
-            }
-            com.ludaxord.projectsup.R.integer.sup_champion_style -> {
-
-            }
-            com.ludaxord.projectsup.R.integer.sup_denim_style -> {
-
-            }
-            com.ludaxord.projectsup.R.integer.sup_tag_style -> {
-
-            }
-            else -> {
-
-            }
-        }
+    } else {
+        throw UtilsException(this.context.getString(R.string.utils_exception_incorrect_size_message))
     }
 }
