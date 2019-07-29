@@ -1,5 +1,5 @@
 package com.ludaxord.projectsup.library.text.edittext
 
-class EditText {
+class SupEditText {
 
 }

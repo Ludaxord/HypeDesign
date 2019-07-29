@@ -1,5 +1,5 @@
 package com.ludaxord.projectsup.library.button.radiobutton
 
-class RadioButton {
+class SupRadioButton {
 
 }
