@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="sup_default_style">100000</integer>
+    <integer name="sup_box_style">100001</integer>
+    <integer name="sup_arc_style">100002</integer>
+    <integer name="sup_s_style">100003</integer>
+    <integer name="sup_script_style">100004</integer>
+    <integer name="sup_photo_style">100005</integer>
+    <integer name="sup_mini_box_style">100006</integer>
+    <integer name="sup_swoosh_style">100007</integer>
+    <integer name="sup_jump_man_style">100008</integer>
+    <integer name="sup_champion_style">100009</integer>
+    <integer name="sup_denim_style">100010</integer>
+    <integer name="sup_tag_style">100011</integer>
+</resources>

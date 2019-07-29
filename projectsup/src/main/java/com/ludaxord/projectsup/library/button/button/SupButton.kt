@@ -2,21 +2,16 @@ package com.ludaxord.projectsup.library.button.button
 
 import android.content.Context
 import android.util.AttributeSet
-import android.widget.Button
 
-class SupButton : Button {
+open class SupButton : AbstractSupButton {
 
-    constructor(context: Context) : super(context)
-
-    constructor(context: Context, res: Int) : this(context) {
+    constructor(context: Context, res: Int) : super(context, res) {
 
     }
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
-
-    constructor(context: Context, attrs: AttributeSet, res: Int) : super(context, attrs) {
+    constructor(context: Context, attrs: AttributeSet, res: Int) : super(context, attrs, res) {
 
     }
-
 
 }
+
