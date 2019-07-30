@@ -1,9 +1,9 @@
-package com.ludaxord.projectsup.library.text.autocompletetextview
+package com.ludaxord.projectsup.library.button.radiobutton
 
 import android.content.Context
 import android.util.AttributeSet
 
-class SupAutoCompleteTextView: AbstractSupAutoCompleteTextView {
+class SupRadioButton : AbstractSupRadioButton {
 
     constructor(context: Context, res: Pair<Int, Int>) : super(context, res)
 

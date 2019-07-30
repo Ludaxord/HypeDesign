@@ -1,13 +1,13 @@
-package com.ludaxord.projectsup.library.button.button
+package com.ludaxord.projectsup.library.button.radiobutton
 
 import android.content.Context
 import android.util.AttributeSet
-import android.widget.Button
-import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA
+import android.widget.RadioButton
 import com.ludaxord.projectsup.library.button.interfaces.IButton
+import com.ludaxord.projectsup.library.utilities.Defaults
 import com.ludaxord.projectsup.library.utilities.initTheme
 
-abstract class AbstractSupButton : Button, IButton {
+abstract class AbstractSupRadioButton : RadioButton, IButton {
 
     protected constructor(context: Context, res: Pair<Int, Int>) : super(context) {
         this.initTheme(res.first)
@@ -25,18 +25,18 @@ abstract class AbstractSupButton : Button, IButton {
         this.initTheme(res.first)
     }
 
-    protected constructor(context: Context) : this(context, DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA)
+    protected constructor(context: Context) : this(context, Defaults.DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA)
 
     protected constructor(context: Context, attrs: AttributeSet) : this(
         context,
         attrs,
-        DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA
+        Defaults.DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA
     )
 
     protected constructor(context: Context, attrs: AttributeSet, defStyle: Int) : this(
         context,
         attrs,
         defStyle,
-        DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA
+        Defaults.DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA
     )
 }

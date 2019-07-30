@@ -3,7 +3,7 @@ package com.ludaxord.projectsup.library.button.imagebutton
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.ImageButton
-import com.ludaxord.projectsup.library.button.button.interfaces.IButton
+import com.ludaxord.projectsup.library.button.interfaces.IButton
 import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA
 import com.ludaxord.projectsup.library.utilities.initTheme
 
