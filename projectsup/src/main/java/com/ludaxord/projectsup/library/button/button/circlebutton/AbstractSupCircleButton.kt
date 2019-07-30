@@ -9,8 +9,12 @@ import com.ludaxord.projectsup.library.utilities.setCorners
 
 abstract class AbstractSupCircleButton : AbstractSupButton {
 
+    internal var corners: Float = 0.0f
+    internal var cornerList: List<Float> = emptyList()
+
     protected constructor(context: Context, res: Pair<Int, Int>, corners: Float) : super(context, res) {
-        this.setCorners(corners)
+        this.res = res
+        this.corners = corners
     }
 
     protected constructor(context: Context, attrs: AttributeSet, res: Pair<Int, Int>, corners: Float) : super(
@@ -18,7 +22,8 @@ abstract class AbstractSupCircleButton : AbstractSupButton {
         attrs,
         res
     ) {
-        this.setCorners(corners)
+        this.res = res
+        this.corners = corners
     }
 
     protected constructor(
@@ -33,11 +38,13 @@ abstract class AbstractSupCircleButton : AbstractSupButton {
         defStyle,
         res
     ) {
-        this.setCorners(corners)
+        this.res = res
+        this.corners = corners
     }
 
     protected constructor(context: Context, res: Pair<Int, Int>, cornerList: List<Float>) : super(context, res) {
-        this.setCorners(cornerList)
+        this.res = res
+        this.cornerList = cornerList
     }
 
     protected constructor(context: Context, attrs: AttributeSet, res: Pair<Int, Int>, cornerList: List<Float>) : super(
@@ -45,7 +52,8 @@ abstract class AbstractSupCircleButton : AbstractSupButton {
         attrs,
         res
     ) {
-        this.setCorners(cornerList)
+        this.res = res
+        this.cornerList = cornerList
     }
 
     protected constructor(
@@ -60,7 +68,8 @@ abstract class AbstractSupCircleButton : AbstractSupButton {
         defStyle,
         res
     ) {
-        this.setCorners(cornerList)
+        this.res = res
+        this.cornerList = cornerList
     }
 
     protected constructor(context: Context) : this(
@@ -83,5 +92,26 @@ abstract class AbstractSupCircleButton : AbstractSupButton {
         DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA,
         DEFAULT_CORNER_ROUND_FLOAT
     )
+
+    override fun setDefaultViewUtils() {
+        super.setDefaultViewUtils()
+        setDefaultCorners()
+    }
+
+    private fun setDefaultCorners() {
+        if (cornerList.isNotEmpty()) {
+            setCornersFromList(cornerList)
+        } else {
+            setCornersFromFloat(corners)
+        }
+    }
+
+    protected fun setCornersFromList(cornerList: List<Float>) {
+        this.setCorners(cornerList)
+    }
+
+    protected fun setCornersFromFloat(corners: Float) {
+        this.setCorners(corners)
+    }
 
 }

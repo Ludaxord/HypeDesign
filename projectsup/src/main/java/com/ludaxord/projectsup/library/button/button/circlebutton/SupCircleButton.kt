@@ -2,42 +2,27 @@ package com.ludaxord.projectsup.library.button.button.circlebutton
 
 import android.content.Context
 import android.util.AttributeSet
+import com.ludaxord.projectsup.library.button.interfaces.IButton
 
-class SupCircleButton : AbstractSupCircleButton {
+class SupCircleButton : AbstractSupCircleButton, IButton {
 
-    constructor(context: Context, res: Pair<Int, Int>, corners: Float) : super(context, res, corners)
+    override fun setCorners(cornerList: List<Float>) {
+        super.setCorners(cornerList)
+        setCornersFromList(cornerList)
+    }
 
-    constructor(context: Context, attrs: AttributeSet, res: Pair<Int, Int>, corners: Float) : super(
-        context,
-        attrs,
-        res,
-        corners
-    )
+    override fun setCorners(corners: Float) {
+        super.setCorners(corners)
+        setCorners(corners)
+    }
 
-    constructor(context: Context, attrs: AttributeSet, defStyle: Int, res: Pair<Int, Int>, corners: Float) : super(
-        context,
-        attrs,
-        defStyle,
-        res,
-        corners
-    )
+    override fun setColorSchema(colorRes: Int) {
+        setDefaultColorSchema(colorRes)
+    }
 
-    constructor(context: Context, res: Pair<Int, Int>, cornerList: List<Float>) : super(context, res, cornerList)
-
-    constructor(context: Context, attrs: AttributeSet, res: Pair<Int, Int>, cornerList: List<Float>) : super(
-        context,
-        attrs,
-        res,
-        cornerList
-    )
-
-    constructor(
-        context: Context,
-        attrs: AttributeSet,
-        defStyle: Int,
-        res: Pair<Int, Int>,
-        cornerList: List<Float>
-    ) : super(context, attrs, defStyle, res, cornerList)
+    override fun setTheme(themeRes: Int) {
+        setDefaultTheme(themeRes)
+    }
 
     constructor(context: Context) : super(context)
 
