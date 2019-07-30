@@ -1,5 +1,12 @@
 package com.ludaxord.projectsup.library.widget.tabswitchbar
 
-class SupTabSwitchBar {
+import android.content.Context
+import android.util.AttributeSet
+
+class SupTabSwitchBar : AbstractSupTabSwitchBar {
+
+    constructor(context: Context?) : super(context)
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
 }

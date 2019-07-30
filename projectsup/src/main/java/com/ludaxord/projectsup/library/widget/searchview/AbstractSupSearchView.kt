@@ -1,9 +1,10 @@
-package com.ludaxord.projectsup.library.widget.calendarview
+package com.ludaxord.projectsup.library.widget.searchview
 
 import android.content.Context
 import android.util.AttributeSet
+import android.widget.SearchView
 
-class SupCalendarView : AbstractSupCalendarView {
+abstract class AbstractSupSearchView: SearchView {
 
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)

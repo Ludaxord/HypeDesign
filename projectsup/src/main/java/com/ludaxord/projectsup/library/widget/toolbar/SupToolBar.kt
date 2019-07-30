@@ -1,9 +1,9 @@
-package com.ludaxord.projectsup.library.widget.calendarview
+package com.ludaxord.projectsup.library.widget.toolbar
 
 import android.content.Context
 import android.util.AttributeSet
 
-class SupCalendarView : AbstractSupCalendarView {
+class SupToolBar : AbstractSupToolBar {
 
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)

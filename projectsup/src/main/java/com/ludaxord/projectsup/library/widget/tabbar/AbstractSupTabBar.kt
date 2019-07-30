@@ -2,8 +2,9 @@ package com.ludaxord.projectsup.library.widget.tabbar
 
 import android.content.Context
 import android.util.AttributeSet
+import android.widget.FrameLayout
 
-class SupTabBar : AbstractSupTabBar {
+abstract class AbstractSupTabBar : FrameLayout {
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)

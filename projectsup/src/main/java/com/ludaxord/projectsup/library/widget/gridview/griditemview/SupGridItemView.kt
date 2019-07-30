@@ -1,9 +1,9 @@
-package com.ludaxord.projectsup.library.widget.calendarview
+package com.ludaxord.projectsup.library.widget.gridview.griditemview
 
 import android.content.Context
 import android.util.AttributeSet
 
-class SupCalendarView : AbstractSupCalendarView {
+class SupGridItemView : AbstractSupGridItemView {
 
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)

@@ -1,9 +1,10 @@
-package com.ludaxord.projectsup.library.widget.calendarview
+package com.ludaxord.projectsup.library.widget.listview.swipedlistview
 
 import android.content.Context
 import android.util.AttributeSet
+import com.ludaxord.projectsup.library.widget.listview.AbstractSupListView
 
-class SupCalendarView : AbstractSupCalendarView {
+abstract class AbstractSupSwipedListView : AbstractSupListView {
 
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)

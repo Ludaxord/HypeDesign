@@ -1,9 +1,10 @@
-package com.ludaxord.projectsup.library.widget.calendarview
+package com.ludaxord.projectsup.library.widget.imageview
 
 import android.content.Context
 import android.util.AttributeSet
+import android.widget.ImageView
 
-class SupCalendarView : AbstractSupCalendarView {
+abstract class AbstractSupImageView : ImageView {
 
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)

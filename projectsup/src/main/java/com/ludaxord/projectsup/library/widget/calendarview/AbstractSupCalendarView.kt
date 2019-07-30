@@ -2,8 +2,9 @@ package com.ludaxord.projectsup.library.widget.calendarview
 
 import android.content.Context
 import android.util.AttributeSet
+import android.widget.LinearLayout
 
-class SupCalendarView : AbstractSupCalendarView {
+abstract class AbstractSupCalendarView : LinearLayout {
 
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
