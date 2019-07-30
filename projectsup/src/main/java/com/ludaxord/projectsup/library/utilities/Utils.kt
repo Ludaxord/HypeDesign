@@ -5,6 +5,7 @@ import com.ludaxord.projectsup.R
 import com.ludaxord.projectsup.library.utilities.ThemeUtils.setThemeFromResources
 import com.ludaxord.projectsup.library.utilities.ViewUtils.setViewCorners
 import com.ludaxord.projectsup.library.utilities.ViewUtils.setViewCustomCorners
+import com.ludaxord.projectsup.library.utilities.ViewUtils.setViewToBottom
 
 fun View.initTheme(res: Int) {
     setThemeFromResources(this, res)
@@ -22,4 +23,8 @@ fun View.setCorners(corners: List<Float>) {
     } else {
         throw UtilsException(this.context.getString(R.string.utils_exception_incorrect_size_message))
     }
+}
+
+fun View.stickViewToBottom(withMargin: Float) {
+    setViewToBottom(this, withMargin)
 }

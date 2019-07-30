@@ -24,6 +24,20 @@ object ViewUtils {
         }
     }
 
+    fun setViewToBottom(view: View, withMargin: Float) {
+        setMargin(view, marginBottom = withMargin)
+    }
+
+    private fun setMargin(
+        view: View,
+        marginTop: Float = 0f,
+        marginBottom: Float = 0f,
+        marginLeft: Float = 0f,
+        marginRight: Float = 0f
+    ) {
+
+    }
+
     private fun setCornerRadius(
         drawable: GradientDrawable,
         topLeft: Float,
