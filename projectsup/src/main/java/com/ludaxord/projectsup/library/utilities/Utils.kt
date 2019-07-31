@@ -2,6 +2,7 @@ package com.ludaxord.projectsup.library.utilities
 
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.ludaxord.projectsup.R
 import com.ludaxord.projectsup.library.utilities.DateUtils.setEventsToExistedEvents
 import com.ludaxord.projectsup.library.utilities.ThemeUtils.setColorSchemaResources
@@ -57,8 +58,10 @@ fun ArrayList<Date>.setEvents(newEvents: ArrayList<Date>) {
 fun Language.setWeeksToViews(rootView: View) {
     val children = getChildren(rootView)
     for ((index, child) in children.withIndex()) {
-        for (day in this.getShortDayNames()) {
-
+        for ((key, day) in this.getShortDayNames()) {
+            if (child is TextView) {
+                child.text = day
+            }
         }
     }
 }

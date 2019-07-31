@@ -49,6 +49,7 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
 
     protected constructor(context: Context, events: ArrayList<Date> = ArrayList(), language: String) : super(context) {
         this.events = events
+        this.languageName = language
         setInitializer()
     }
 
