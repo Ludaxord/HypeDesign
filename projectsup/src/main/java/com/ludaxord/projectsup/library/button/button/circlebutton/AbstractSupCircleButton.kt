@@ -5,7 +5,6 @@ import android.util.AttributeSet
 import com.ludaxord.projectsup.library.button.button.AbstractSupButton
 import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_CORNER_ROUND_FLOAT
 import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA
-import com.ludaxord.projectsup.library.utilities.setCorners
 
 abstract class AbstractSupCircleButton : AbstractSupButton {
 
@@ -15,6 +14,7 @@ abstract class AbstractSupCircleButton : AbstractSupButton {
     protected constructor(context: Context, res: Pair<Int, Int>, corners: Float) : super(context, res) {
         this.res = res
         this.corners = corners
+        setInitializer()
     }
 
     protected constructor(context: Context, attrs: AttributeSet, res: Pair<Int, Int>, corners: Float) : super(
@@ -24,6 +24,7 @@ abstract class AbstractSupCircleButton : AbstractSupButton {
     ) {
         this.res = res
         this.corners = corners
+        setInitializer()
     }
 
     protected constructor(
@@ -40,11 +41,13 @@ abstract class AbstractSupCircleButton : AbstractSupButton {
     ) {
         this.res = res
         this.corners = corners
+        setInitializer()
     }
 
     protected constructor(context: Context, res: Pair<Int, Int>, cornerList: List<Float>) : super(context, res) {
         this.res = res
         this.cornerList = cornerList
+        setInitializer()
     }
 
     protected constructor(context: Context, attrs: AttributeSet, res: Pair<Int, Int>, cornerList: List<Float>) : super(
@@ -54,6 +57,7 @@ abstract class AbstractSupCircleButton : AbstractSupButton {
     ) {
         this.res = res
         this.cornerList = cornerList
+        setInitializer()
     }
 
     protected constructor(
@@ -70,6 +74,7 @@ abstract class AbstractSupCircleButton : AbstractSupButton {
     ) {
         this.res = res
         this.cornerList = cornerList
+        setInitializer()
     }
 
     protected constructor(context: Context) : this(
@@ -96,6 +101,10 @@ abstract class AbstractSupCircleButton : AbstractSupButton {
     override fun setDefaultViewUtils() {
         super.setDefaultViewUtils()
         setDefaultCorners()
+    }
+
+    private fun setInitializer() {
+        setDefaultViewUtils()
     }
 
     private fun setDefaultCorners() {

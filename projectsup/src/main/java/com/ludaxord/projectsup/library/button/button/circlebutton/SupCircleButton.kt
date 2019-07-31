@@ -2,19 +2,16 @@ package com.ludaxord.projectsup.library.button.button.circlebutton
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.View
 import com.ludaxord.projectsup.library.button.interfaces.IButton
 
-class SupCircleButton : AbstractSupCircleButton, IButton {
+class SupCircleButton : AbstractSupCircleButton {
 
-    override fun setCorners(cornerList: List<Float>) {
-        super.setCorners(cornerList)
-        setCornersFromList(cornerList)
-    }
+    constructor(context: Context) : super(context)
 
-    override fun setCorners(corners: Float) {
-        super.setCorners(corners)
-        setCorners(corners)
-    }
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
+
+    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle)
 
     override fun setColorSchema(colorRes: Int) {
         setDefaultColorSchema(colorRes)
@@ -24,10 +21,12 @@ class SupCircleButton : AbstractSupCircleButton, IButton {
         setDefaultTheme(themeRes)
     }
 
-    constructor(context: Context) : super(context)
+    override fun setCorners(cornerList: List<Float>, view: View?) {
+        setCornersFromList(cornerList)
+    }
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
-
-    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle)
+    override fun setCorners(corners: Float, view: View?) {
+        setCornersFromFloat(corners)
+    }
 
 }
