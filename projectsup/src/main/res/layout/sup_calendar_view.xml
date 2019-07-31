@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <RelativeLayout
+            android:id="@+id/sup_calendar_controls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <com.ludaxord.projectsup.library.widget.imageview.SupImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/sup_calendar_left"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"/>
+
+        <com.ludaxord.projectsup.library.text.textview.SupTextView
+                android:id="@+id/sup_calendar_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/sup_calendar_left"
+                android:layout_toStartOf="@+id/sup_calendar_right"
+                android:gravity="center"/>
+
+        <com.ludaxord.projectsup.library.widget.imageview.SupImageView
+                android:id="@+id/sup_calendar_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+            android:id="@+id/sup_calendar_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+        <com.ludaxord.projectsup.library.text.textview.SupTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"/>
+        <com.ludaxord.projectsup.library.text.textview.SupTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"/>
+        <com.ludaxord.projectsup.library.text.textview.SupTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"/>
+        <com.ludaxord.projectsup.library.text.textview.SupTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"/>
+        <com.ludaxord.projectsup.library.text.textview.SupTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"/>
+        <com.ludaxord.projectsup.library.text.textview.SupTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"/>
+        <com.ludaxord.projectsup.library.text.textview.SupTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"/>
+    </LinearLayout>
+
+    <GridView
+            android:id="@+id/sup_calendar_grid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:numColumns="7"/>
+
+</LinearLayout>

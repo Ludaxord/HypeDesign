@@ -1,7 +1,162 @@
 <resources>
     <string name="app_name">ProjectSup</string>
+
+    <!--exception messages-->
     <string name="utils_exception_default_message">Cannot resolve reference from Utils object</string>
-    <string name="utils_exception_incorrect_size_message">Corners param of type List&lt;Int&gt; is not valid size, required size of 4 elements</string>
+    <string name="utils_exception_incorrect_size_message">Corners param of type List&lt;Int&gt; is not valid size,
+        required size of 4 elements
+    </string>
+    <string name="utils_exception_empty_view_array_list_message">Views param of type ArrayList&lt;View&gt; cannot be
+        empty
+    </string>
     <string name="utils_exception_gradient_drawable_message">Cannot set Drawable as GradientDrawable</string>
     <string name="utils_exception_margin_message">Cannot set type of MarginLayoutParams</string>
+
+    <!--keys-->
+    <string name="key_language_full_monday">language_full_monday</string>
+    <string name="key_language_full_tuesday">language_full_tuesday</string>
+    <string name="key_language_full_wednesday">language_full_wednesday</string>
+    <string name="key_language_full_thursday">language_full_thursday</string>
+    <string name="key_language_full_friday">language_full_friday</string>
+    <string name="key_language_full_saturday">language_full_saturday</string>
+    <string name="key_language_full_sunday">language_full_sunday</string>
+
+    <string name="key_language_short_monday">language_short_monday</string>
+    <string name="key_language_short_tuesday">language_short_tuesday</string>
+    <string name="key_language_short_wednesday">language_short_wednesday</string>
+    <string name="key_language_short_thursday">language_short_thursday</string>
+    <string name="key_language_short_friday">language_short_friday</string>
+    <string name="key_language_short_saturday">language_short_saturday</string>
+    <string name="key_language_short_sunday">language_short_sunday</string>
+
+    <!--language options-->
+    <string name="language_option_pl">pl-PL</string>
+    <string name="language_option_en">en-US</string>
+    <string name="language_option_fr">fr-FR</string>
+    <string name="language_option_de">de-DE</string>
+    <string name="language_option_no">no-NO</string>
+    <string name="language_option_jp">jp-JP</string>
+
+    <!--pl language-->
+
+    <!--pl days of the week-->
+
+    <!--pl full names - days of the week-->
+    <string name="language_pl_full_day_name_monday">Poniedziałek</string>
+    <string name="language_pl_full_day_name_tuesday">Wtorek</string>
+    <string name="language_pl_full_day_name_wednesday">Środa</string>
+    <string name="language_pl_full_day_name_thursday">Czwartek</string>
+    <string name="language_pl_full_day_name_friday">Piątek</string>
+    <string name="language_pl_full_day_name_saturday">Sobota</string>
+    <string name="language_pl_full_day_name_sunday">Niedziela</string>
+
+    <!--pl short names - days of the week-->
+    <string name="language_pl_short_day_name_monday">Pon.</string>
+    <string name="language_pl_short_day_name_tuesday">Wt.</string>
+    <string name="language_pl_short_day_name_wednesday">Śr.</string>
+    <string name="language_pl_short_day_name_thursday">Czw.</string>
+    <string name="language_pl_short_day_name_friday">Pt.</string>
+    <string name="language_pl_short_day_name_saturday">Sob.</string>
+    <string name="language_pl_short_day_name_sunday">Nd.</string>
+
+    <!--en language-->
+
+    <!--en full names - days of the week-->
+    <string name="language_en_full_day_name_monday">Monday</string>
+    <string name="language_en_full_day_name_tuesday">Tuesday</string>
+    <string name="language_en_full_day_name_wednesday">Wednesday</string>
+    <string name="language_en_full_day_name_thursday">Thursday</string>
+    <string name="language_en_full_day_name_friday">Friday</string>
+    <string name="language_en_full_day_name_saturday">Saturday</string>
+    <string name="language_en_full_day_name_sunday">Sunday</string>
+
+    <!--en short names - days of the week-->
+    <string name="language_en_short_day_name_monday">Mon.</string>
+    <string name="language_en_short_day_name_tuesday">Tue.</string>
+    <string name="language_en_short_day_name_wednesday">Wed.</string>
+    <string name="language_en_short_day_name_thursday">Thu.</string>
+    <string name="language_en_short_day_name_friday">Fri.</string>
+    <string name="language_en_short_day_name_saturday">Sat.</string>
+    <string name="language_en_short_day_name_sunday">Sun.</string>
+
+    <!--fr language-->
+
+    <!--fr full names - days of the week-->
+    <string name="language_fr_full_day_name_monday">Lundi</string>
+    <string name="language_fr_full_day_name_tuesday">Mardi</string>
+    <string name="language_fr_full_day_name_wednesday">Mercredi</string>
+    <string name="language_fr_full_day_name_thursday">Jeudi</string>
+    <string name="language_fr_full_day_name_friday">Vendredi</string>
+    <string name="language_fr_full_day_name_saturday">Samedi</string>
+    <string name="language_fr_full_day_name_sunday">Dimanche</string>
+
+    <!--fr short names - days of the week-->
+    <string name="language_fr_short_day_name_monday">Lun.</string>
+    <string name="language_fr_short_day_name_tuesday">Mar.</string>
+    <string name="language_fr_short_day_name_wednesday">Mer.</string>
+    <string name="language_fr_short_day_name_thursday">Jeu.</string>
+    <string name="language_fr_short_day_name_friday">Ven.</string>
+    <string name="language_fr_short_day_name_saturday">Sam.</string>
+    <string name="language_fr_short_day_name_sunday">Dim.</string>
+
+    <!--de language-->
+
+    <!--de full names - days of the week-->
+    <string name="language_de_full_day_name_monday">Montag</string>
+    <string name="language_de_full_day_name_tuesday">Dienstag</string>
+    <string name="language_de_full_day_name_wednesday">Mittwoch</string>
+    <string name="language_de_full_day_name_thursday">Donnerstag</string>
+    <string name="language_de_full_day_name_friday">Freitag</string>
+    <string name="language_de_full_day_name_saturday">Samstag</string>
+    <string name="language_de_full_day_name_sunday">Sonntag</string>
+
+    <!--de short names - days of the week-->
+    <string name="language_de_short_day_name_monday">Mon.</string>
+    <string name="language_de_short_day_name_tuesday">Die.</string>
+    <string name="language_de_short_day_name_wednesday">Mit.</string>
+    <string name="language_de_short_day_name_thursday">Don.</string>
+    <string name="language_de_short_day_name_friday">Fre.</string>
+    <string name="language_de_short_day_name_saturday">Sam.</string>
+    <string name="language_de_short_day_name_sunday">Son.</string>
+
+    <!--no language-->
+
+    <!--no full names - days of the week-->
+    <string name="language_no_full_day_name_monday">Mandag</string>
+    <string name="language_no_full_day_name_tuesday">Tirsdag</string>
+    <string name="language_no_full_day_name_wednesday">Onsdag</string>
+    <string name="language_no_full_day_name_thursday">Torsdag</string>
+    <string name="language_no_full_day_name_friday">Fredag</string>
+    <string name="language_no_full_day_name_saturday">Lørdag</string>
+    <string name="language_no_full_day_name_sunday">Søndag</string>
+
+    <!--no short names - days of the week-->
+    <string name="language_no_short_day_name_monday">Man.</string>
+    <string name="language_no_short_day_name_tuesday">Tir.</string>
+    <string name="language_no_short_day_name_wednesday">On.</string>
+    <string name="language_no_short_day_name_thursday">Tor.</string>
+    <string name="language_no_short_day_name_friday">Fre.</string>
+    <string name="language_no_short_day_name_saturday">Lør.</string>
+    <string name="language_no_short_day_name_sunday">Søn.</string>
+
+    <!--jp language-->
+
+    <!--jp full names - days of the week-->
+    <string name="language_jp_full_day_name_monday">月曜日</string>
+    <string name="language_jp_full_day_name_tuesday">火曜日</string>
+    <string name="language_jp_full_day_name_wednesday">水曜日</string>
+    <string name="language_jp_full_day_name_thursday">木曜日</string>
+    <string name="language_jp_full_day_name_friday">金曜日</string>
+    <string name="language_jp_full_day_name_saturday">土曜日</string>
+    <string name="language_jp_full_day_name_sunday">日曜日</string>
+
+    <!--jp short names - days of the week-->
+    <string name="language_jp_short_day_name_monday">月曜日</string>
+    <string name="language_jp_short_day_name_tuesday">火曜日</string>
+    <string name="language_jp_short_day_name_wednesday">水曜日</string>
+    <string name="language_jp_short_day_name_thursday">木曜日</string>
+    <string name="language_jp_short_day_name_friday">金曜日</string>
+    <string name="language_jp_short_day_name_saturday">土曜日</string>
+    <string name="language_jp_short_day_name_sunday">日曜日</string>
+
 </resources>
