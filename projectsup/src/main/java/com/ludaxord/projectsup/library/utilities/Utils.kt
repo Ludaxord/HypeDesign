@@ -30,6 +30,6 @@ fun View.setCorners(corners: List<Float>) {
     }
 }
 
-fun View.stickViewToBottom(withMargin: Float) {
+fun View.stickViewToBottom(withMargin: Int) {
     setViewToBottom(this, withMargin)
 }

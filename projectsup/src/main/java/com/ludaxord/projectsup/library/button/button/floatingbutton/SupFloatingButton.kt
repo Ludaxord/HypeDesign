@@ -28,7 +28,7 @@ class SupFloatingButton : AbstractSupFloatingButton {
         setCornersFromFloat(corners)
     }
 
-    override fun setStickToBottom(withMargin: Float, view: View?) {
+    override fun setStickToBottom(withMargin: Int, view: View?) {
         setStickToBottomOfView(withMargin)
     }
 

@@ -18,7 +18,7 @@ interface IButton {
         view?.setCorners(corners)
     }
 
-    fun setStickToBottom(withMargin: Float, view: View? = null) {
+    fun setStickToBottom(withMargin: Int, view: View? = null) {
         view?.stickViewToBottom(withMargin)
     }
 }
