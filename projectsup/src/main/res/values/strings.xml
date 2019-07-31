@@ -3,4 +3,5 @@
     <string name="utils_exception_default_message">Cannot resolve reference from Utils object</string>
     <string name="utils_exception_incorrect_size_message">Corners param of type List&lt;Int&gt; is not valid size, required size of 4 elements</string>
     <string name="utils_exception_gradient_drawable_message">Cannot set Drawable as GradientDrawable</string>
+    <string name="utils_exception_margin_message">Cannot set type of MarginLayoutParams</string>
 </resources>

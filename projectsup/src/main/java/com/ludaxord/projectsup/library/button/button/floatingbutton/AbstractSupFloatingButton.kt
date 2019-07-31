@@ -10,9 +10,9 @@ import com.ludaxord.projectsup.library.utilities.stickViewToBottom
 
 abstract class AbstractSupFloatingButton : AbstractSupCircleButton {
 
-    internal var withMargin: Float = 0.0f
+    internal var withMargin: Int = 0
 
-    protected constructor(context: Context, res: Pair<Int, Int>, corners: Float, bottomMargin: Float) : super(
+    protected constructor(context: Context, res: Pair<Int, Int>, corners: Float, bottomMargin: Int) : super(
         context,
         res,
         corners
@@ -28,7 +28,7 @@ abstract class AbstractSupFloatingButton : AbstractSupCircleButton {
         attrs: AttributeSet,
         res: Pair<Int, Int>,
         corners: Float,
-        bottomMargin: Float
+        bottomMargin: Int
     ) : super(
         context,
         attrs,
@@ -47,7 +47,7 @@ abstract class AbstractSupFloatingButton : AbstractSupCircleButton {
         defStyle: Int,
         res: Pair<Int, Int>,
         corners: Float,
-        bottomMargin: Float
+        bottomMargin: Int
     ) : super(
         context,
         attrs,
@@ -61,7 +61,7 @@ abstract class AbstractSupFloatingButton : AbstractSupCircleButton {
         setInitializer()
     }
 
-    protected constructor(context: Context, res: Pair<Int, Int>, cornerList: List<Float>, bottomMargin: Float) : super(
+    protected constructor(context: Context, res: Pair<Int, Int>, cornerList: List<Float>, bottomMargin: Int) : super(
         context,
         res,
         cornerList
@@ -77,7 +77,7 @@ abstract class AbstractSupFloatingButton : AbstractSupCircleButton {
         attrs: AttributeSet,
         res: Pair<Int, Int>,
         cornerList: List<Float>,
-        bottomMargin: Float
+        bottomMargin: Int
     ) : super(
         context,
         attrs,
@@ -96,7 +96,7 @@ abstract class AbstractSupFloatingButton : AbstractSupCircleButton {
         defStyle: Int,
         res: Pair<Int, Int>,
         cornerList: List<Float>,
-        bottomMargin: Float
+        bottomMargin: Int
     ) : super(
         context,
         attrs,
@@ -148,7 +148,7 @@ abstract class AbstractSupFloatingButton : AbstractSupCircleButton {
         setStickToBottomOfView(withMargin)
     }
 
-    protected fun setStickToBottomOfView(withMargin: Float) {
+    protected fun setStickToBottomOfView(withMargin: Int) {
         this.stickViewToBottom(withMargin)
     }
 
