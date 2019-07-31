@@ -25,8 +25,42 @@ object ViewUtils {
         }
     }
 
+    fun getChildren(view: View): ArrayList<View> {
+        return getAllChildren(view)
+    }
+
     fun setViewToBottom(view: View, withMargin: Int) {
         setMargin(view, marginBottom = withMargin)
+    }
+
+    fun setViewsIds(rootView: View, views: ArrayList<View>) {
+        if (views.isNotEmpty()) {
+            for (view in views) {
+                setViewId(view)
+            }
+        } else {
+            throw UtilsException(rootView.context.getString(com.ludaxord.projectsup.R.string.utils_exception_empty_view_array_list_message))
+        }
+    }
+
+    fun setViewsToRootView(rootView: ViewGroup, views: ArrayList<View>) {
+        if (views.isNotEmpty()) {
+            for (view in views) {
+                setSubViewToView(rootView, view)
+            }
+        } else {
+            throw UtilsException(rootView.context.getString(com.ludaxord.projectsup.R.string.utils_exception_empty_view_array_list_message))
+        }
+    }
+
+    private fun setViewId(view: View) {
+        if (view.id == View.NO_ID) {
+            view.id = View.generateViewId()
+        }
+    }
+
+    private fun setSubViewToView(rootView: ViewGroup, view: View) {
+        rootView.addView(view)
     }
 
     private fun setMargin(
@@ -58,6 +92,26 @@ object ViewUtils {
 
     private fun setCornerRadius(drawable: GradientDrawable, radius: Float) {
         drawable.cornerRadius = radius
+    }
+
+    private fun getAllChildren(v: View): ArrayList<View> {
+        if (v !is ViewGroup) {
+            val viewArrayList = ArrayList<View>()
+            viewArrayList.add(v)
+            return viewArrayList
+        }
+        val result = ArrayList<View>()
+        for (i in 0 until v.childCount) {
+
+            val child = v.getChildAt(i)
+
+            val viewArrayList = ArrayList<View>()
+            viewArrayList.add(v)
+            viewArrayList.addAll(getAllChildren(child))
+
+            result.addAll(viewArrayList)
+        }
+        return result
     }
 
 }
