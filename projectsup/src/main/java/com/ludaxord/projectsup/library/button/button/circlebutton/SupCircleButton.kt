@@ -3,7 +3,6 @@ package com.ludaxord.projectsup.library.button.button.circlebutton
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
-import com.ludaxord.projectsup.library.button.interfaces.IButton
 
 class SupCircleButton : AbstractSupCircleButton {
 

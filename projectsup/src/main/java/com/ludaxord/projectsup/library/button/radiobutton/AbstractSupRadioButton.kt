@@ -46,7 +46,6 @@ abstract class AbstractSupRadioButton : RadioButton, IButton {
         Defaults.DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA
     )
 
-
     internal open fun setDefaultViewUtils() {
         setDefaultTheme(res.first)
         setDefaultColorSchema(res.second)

@@ -2,8 +2,6 @@ package com.ludaxord.projectsup.library.button.button
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View
-import com.ludaxord.projectsup.library.button.interfaces.IButton
 
 class SupButton : AbstractSupButton {
 
