@@ -10,12 +10,17 @@ import com.ludaxord.projectsup.library.utilities.stickViewToBottom
 
 abstract class AbstractSupFloatingButton : AbstractSupCircleButton {
 
+    internal var withMargin: Float = 0.0f
+
     protected constructor(context: Context, res: Pair<Int, Int>, corners: Float, bottomMargin: Float) : super(
         context,
         res,
         corners
     ) {
-        this.stickViewToBottom(bottomMargin)
+        this.res = res
+        this.corners = corners
+        this.withMargin = bottomMargin
+        setInitializer()
     }
 
     protected constructor(
@@ -30,7 +35,10 @@ abstract class AbstractSupFloatingButton : AbstractSupCircleButton {
         res,
         corners
     ) {
-        this.stickViewToBottom(bottomMargin)
+        this.res = res
+        this.corners = corners
+        this.withMargin = bottomMargin
+        setInitializer()
     }
 
     protected constructor(
@@ -47,7 +55,10 @@ abstract class AbstractSupFloatingButton : AbstractSupCircleButton {
         res,
         corners
     ) {
-        this.stickViewToBottom(bottomMargin)
+        this.res = res
+        this.corners = corners
+        this.withMargin = bottomMargin
+        setInitializer()
     }
 
     protected constructor(context: Context, res: Pair<Int, Int>, cornerList: List<Float>, bottomMargin: Float) : super(
@@ -55,7 +66,10 @@ abstract class AbstractSupFloatingButton : AbstractSupCircleButton {
         res,
         cornerList
     ) {
-        this.stickViewToBottom(bottomMargin)
+        this.res = res
+        this.cornerList = cornerList
+        this.withMargin = bottomMargin
+        setInitializer()
     }
 
     protected constructor(
@@ -70,7 +84,10 @@ abstract class AbstractSupFloatingButton : AbstractSupCircleButton {
         res,
         cornerList
     ) {
-        this.stickViewToBottom(bottomMargin)
+        this.res = res
+        this.cornerList = cornerList
+        this.withMargin = bottomMargin
+        setInitializer()
     }
 
     protected constructor(
@@ -87,7 +104,10 @@ abstract class AbstractSupFloatingButton : AbstractSupCircleButton {
         res,
         cornerList
     ) {
-        this.stickViewToBottom(bottomMargin)
+        this.res = res
+        this.cornerList = cornerList
+        this.withMargin = bottomMargin
+        setInitializer()
     }
 
 
@@ -114,5 +134,22 @@ abstract class AbstractSupFloatingButton : AbstractSupCircleButton {
         DEFAULT_CORNER_ROUND_FLOAT,
         DEFAULT_BOTTOM_MARGIN_FLOAT
     )
+
+    override fun setDefaultViewUtils() {
+        super.setDefaultViewUtils()
+        setDefaultStickToBottom()
+    }
+
+    private fun setInitializer() {
+        setDefaultViewUtils()
+    }
+
+    private fun setDefaultStickToBottom() {
+        setStickToBottomOfView(withMargin)
+    }
+
+    protected fun setStickToBottomOfView(withMargin: Float) {
+        this.stickViewToBottom(withMargin)
+    }
 
 }

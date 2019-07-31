@@ -3,17 +3,23 @@ package com.ludaxord.projectsup.library.button.switchbutton
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.Switch
+import com.ludaxord.projectsup.library.button.interfaces.IButton
 import com.ludaxord.projectsup.library.utilities.Defaults
+import com.ludaxord.projectsup.library.utilities.initColorsSchema
 import com.ludaxord.projectsup.library.utilities.initTheme
 
-abstract class AbstractSupSwitch: Switch {
+abstract class AbstractSupSwitch : Switch, IButton {
+
+    internal var res: Pair<Int, Int> = Pair(0, 0)
 
     protected constructor(context: Context, res: Pair<Int, Int>) : super(context) {
-        this.initTheme(res.first)
+        this.res = res
+        setInitializer()
     }
 
     protected constructor(context: Context, attrs: AttributeSet, res: Pair<Int, Int>) : super(context, attrs) {
-        this.initTheme(res.first)
+        this.res = res
+        setInitializer()
     }
 
     protected constructor(context: Context, attrs: AttributeSet, defStyle: Int, res: Pair<Int, Int>) : super(
@@ -21,7 +27,8 @@ abstract class AbstractSupSwitch: Switch {
         attrs,
         defStyle
     ) {
-        this.initTheme(res.first)
+        this.res = res
+        setInitializer()
     }
 
     protected constructor(context: Context) : this(context, Defaults.DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA)
@@ -38,4 +45,21 @@ abstract class AbstractSupSwitch: Switch {
         defStyle,
         Defaults.DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA
     )
+
+    internal open fun setDefaultViewUtils() {
+        setDefaultTheme(res.first)
+        setDefaultColorSchema(res.second)
+    }
+
+    private fun setInitializer() {
+        setDefaultViewUtils()
+    }
+
+    protected fun setDefaultColorSchema(colorRes: Int) {
+        this.initColorsSchema(colorRes)
+    }
+
+    protected fun setDefaultTheme(themeRes: Int) {
+        this.initTheme(themeRes)
+    }
 }

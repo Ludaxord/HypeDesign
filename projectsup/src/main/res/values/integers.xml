@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--theme style-->
     <integer name="sup_default_style">100000</integer>
     <integer name="sup_box_style">100001</integer>
     <integer name="sup_arc_style">100002</integer>
@@ -13,4 +14,8 @@
     <integer name="sup_denim_style">100010</integer>
     <integer name="sup_tag_style">100011</integer>
     <integer name="sup_motion_style">100012</integer>
+
+    <!--color schema style-->
+    <integer name="sup_default_color_schema">110000</integer>
+    <integer name="sup_camo_color_schema">110001</integer>
 </resources>

@@ -47,4 +47,15 @@ object ThemeUtils {
             }
         }
     }
+
+    fun setColorSchemaResources(view: View, res: Int) {
+        when (res) {
+            com.ludaxord.projectsup.R.integer.sup_camo_color_schema -> {
+
+            }
+            else -> {
+
+            }
+        }
+    }
 }
