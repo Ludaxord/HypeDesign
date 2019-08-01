@@ -12,6 +12,19 @@
     <string name="utils_exception_gradient_drawable_message">Cannot set Drawable as GradientDrawable</string>
     <string name="utils_exception_margin_message">Cannot set type of MarginLayoutParams</string>
     <string name="utils_exception_change_to_same_language">Cannot change Language object to same language</string>
+    <string name="utils_exception_calendar_view_button">Cannot set click listener on type that is not Button or
+        ImageView
+    </string>
+
+    <!--date formats-->
+    <string name="date_format_1">yyyy-MM-dd HH:mm:ss</string>
+    <string name="date_format_2">yyyy-MM-dd\'T\'HH:mm:ss</string>
+    <string name="date_format_3">yyyy-MM-dd</string>
+    <string name="date_format_4">MMM yyyy</string>
+    <string name="date_format_5">HH:mm</string>
+
+    <!--counts-->
+    <string name="count_00">00</string>
 
     <!--prefixes-->
     <string name="prefix_text">_text</string>
@@ -34,6 +47,26 @@
     <string name="key_language_short_friday">language_short_friday</string>
     <string name="key_language_short_saturday">language_short_saturday</string>
     <string name="key_language_short_sunday">language_short_sunday</string>
+
+    <string name="key_sup_default_style">sup_default_style</string>
+    <string name="key_sup_box_style">sup_box_style</string>
+    <string name="key_sup_arc_style">sup_arc_style</string>
+    <string name="key_sup_s_style">sup_s_style</string>
+    <string name="key_sup_script_style">sup_script_style</string>
+    <string name="key_sup_photo_style">sup_photo_style</string>
+    <string name="key_sup_mini_box_style">sup_mini_box_style</string>
+    <string name="key_sup_swoosh_style">sup_swoosh_style</string>
+    <string name="key_sup_jump_man_style">sup_jump_man_style</string>
+    <string name="key_sup_champion_style">sup_champion_style</string>
+    <string name="key_sup_denim_style">sup_denim_style</string>
+    <string name="key_sup_tag_style">sup_tag_style</string>
+    <string name="key_sup_motion_style">sup_motion_style</string>
+
+    <string name="key_sup_default_color_schema">sup_default_color_schema</string>
+    <string name="key_sup_camo_color_schema">sup_camo_color_schema</string>
+
+    <string name="key_project_sup_color_schema">project_sup_color_schema</string>
+    <string name="key_project_sup_theme">project_sup_theme</string>
 
     <!--language options-->
     <string name="language_option_pl">pl-PL</string>

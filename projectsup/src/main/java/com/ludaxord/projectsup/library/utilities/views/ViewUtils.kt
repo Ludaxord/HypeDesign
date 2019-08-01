@@ -1,10 +1,12 @@
-package com.ludaxord.projectsup.library.utilities
+package com.ludaxord.projectsup.library.utilities.views
 
 import android.graphics.drawable.GradientDrawable
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.ludaxord.projectsup.R
+import com.ludaxord.projectsup.library.utilities.Defaults
+import com.ludaxord.projectsup.library.utilities.UtilsException
 
 
 object ViewUtils {
@@ -14,16 +16,22 @@ object ViewUtils {
         if (backgroundShape is GradientDrawable) {
             setCornerRadius(backgroundShape, corner)
         } else {
-            throw UtilsException(view.context.getString(com.ludaxord.projectsup.R.string.utils_exception_gradient_drawable_message))
+            throw UtilsException(view.context.getString(R.string.utils_exception_gradient_drawable_message))
         }
     }
 
     fun setViewCustomCorners(view: View, corners: List<Float>) {
         val backgroundShape = view.background
         if (backgroundShape is GradientDrawable) {
-            setCornerRadius(backgroundShape, corners[0], corners[1], corners[2], corners[3])
+            setCornerRadius(
+                backgroundShape,
+                corners[0],
+                corners[1],
+                corners[2],
+                corners[3]
+            )
         } else {
-            throw UtilsException(view.context.getString(com.ludaxord.projectsup.R.string.utils_exception_gradient_drawable_message))
+            throw UtilsException(view.context.getString(R.string.utils_exception_gradient_drawable_message))
         }
     }
 
@@ -41,7 +49,7 @@ object ViewUtils {
                 setViewId(view)
             }
         } else {
-            throw UtilsException(rootView.context.getString(com.ludaxord.projectsup.R.string.utils_exception_empty_view_array_list_message))
+            throw UtilsException(rootView.context.getString(R.string.utils_exception_empty_view_array_list_message))
         }
     }
 
@@ -55,7 +63,7 @@ object ViewUtils {
                 setSubViewToView(rootView, view)
             }
         } else {
-            throw UtilsException(rootView.context.getString(com.ludaxord.projectsup.R.string.utils_exception_empty_view_array_list_message))
+            throw UtilsException(rootView.context.getString(R.string.utils_exception_empty_view_array_list_message))
         }
     }
 
@@ -63,11 +71,15 @@ object ViewUtils {
         textView: TextView,
         name: String,
         dayNames: HashMap<String, String>,
-        rootView: ViewGroup,
         short: Boolean
     ) {
         val dayName = name.replace(Defaults.DEFAULT_TEXT_PREFIX, "")
-        setWeekDaysBasedOnPrefix(textView, dayName, dayNames, short)
+        setWeekDaysBasedOnPrefix(
+            textView,
+            dayName,
+            dayNames,
+            short
+        )
     }
 
     fun setWeekDaysManually(
@@ -176,12 +188,18 @@ object ViewUtils {
         var dayName = name
         if (dayName.contains(Defaults.DEFAULT_LANGUAGE_SHORT_PREFIX)) {
             if (!short) {
-                dayName = dayName.replace(Defaults.DEFAULT_LANGUAGE_SHORT_PREFIX, Defaults.DEFAULT_LANGUAGE_FULL_PREFIX)
+                dayName = dayName.replace(
+                    Defaults.DEFAULT_LANGUAGE_SHORT_PREFIX,
+                    Defaults.DEFAULT_LANGUAGE_FULL_PREFIX
+                )
             }
             textView.text = dayNames[dayName]
         } else if (dayName.contains(Defaults.DEFAULT_LANGUAGE_FULL_PREFIX)) {
             if (short) {
-                dayName = dayName.replace(Defaults.DEFAULT_LANGUAGE_FULL_PREFIX, Defaults.DEFAULT_LANGUAGE_SHORT_PREFIX)
+                dayName = dayName.replace(
+                    Defaults.DEFAULT_LANGUAGE_FULL_PREFIX,
+                    Defaults.DEFAULT_LANGUAGE_SHORT_PREFIX
+                )
             }
             textView.text = dayNames[dayName]
         }
@@ -216,7 +234,7 @@ object ViewUtils {
             params.setMargins(marginLeft, marginTop, marginRight, marginBottom)
             view.requestLayout()
         } else {
-            throw UtilsException(view.context.getString(com.ludaxord.projectsup.R.string.utils_exception_margin_message))
+            throw UtilsException(view.context.getString(R.string.utils_exception_margin_message))
         }
     }
 
