@@ -4,9 +4,9 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.RadioButton
 import com.ludaxord.projectsup.library.button.interfaces.IButton
-import com.ludaxord.projectsup.library.utilities.Defaults
-import com.ludaxord.projectsup.library.utilities.initColorsSchema
-import com.ludaxord.projectsup.library.utilities.initTheme
+import com.ludaxord.projectsup.library.utilities.*
+import com.ludaxord.projectsup.library.utilities.colors.Color
+import com.ludaxord.projectsup.library.utilities.themes.Theme
 
 abstract class AbstractSupRadioButton : RadioButton, IButton {
 
@@ -61,5 +61,13 @@ abstract class AbstractSupRadioButton : RadioButton, IButton {
 
     protected fun setDefaultTheme(themeRes: Int) {
         this.initTheme(themeRes)
+    }
+
+    protected fun getDefaultColorSchema(): Color {
+        return context.getColorSchemaFromPreferneces()
+    }
+
+    protected fun getDefaultTheme(): Theme {
+        return context.getThemeFromPreferences()
     }
 }

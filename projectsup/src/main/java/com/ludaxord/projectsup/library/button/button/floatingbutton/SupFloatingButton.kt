@@ -3,6 +3,8 @@ package com.ludaxord.projectsup.library.button.button.floatingbutton
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
+import com.ludaxord.projectsup.library.utilities.colors.Color
+import com.ludaxord.projectsup.library.utilities.themes.Theme
 
 class SupFloatingButton : AbstractSupFloatingButton {
 
@@ -18,6 +20,14 @@ class SupFloatingButton : AbstractSupFloatingButton {
 
     override fun setTheme(themeRes: Int) {
         setDefaultTheme(themeRes)
+    }
+
+    override fun getColorSchema(): Color {
+        return getDefaultColorSchema()
+    }
+
+    override fun getTheme(): Theme {
+        return getDefaultTheme()
     }
 
     override fun setCorners(cornerList: List<Float>, view: View?) {

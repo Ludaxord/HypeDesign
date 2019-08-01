@@ -8,6 +8,8 @@ import com.ludaxord.projectsup.library.utilities.languages.languageoptions.*
 
 interface ILanguage {
 
+    fun changeLanguage(actualLanguage: Language, newLanguage: String): Language
+
     fun setLanguage(language: String, resources: Resources): Language {
         return when (language) {
             resources.getString(R.string.language_option_pl) -> {

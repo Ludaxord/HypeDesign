@@ -18,4 +18,7 @@
     <!--color schema style-->
     <integer name="sup_default_color_schema">110000</integer>
     <integer name="sup_camo_color_schema">110001</integer>
+
+    <!--calendar-->
+    <integer name="calendar_days">42</integer>
 </resources>

@@ -1,14 +1,11 @@
 package com.ludaxord.projectsup.library.button.interfaces
 
 import android.view.View
+import com.ludaxord.projectsup.library.interfaces.IView
 import com.ludaxord.projectsup.library.utilities.setCorners
 import com.ludaxord.projectsup.library.utilities.stickViewToBottom
 
-interface IButton {
-
-    fun setColorSchema(colorRes: Int)
-
-    fun setTheme(themeRes: Int)
+interface IButton : IView {
 
     fun setCorners(cornerList: List<Float>, view: View? = null) {
         view?.setCorners(cornerList)

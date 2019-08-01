@@ -5,8 +5,12 @@ import android.util.AttributeSet
 import android.widget.ImageButton
 import com.ludaxord.projectsup.library.button.interfaces.IButton
 import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA
+import com.ludaxord.projectsup.library.utilities.colors.Color
+import com.ludaxord.projectsup.library.utilities.getColorSchemaFromPreferneces
+import com.ludaxord.projectsup.library.utilities.getThemeFromPreferences
 import com.ludaxord.projectsup.library.utilities.initColorsSchema
 import com.ludaxord.projectsup.library.utilities.initTheme
+import com.ludaxord.projectsup.library.utilities.themes.Theme
 
 abstract class AbstractSupImageButton : ImageButton, IButton {
 
@@ -62,5 +66,13 @@ abstract class AbstractSupImageButton : ImageButton, IButton {
 
     protected fun setDefaultTheme(themeRes: Int) {
         this.initTheme(themeRes)
+    }
+
+    protected fun getDefaultColorSchema(): Color {
+        return context.getColorSchemaFromPreferneces()
+    }
+
+    protected fun getDefaultTheme(): Theme {
+        return context.getThemeFromPreferences()
     }
 }

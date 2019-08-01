@@ -41,36 +41,43 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
         <com.ludaxord.projectsup.library.text.textview.SupTextView
+                android:id="@+id/language_short_sunday_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"/>
         <com.ludaxord.projectsup.library.text.textview.SupTextView
+                android:id="@+id/language_short_monday_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"/>
         <com.ludaxord.projectsup.library.text.textview.SupTextView
+                android:id="@+id/language_short_tuesday_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"/>
         <com.ludaxord.projectsup.library.text.textview.SupTextView
+                android:id="@+id/language_short_wednesday_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"/>
         <com.ludaxord.projectsup.library.text.textview.SupTextView
+                android:id="@+id/language_short_thursday_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"/>
         <com.ludaxord.projectsup.library.text.textview.SupTextView
+                android:id="@+id/language_short_friday_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"/>
         <com.ludaxord.projectsup.library.text.textview.SupTextView
+                android:id="@+id/language_short_saturday_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
