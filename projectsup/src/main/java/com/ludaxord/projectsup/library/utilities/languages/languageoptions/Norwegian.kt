@@ -6,7 +6,7 @@ import com.ludaxord.projectsup.library.utilities.languages.Language
 class Norwegian : Language() {
 
     override val languageName: String
-        get() = resources.getString(R.string.language_option_en)
+        get() = resources.getString(R.string.language_option_no)
 
     override fun getLanguageCredentials(): HashMap<String, String> {
         val languageMap = HashMap<String, String>()
