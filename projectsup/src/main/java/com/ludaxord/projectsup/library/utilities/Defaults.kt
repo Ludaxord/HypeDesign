@@ -13,4 +13,7 @@ object Defaults {
     internal const val DEFAULT_BOTTOM_MARGIN_FLOAT = 20
     internal val DEFAULT_CALENDAR_EVENTS_ARRAY_LIST = ArrayList<Date>()
     internal val DEFAULT_LANGUAGE = Resources.getSystem().getString(R.string.language_option_en)
+    internal val DEFAULT_TEXT_PREFIX = Resources.getSystem().getString(R.string.prefix_text)
+    internal val DEFAULT_LANGUAGE_SHORT_PREFIX = Resources.getSystem().getString(R.string.prefix_language_short)
+    internal val DEFAULT_LANGUAGE_FULL_PREFIX = Resources.getSystem().getString(R.string.prefix_language_full)
 }

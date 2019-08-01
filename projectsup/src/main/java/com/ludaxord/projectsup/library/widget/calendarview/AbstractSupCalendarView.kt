@@ -45,7 +45,7 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
 
     internal lateinit var calendarLanguage: Language
 
-    internal lateinit var languageName: String
+    internal var languageName: String
 
     protected constructor(context: Context, events: ArrayList<Date> = ArrayList(), language: String) : super(context) {
         this.events = events
@@ -99,22 +99,13 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
         DEFAULT_LANGUAGE
     )
 
-    private fun setInitializer() {
+    internal open fun setDefaultViewUtils() {
         createViews()
         setWeekDays()
     }
 
-    private fun setWeekDays() {
-        calendarLanguage = setLanguage(languageName, resources)
-        calendarLanguage.setWeeksToViews(headerLinearLayout)
-    }
-
-    private fun createViews(fromInflater: Boolean = false) {
-        if (fromInflater) {
-            inflaterViews()
-        } else {
-            dynamicViews()
-        }
+    private fun setInitializer() {
+        setDefaultViewUtils()
     }
 
     private fun inflaterViews(root: ViewGroup = this) {
@@ -164,6 +155,19 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
 
     private fun setViewsInRoot() {
         this.setViewsToRoot(subViewHelperArrayList)
+    }
+
+    protected fun setWeekDays() {
+        calendarLanguage = setLanguage(languageName, resources)
+        calendarLanguage.setWeeksToViews(headerLinearLayout)
+    }
+
+    protected fun createViews(fromInflater: Boolean = false) {
+        if (fromInflater) {
+            inflaterViews()
+        } else {
+            dynamicViews()
+        }
     }
 
 }

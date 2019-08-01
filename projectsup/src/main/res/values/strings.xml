@@ -11,6 +11,12 @@
     </string>
     <string name="utils_exception_gradient_drawable_message">Cannot set Drawable as GradientDrawable</string>
     <string name="utils_exception_margin_message">Cannot set type of MarginLayoutParams</string>
+    <string name="utils_exception_change_to_same_language">Cannot change Language object to same language</string>
+
+    <!--prefixes-->
+    <string name="prefix_text">_text</string>
+    <string name="prefix_language_short">language_short_</string>
+    <string name="prefix_language_full">language_full_</string>
 
     <!--keys-->
     <string name="key_language_full_monday">language_full_monday</string>

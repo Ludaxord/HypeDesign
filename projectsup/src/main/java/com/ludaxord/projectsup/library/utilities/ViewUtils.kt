@@ -3,6 +3,8 @@ package com.ludaxord.projectsup.library.utilities
 import android.graphics.drawable.GradientDrawable
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import com.ludaxord.projectsup.R
 
 
 object ViewUtils {
@@ -43,6 +45,10 @@ object ViewUtils {
         }
     }
 
+    fun getViewIdName(view: View): String {
+        return getIdName(view)
+    }
+
     fun setViewsToRootView(rootView: ViewGroup, views: ArrayList<View>) {
         if (views.isNotEmpty()) {
             for (view in views) {
@@ -51,6 +57,141 @@ object ViewUtils {
         } else {
             throw UtilsException(rootView.context.getString(com.ludaxord.projectsup.R.string.utils_exception_empty_view_array_list_message))
         }
+    }
+
+    fun setWeekDayWithDefaultPrefix(
+        textView: TextView,
+        name: String,
+        dayNames: HashMap<String, String>,
+        rootView: ViewGroup,
+        short: Boolean
+    ) {
+        val dayName = name.replace(Defaults.DEFAULT_TEXT_PREFIX, "")
+        setWeekDaysBasedOnPrefix(textView, dayName, dayNames, short)
+    }
+
+    fun setWeekDaysManually(
+        textView: TextView,
+        name: String,
+        rootView: ViewGroup,
+        dayNames: HashMap<String, String>,
+        short: Boolean
+    ) {
+        setWeekDays(textView, name, rootView, dayNames, short)
+    }
+
+    private fun setWeekDays(
+        textView: TextView,
+        name: String,
+        rootView: ViewGroup,
+        dayNames: HashMap<String, String>,
+        short: Boolean
+    ) {
+        if (short) {
+            when {
+                name.contains(rootView.context.resources.getString(R.string.key_language_short_monday)) || name.contains(
+                    rootView.context.resources.getString(R.string.key_language_full_monday)
+                ) -> {
+                    textView.text = dayNames[rootView.context.resources.getString(R.string.key_language_short_monday)]
+                }
+                name.contains(rootView.context.resources.getString(R.string.key_language_short_tuesday)) || name.contains(
+                    rootView.context.resources.getString(R.string.key_language_full_tuesday)
+                ) -> {
+                    textView.text = dayNames[rootView.context.resources.getString(R.string.key_language_short_tuesday)]
+                }
+                name.contains(rootView.context.resources.getString(R.string.key_language_short_wednesday)) || name.contains(
+                    rootView.context.resources.getString(R.string.key_language_full_wednesday)
+                ) -> {
+                    textView.text =
+                        dayNames[rootView.context.resources.getString(R.string.key_language_short_wednesday)]
+                }
+                name.contains(rootView.context.resources.getString(R.string.key_language_short_thursday)) || name.contains(
+                    rootView.context.resources.getString(R.string.key_language_full_thursday)
+                ) -> {
+                    textView.text = dayNames[rootView.context.resources.getString(R.string.key_language_short_thursday)]
+                }
+                name.contains(rootView.context.resources.getString(R.string.key_language_short_friday)) || name.contains(
+                    rootView.context.resources.getString(R.string.key_language_full_friday)
+                ) -> {
+                    textView.text = dayNames[rootView.context.resources.getString(R.string.key_language_short_friday)]
+                }
+                name.contains(rootView.context.resources.getString(R.string.key_language_short_saturday)) || name.contains(
+                    rootView.context.resources.getString(R.string.key_language_full_saturday)
+                ) -> {
+                    textView.text = dayNames[rootView.context.resources.getString(R.string.key_language_short_saturday)]
+                }
+                name.contains(rootView.context.resources.getString(R.string.key_language_short_sunday)) || name.contains(
+                    rootView.context.resources.getString(R.string.key_language_full_sunday)
+                ) -> {
+                    textView.text = dayNames[rootView.context.resources.getString(R.string.key_language_short_sunday)]
+                }
+            }
+        } else {
+            when {
+                name.contains(rootView.context.resources.getString(R.string.key_language_short_monday)) || name.contains(
+                    rootView.context.resources.getString(R.string.key_language_full_monday)
+                ) -> {
+                    textView.text = dayNames[rootView.context.resources.getString(R.string.key_language_full_monday)]
+                }
+                name.contains(rootView.context.resources.getString(R.string.key_language_short_tuesday)) || name.contains(
+                    rootView.context.resources.getString(R.string.key_language_full_tuesday)
+                ) -> {
+                    textView.text = dayNames[rootView.context.resources.getString(R.string.key_language_full_tuesday)]
+                }
+                name.contains(rootView.context.resources.getString(R.string.key_language_short_wednesday)) || name.contains(
+                    rootView.context.resources.getString(R.string.key_language_full_wednesday)
+                ) -> {
+                    textView.text = dayNames[rootView.context.resources.getString(R.string.key_language_full_wednesday)]
+                }
+                name.contains(rootView.context.resources.getString(R.string.key_language_short_thursday)) || name.contains(
+                    rootView.context.resources.getString(R.string.key_language_full_thursday)
+                ) -> {
+                    textView.text = dayNames[rootView.context.resources.getString(R.string.key_language_full_thursday)]
+                }
+                name.contains(rootView.context.resources.getString(R.string.key_language_short_friday)) || name.contains(
+                    rootView.context.resources.getString(R.string.key_language_full_friday)
+                ) -> {
+                    textView.text = dayNames[rootView.context.resources.getString(R.string.key_language_full_friday)]
+                }
+                name.contains(rootView.context.resources.getString(R.string.key_language_short_saturday)) || name.contains(
+                    rootView.context.resources.getString(R.string.key_language_full_saturday)
+                ) -> {
+                    textView.text = dayNames[rootView.context.resources.getString(R.string.key_language_full_saturday)]
+                }
+                name.contains(rootView.context.resources.getString(R.string.key_language_short_sunday)) || name.contains(
+                    rootView.context.resources.getString(R.string.key_language_full_sunday)
+                ) -> {
+                    textView.text = dayNames[rootView.context.resources.getString(R.string.key_language_full_sunday)]
+                }
+            }
+        }
+    }
+
+    private fun setWeekDaysBasedOnPrefix(
+        textView: TextView,
+        name: String,
+        dayNames: HashMap<String, String>,
+        short: Boolean
+    ) {
+        var dayName = name
+        if (dayName.contains(Defaults.DEFAULT_LANGUAGE_SHORT_PREFIX)) {
+            if (!short) {
+                dayName = dayName.replace(Defaults.DEFAULT_LANGUAGE_SHORT_PREFIX, Defaults.DEFAULT_LANGUAGE_FULL_PREFIX)
+            }
+            textView.text = dayNames[dayName]
+        } else if (dayName.contains(Defaults.DEFAULT_LANGUAGE_FULL_PREFIX)) {
+            if (short) {
+                dayName = dayName.replace(Defaults.DEFAULT_LANGUAGE_FULL_PREFIX, Defaults.DEFAULT_LANGUAGE_SHORT_PREFIX)
+            }
+            textView.text = dayNames[dayName]
+        }
+    }
+
+    private fun getIdName(view: View): String {
+        return if (view.id == View.NO_ID)
+            "no-id"
+        else
+            view.resources.getResourceName(view.id)
     }
 
     private fun setViewId(view: View) {
