@@ -10,6 +10,9 @@ import android.widget.TextView
 import com.ludaxord.projectsup.library.utilities.DateUtils.setEventsToExistedEvents
 import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_CALENDAR_DAYS
 import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_TEXT_PREFIX
+import com.ludaxord.projectsup.library.utilities.colors.Color
+import com.ludaxord.projectsup.library.utilities.colors.ColorSchemaUtils
+import com.ludaxord.projectsup.library.utilities.colors.ColorSchemaUtils.getColorSchema
 import com.ludaxord.projectsup.library.utilities.colors.ColorSchemaUtils.setColorSchemaResources
 import com.ludaxord.projectsup.library.utilities.themes.ThemeUtils.setThemeFromResources
 import com.ludaxord.projectsup.library.utilities.views.ViewUtils.getChildren
@@ -22,6 +25,8 @@ import com.ludaxord.projectsup.library.utilities.views.ViewUtils.setViewsToRootV
 import com.ludaxord.projectsup.library.utilities.views.ViewUtils.setWeekDayWithDefaultPrefix
 import com.ludaxord.projectsup.library.utilities.views.ViewUtils.setWeekDaysManually
 import com.ludaxord.projectsup.library.utilities.languages.Language
+import com.ludaxord.projectsup.library.utilities.themes.Theme
+import com.ludaxord.projectsup.library.utilities.themes.ThemeUtils
 import com.ludaxord.projectsup.library.utilities.userpreferences.UserPreferences
 import com.ludaxord.projectsup.library.widget.calendarview.AbstractSupCalendarView
 import com.ludaxord.projectsup.library.widget.calendarview.elements.adapter.SupCalendarAdapter
@@ -33,8 +38,8 @@ fun View.initTheme(res: Int) {
     setThemeFromResources(this, res)
 }
 
-fun Context.getThemeFromPreferences() {
-
+fun Context.getThemeFromPreferences(): Theme {
+    return ThemeUtils.getTheme(this)
 }
 
 fun Context.getPreferences(): UserPreferences {
@@ -45,8 +50,8 @@ fun View.initColorsSchema(res: Int) {
     setColorSchemaResources(this, res)
 }
 
-fun Context.getColorSchemaFromPreferneces() {
-
+fun Context.getColorSchemaFromPreferneces(): Color {
+    return ColorSchemaUtils.getColorSchema(this)
 }
 
 fun Context.getResourceId(pVariableName: String, pResourcename: String, pPackageName: String): Int {
@@ -219,7 +224,15 @@ fun AbstractSupCalendarView.updateCalendarCells() {
         calendar.add(Calendar.DAY_OF_MONTH, 1)
     }
 
-    this.calendarAdapter = SupCalendarAdapter(context, cells, this.events, this.schedule, this.calendar.time)
+    this.calendarAdapter = SupCalendarAdapter(
+        context,
+        cells,
+        this.events,
+        this.schedule,
+        this.calendar.time,
+        this.getTheme(),
+        this.getColorSchema()
+    )
     this.calendarGridView.adapter = calendarAdapter
 
     val simpleDateFormat = SimpleDateFormat(dateFormat, Locale.getDefault())

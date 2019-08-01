@@ -2,9 +2,10 @@ package com.ludaxord.projectsup.library.button.checkbox
 
 import android.content.Context
 import android.util.AttributeSet
+import com.ludaxord.projectsup.library.utilities.colors.Color
+import com.ludaxord.projectsup.library.utilities.themes.Theme
 
 class SupCheckBox : AbstractSupCheckBox {
-
     constructor(context: Context) : super(context)
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
@@ -17,5 +18,13 @@ class SupCheckBox : AbstractSupCheckBox {
 
     override fun setTheme(themeRes: Int) {
         setDefaultTheme(themeRes)
+    }
+
+    override fun getColorSchema(): Color {
+        return getDefaultColorSchema()
+    }
+
+    override fun getTheme(): Theme {
+        return getDefaultTheme()
     }
 }

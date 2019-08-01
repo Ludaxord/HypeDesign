@@ -3,17 +3,11 @@ package com.ludaxord.projectsup.library.widget.calendarview
 import android.content.Context
 import android.util.AttributeSet
 import com.ludaxord.projectsup.library.utilities.checkLanguage
+import com.ludaxord.projectsup.library.utilities.colors.Color
 import com.ludaxord.projectsup.library.utilities.languages.Language
+import com.ludaxord.projectsup.library.utilities.themes.Theme
 
 class SupCalendarView : AbstractSupCalendarView {
-
-    override fun setColorSchema(colorRes: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun setTheme(themeRes: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
     constructor(context: Context) : super(context)
 
@@ -36,5 +30,19 @@ class SupCalendarView : AbstractSupCalendarView {
         }
     }
 
+    override fun setColorSchema(colorRes: Int) {
+        setDefaultColorSchema(colorRes)
+    }
 
+    override fun setTheme(themeRes: Int) {
+        setDefaultTheme(themeRes)
+    }
+
+    override fun getColorSchema(): Color {
+        return getDefaultColorSchema()
+    }
+
+    override fun getTheme(): Theme {
+        return getDefaultTheme()
+    }
 }

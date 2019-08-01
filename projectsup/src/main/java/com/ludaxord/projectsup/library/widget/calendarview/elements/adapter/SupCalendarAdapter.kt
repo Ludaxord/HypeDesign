@@ -5,7 +5,6 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
-import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +16,7 @@ import com.ludaxord.projectsup.R
 import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_SIMPLE_DATE_FORMAT_1
 import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_SIMPLE_DATE_FORMAT_3
 import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_SIMPLE_DATE_FORMAT_4
+import com.ludaxord.projectsup.library.utilities.themes.Theme
 import com.ludaxord.projectsup.library.utilities.toCalendar
 import com.ludaxord.projectsup.library.widget.calendarview.AbstractSupCalendarView
 import com.ludaxord.projectsup.library.widget.calendarview.elements.models.Schedule
@@ -34,6 +34,10 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
 
     private data class Time(val date: Calendar, val day: Int, val month: Int, val year: Int, val today: Calendar?)
 
+    private lateinit var color: com.ludaxord.projectsup.library.utilities.colors.Color
+
+    private lateinit var theme: Theme
+
     private lateinit var inflater: LayoutInflater
 
     constructor(
@@ -45,6 +49,8 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
         this.days = days
         this.events = calendarView.events
         this.schedule = calendarView.schedule
+        this.theme = calendarView.getTheme()
+        this.color = calendarView.getColorSchema()
         this.date = date
         inflater = LayoutInflater.from(context)
     }
@@ -54,11 +60,15 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
         days: ArrayList<Date>,
         events: ArrayList<Date>,
         schedule: ArrayList<Schedule>,
-        date: Date?
+        date: Date?,
+        theme: Theme,
+        color: com.ludaxord.projectsup.library.utilities.colors.Color
     ) : this(context) {
         this.days = days
         this.events = events
         this.schedule = schedule
+        this.theme = theme
+        this.color = color
         this.date = date
         inflater = LayoutInflater.from(context)
     }

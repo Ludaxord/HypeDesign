@@ -2,6 +2,8 @@ package com.ludaxord.projectsup.library.button.switchbutton
 
 import android.content.Context
 import android.util.AttributeSet
+import com.ludaxord.projectsup.library.utilities.colors.Color
+import com.ludaxord.projectsup.library.utilities.themes.Theme
 
 class SupSwitch : AbstractSupSwitch {
 
@@ -17,6 +19,14 @@ class SupSwitch : AbstractSupSwitch {
 
     override fun setTheme(themeRes: Int) {
         setDefaultTheme(themeRes)
+    }
+
+    override fun getColorSchema(): Color {
+        return getDefaultColorSchema()
+    }
+
+    override fun getTheme(): Theme {
+        return getDefaultTheme()
     }
 
 }

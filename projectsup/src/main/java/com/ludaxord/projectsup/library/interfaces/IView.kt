@@ -1,6 +1,8 @@
 package com.ludaxord.projectsup.library.interfaces
 
 import android.content.Context
+import com.ludaxord.projectsup.library.utilities.colors.Color
+import com.ludaxord.projectsup.library.utilities.themes.Theme
 
 interface IView {
 
@@ -8,12 +10,8 @@ interface IView {
 
     fun setTheme(themeRes: Int)
 
-    fun getColorSchema(context: Context) {
+    fun getColorSchema(): Color
 
-    }
-
-    fun getTheme(context: Context) {
-
-    }
+    fun getTheme(): Theme
 
 }
