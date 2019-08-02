@@ -1,5 +1,6 @@
 package com.ludaxord.projectsup.library.widget.calendarview.elements.adapter
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Color
@@ -184,6 +185,7 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
         }
     }
 
+    @SuppressLint("InflateParams")
     private fun calendarDetails(events: ArrayList<Schedule>, date: String) {
         val layoutInflater = LayoutInflater.from(context)
         val calendarDetailsView = layoutInflater.inflate(R.layout.sup_calendar_details_view, null)
