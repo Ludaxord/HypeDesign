@@ -28,10 +28,13 @@
 
     <!--prefixes-->
     <string name="prefix_text">_text</string>
+    <string name="prefix_style">style_</string>
+    <string name="prefix_color">color_</string>
     <string name="prefix_language_short">language_short_</string>
     <string name="prefix_language_full">language_full_</string>
 
     <!--keys-->
+
     <string name="key_language_full_monday">language_full_monday</string>
     <string name="key_language_full_tuesday">language_full_tuesday</string>
     <string name="key_language_full_wednesday">language_full_wednesday</string>
@@ -67,6 +70,28 @@
 
     <string name="key_project_sup_color_schema">project_sup_color_schema</string>
     <string name="key_project_sup_theme">project_sup_theme</string>
+
+    <!--values keys-->
+    <string name="key_string">string</string>
+    <string name="key_color">color</string>
+    <string name="key_integer">integer</string>
+    <string name="key_dimen">dimen</string>
+    <string name="key_style">style</string>
+    <string name="key_font">style</string>
+    <string name="key_attr">attr</string>
+    <string name="key_theme">theme</string>
+
+    <!--color keys-->
+    <string name="key_color_name">theme_name</string>
+    <string name="key_greyed_out">greyed_out</string>
+    <string name="key_today">today</string>
+    <string name="key_standard">standard</string>
+    <string name="key_warning">warning</string>
+
+    <!--theme keys-->
+    
+    <string name="key_theme_name">theme_name</string>
+    <string name="key_typeface">typeface</string>
 
     <!--language options-->
     <string name="language_option_pl">pl-PL</string>

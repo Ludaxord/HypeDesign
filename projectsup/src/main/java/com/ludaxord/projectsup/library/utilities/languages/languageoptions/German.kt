@@ -1,6 +1,7 @@
 package com.ludaxord.projectsup.library.utilities.languages.languageoptions
 
 import com.ludaxord.projectsup.R
+import com.ludaxord.projectsup.library.utilities.Defaults.resources
 import com.ludaxord.projectsup.library.utilities.languages.Language
 
 class German : Language() {

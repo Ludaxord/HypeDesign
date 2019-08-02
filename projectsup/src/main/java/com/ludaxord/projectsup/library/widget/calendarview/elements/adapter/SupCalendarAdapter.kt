@@ -1,5 +1,6 @@
 package com.ludaxord.projectsup.library.widget.calendarview.elements.adapter
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Color
@@ -16,6 +17,13 @@ import com.ludaxord.projectsup.R
 import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_SIMPLE_DATE_FORMAT_1
 import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_SIMPLE_DATE_FORMAT_3
 import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_SIMPLE_DATE_FORMAT_4
+import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_TYPEFACE_KEY
+import com.ludaxord.projectsup.library.utilities.Defaults.GREYED_OUT_KEY
+import com.ludaxord.projectsup.library.utilities.Defaults.STANDARD_KEY
+import com.ludaxord.projectsup.library.utilities.Defaults.TODAY_KEY
+import com.ludaxord.projectsup.library.utilities.Defaults.WARNING_KEY
+import com.ludaxord.projectsup.library.utilities.setTextColorSchema
+import com.ludaxord.projectsup.library.utilities.setTypeFaceTheme
 import com.ludaxord.projectsup.library.utilities.themes.Theme
 import com.ludaxord.projectsup.library.utilities.toCalendar
 import com.ludaxord.projectsup.library.widget.calendarview.AbstractSupCalendarView
@@ -34,9 +42,9 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
 
     private data class Time(val date: Calendar, val day: Int, val month: Int, val year: Int, val today: Calendar?)
 
-    private lateinit var color: com.ludaxord.projectsup.library.utilities.colors.Color
+    private lateinit var colorSet: HashMap<String, Any>
 
-    private lateinit var theme: Theme
+    private lateinit var themeCredentials: HashMap<String, Any>
 
     private lateinit var inflater: LayoutInflater
 
@@ -46,11 +54,13 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
         date: Date,
         days: ArrayList<Date>
     ) : this(context) {
+        val theme = calendarView.getTheme()
+        val color = calendarView.getColorSchema()
         this.days = days
         this.events = calendarView.events
         this.schedule = calendarView.schedule
-        this.theme = calendarView.getTheme()
-        this.color = calendarView.getColorSchema()
+        this.themeCredentials = theme.theme()
+        this.colorSet = color.color()
         this.date = date
         inflater = LayoutInflater.from(context)
     }
@@ -67,8 +77,8 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
         this.days = days
         this.events = events
         this.schedule = schedule
-        this.theme = theme
-        this.color = color
+        this.themeCredentials = theme.theme()
+        this.colorSet = color.color()
         this.date = date
         inflater = LayoutInflater.from(context)
     }
@@ -118,11 +128,10 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
 
     private fun setItemDetails(view: View, time: Time) {
         if (view is TextView) {
-            view.setTypeface(null, Typeface.NORMAL)
-            view.setTextColor(Color.BLACK)
+            view.setTypeFaceTheme(themeCredentials[DEFAULT_TYPEFACE_KEY], Typeface.NORMAL)
+            view.setTextColorSchema(colorSet[STANDARD_KEY])
 
             val (date, day, month, year, today) = time
-
 
             val simpleDateFormat = SimpleDateFormat(DEFAULT_SIMPLE_DATE_FORMAT_3, Locale.getDefault())
 
@@ -132,13 +141,13 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
 
             today?.let {
                 if (month != today.get(Calendar.MONTH) || year != today.get(Calendar.YEAR)) {
-//                    view.setTextColor(ContextCompat.getColor(context, R.color.greyed_out))
+                    view.setTextColorSchema(colorSet[GREYED_OUT_KEY])
                 } else if (day == Calendar.getInstance().get(Calendar.DAY_OF_MONTH) && formatDate == timeStamp) {
-                    view.setTypeface(null, Typeface.BOLD)
-//                    view.setTextColor(ContextCompat.getColor(context, R.color.today))
+                    view.setTypeFaceTheme(themeCredentials[DEFAULT_TYPEFACE_KEY], Typeface.BOLD)
+                    view.setTextColorSchema(colorSet[TODAY_KEY])
                 } else {
-                    view.setTypeface(null, Typeface.NORMAL)
-//                    view.setTextColor(ContextCompat.getColor(context, R.color.black))
+                    view.setTypeFaceTheme(themeCredentials[DEFAULT_TYPEFACE_KEY], Typeface.NORMAL)
+                    view.setTextColorSchema(colorSet[STANDARD_KEY])
                 }
             }
 
@@ -160,10 +169,10 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
                 val parsefDS = form.format(fDS)
 
                 if (parsebS == parsefDS) {
-//                    view.setTextColor(ContextCompat.getColor(context, R.color.warningBtn))
+                    view.setTextColorSchema(colorSet[WARNING_KEY])
                     break
                 } else {
-                    view.setBackgroundResource(0)
+//                    view.setBackgroundResource(0)
                 }
             }
 
@@ -184,6 +193,7 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
         }
     }
 
+    @SuppressLint("InflateParams")
     private fun calendarDetails(events: ArrayList<Schedule>, date: String) {
         val layoutInflater = LayoutInflater.from(context)
         val calendarDetailsView = layoutInflater.inflate(R.layout.sup_calendar_details_view, null)

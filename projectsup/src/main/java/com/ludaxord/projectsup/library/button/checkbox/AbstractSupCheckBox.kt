@@ -64,7 +64,7 @@ abstract class AbstractSupCheckBox : CheckBox, IButton {
     }
 
     protected fun getDefaultColorSchema(): Color {
-        return context.getColorSchemaFromPreferneces()
+        return context.getColorSchemaFromPreferences()
     }
 
     protected fun getDefaultTheme(): Theme {

@@ -3,7 +3,7 @@ package com.ludaxord.projectsup.library.utilities.themes.themeoptions
 import android.content.Context
 import com.ludaxord.projectsup.library.utilities.themes.Theme
 
-class Default : Theme {
+class Swoosh : Theme {
 
     constructor(context: Context) : super(context)
 

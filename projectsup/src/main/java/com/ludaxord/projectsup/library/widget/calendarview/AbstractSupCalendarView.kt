@@ -216,7 +216,7 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
     }
 
     protected fun getDefaultColorSchema(): Color {
-        return context.getColorSchemaFromPreferneces()
+        return context.getColorSchemaFromPreferences()
     }
 
     protected fun getDefaultTheme(): Theme {
