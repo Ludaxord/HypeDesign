@@ -23,6 +23,8 @@ object Defaults {
 
     internal val GREYED_OUT_KEY = resources.getString(R.string.key_greyed_out)
     internal val TODAY_KEY = resources.getString(R.string.key_today)
+    internal val STANDARD_KEY = resources.getString(R.string.key_standard)
+    internal val WARNING_KEY = resources.getString(R.string.key_warning)
 
     internal val DEFAULT_SIMPLE_DATE_FORMAT_1 = resources.getString(R.string.date_format_1)
     internal val DEFAULT_SIMPLE_DATE_FORMAT_2 = resources.getString(R.string.date_format_2)
@@ -36,7 +38,9 @@ object Defaults {
     internal val DEFAULT_THEME = resources.getString(R.string.key_sup_default_style)
 
     internal val DEFAULT_STYLE_KEY = resources.getString(R.string.key_style)
+    internal val DEFAULT_TYPEFACE_KEY = resources.getString(R.string.key_typeface)
     internal val DEFAULT_THEME_NAME_KEY = resources.getString(R.string.key_theme_name)
+    internal val DEFAULT_COLOR_NAME_KEY = resources.getString(R.string.key_color_name)
 
     internal val DEFAULT_CALENDAR_DAYS = resources.getInteger(R.integer.calendar_days)
 }

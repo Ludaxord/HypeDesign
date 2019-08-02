@@ -2,6 +2,7 @@ package com.ludaxord.projectsup.library.utilities
 
 import android.content.Context
 import android.content.res.Resources
+import android.graphics.Typeface
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -94,6 +95,18 @@ fun TextView.setWeekDayNames(language: Language, rootView: ViewGroup, short: Boo
         setWeekDayWithDefaultPrefix(this, name, dayNames, short)
     } else {
         setWeekDaysManually(this, name, rootView, dayNames, short)
+    }
+}
+
+fun TextView.setTextColorSchema(color: Any?) {
+    if (color is Int) {
+        this.setTextColor(color)
+    }
+}
+
+fun TextView.setTypeFaceTheme(typeFace: Any?, type: Int) {
+    if (typeFace is Typeface) {
+        this.setTypeface(typeface, type)
     }
 }
 
@@ -270,6 +283,8 @@ fun ArrayList<Date>.setEvents(newEvents: ArrayList<Date>) {
 
 //HashMap extensions
 
-fun HashMap<String, Any>.combine(hashMap: HashMap<String, Any>) {
-    this.putAll(hashMap)
+fun HashMap<String, Any>.combine(hashMaps: List<HashMap<String, Any>>) {
+    for (hashMap in hashMaps) {
+        this.putAll(hashMap)
+    }
 }

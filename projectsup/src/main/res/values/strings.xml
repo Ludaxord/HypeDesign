@@ -77,16 +77,21 @@
     <string name="key_integer">integer</string>
     <string name="key_dimen">dimen</string>
     <string name="key_style">style</string>
+    <string name="key_font">style</string>
     <string name="key_attr">attr</string>
     <string name="key_theme">theme</string>
 
     <!--color keys-->
+    <string name="key_color_name">theme_name</string>
     <string name="key_greyed_out">greyed_out</string>
     <string name="key_today">today</string>
-    
+    <string name="key_standard">standard</string>
+    <string name="key_warning">warning</string>
+
     <!--theme keys-->
     
     <string name="key_theme_name">theme_name</string>
+    <string name="key_typeface">typeface</string>
 
     <!--language options-->
     <string name="language_option_pl">pl-PL</string>
