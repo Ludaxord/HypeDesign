@@ -53,6 +53,9 @@ object ThemeUtils : ITheme {
             com.ludaxord.projectsup.R.string.key_sup_motion_style -> {
                 Motion(context, themeKey)
             }
+            com.ludaxord.projectsup.R.string.key_sup_olde_english_style -> {
+                OldeEnglish(context, themeKey)
+            }
             com.ludaxord.projectsup.R.string.key_sup_photo_style -> {
                 Photo(context, themeKey)
             }

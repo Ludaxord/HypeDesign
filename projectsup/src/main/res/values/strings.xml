@@ -64,6 +64,7 @@
     <string name="key_sup_denim_style">sup_denim_style</string>
     <string name="key_sup_tag_style">sup_tag_style</string>
     <string name="key_sup_motion_style">sup_motion_style</string>
+    <string name="key_sup_olde_english_style">sup_olde_english_style</string>
 
     <string name="key_sup_default_color_schema">sup_default_color_schema</string>
     <string name="key_sup_camo_color_schema">sup_camo_color_schema</string>
