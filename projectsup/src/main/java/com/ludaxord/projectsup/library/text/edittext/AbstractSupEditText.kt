@@ -6,7 +6,7 @@ import android.widget.EditText
 import com.ludaxord.projectsup.library.utilities.Defaults
 import com.ludaxord.projectsup.library.utilities.initTheme
 
-abstract class AbstractSupEditText: EditText {
+abstract class AbstractSupEditText : EditText {
 
     protected constructor(context: Context, res: Pair<Int, Int>) : super(context) {
         this.initTheme(res.first)
@@ -24,18 +24,30 @@ abstract class AbstractSupEditText: EditText {
         this.initTheme(res.first)
     }
 
-    protected constructor(context: Context) : this(context, Defaults.DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA)
+    protected constructor(context: Context) : this(
+        context,
+        Pair(
+            com.ludaxord.projectsup.R.integer.sup_default_style,
+            com.ludaxord.projectsup.R.integer.sup_default_color_schema
+        )
+    )
 
     protected constructor(context: Context, attrs: AttributeSet) : this(
         context,
         attrs,
-        Defaults.DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA
+        Pair(
+            com.ludaxord.projectsup.R.integer.sup_default_style,
+            com.ludaxord.projectsup.R.integer.sup_default_color_schema
+        )
     )
 
     protected constructor(context: Context, attrs: AttributeSet, defStyle: Int) : this(
         context,
         attrs,
         defStyle,
-        Defaults.DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA
+        Pair(
+            com.ludaxord.projectsup.R.integer.sup_default_style,
+            com.ludaxord.projectsup.R.integer.sup_default_color_schema
+        )
     )
 }

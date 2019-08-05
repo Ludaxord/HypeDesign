@@ -83,7 +83,7 @@
     <string name="key_theme">theme</string>
 
     <!--color keys-->
-    <string name="key_color_name">theme_name</string>
+    <string name="key_color_name">color_name</string>
     <string name="key_greyed_out">greyed_out</string>
     <string name="key_today">today</string>
     <string name="key_standard">standard</string>

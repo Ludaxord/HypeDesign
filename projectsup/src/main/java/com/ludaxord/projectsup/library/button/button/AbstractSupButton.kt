@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.Button
 import com.ludaxord.projectsup.library.button.interfaces.IButton
-import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA
 import com.ludaxord.projectsup.library.utilities.colors.Color
 import com.ludaxord.projectsup.library.utilities.getColorSchemaFromPreferences
 import com.ludaxord.projectsup.library.utilities.getThemeFromPreferences
@@ -35,19 +34,31 @@ abstract class AbstractSupButton : Button, IButton {
         setInitializer()
     }
 
-    protected constructor(context: Context) : this(context, DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA)
+    protected constructor(context: Context) : this(
+        context,
+        Pair(
+            com.ludaxord.projectsup.R.integer.sup_default_style,
+            com.ludaxord.projectsup.R.integer.sup_default_color_schema
+        )
+    )
 
     protected constructor(context: Context, attrs: AttributeSet) : this(
         context,
         attrs,
-        DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA
+        Pair(
+            com.ludaxord.projectsup.R.integer.sup_default_style,
+            com.ludaxord.projectsup.R.integer.sup_default_color_schema
+        )
     )
 
     protected constructor(context: Context, attrs: AttributeSet, defStyle: Int) : this(
         context,
         attrs,
         defStyle,
-        DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA
+        Pair(
+            com.ludaxord.projectsup.R.integer.sup_default_style,
+            com.ludaxord.projectsup.R.integer.sup_default_color_schema
+        )
     )
 
     internal open fun setDefaultViewUtils() {

@@ -10,10 +10,6 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import com.ludaxord.projectsup.library.text.textview.SupTextView
 import com.ludaxord.projectsup.library.utilities.*
-import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_CALENDAR_EVENTS_ARRAY_LIST
-import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_LANGUAGE
-import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA
-import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_SIMPLE_DATE_FORMAT_4
 import com.ludaxord.projectsup.library.utilities.colors.Color
 import com.ludaxord.projectsup.library.utilities.languages.Language
 import com.ludaxord.projectsup.library.utilities.themes.Theme
@@ -39,7 +35,7 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
 
     internal var subViewHelperArrayList: ArrayList<View> = ArrayList()
 
-    internal var dateFormat = DEFAULT_SIMPLE_DATE_FORMAT_4
+    internal var dateFormat = context.resources.getString(com.ludaxord.projectsup.R.string.date_format_4)
 
     internal lateinit var calendarLanguage: Language
 
@@ -105,26 +101,35 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
 
     constructor(context: Context) : this(
         context,
-        DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA,
-        DEFAULT_CALENDAR_EVENTS_ARRAY_LIST,
-        DEFAULT_LANGUAGE
+        Pair(
+            com.ludaxord.projectsup.R.integer.sup_default_style,
+            com.ludaxord.projectsup.R.integer.sup_default_color_schema
+        ),
+        ArrayList<Date>(),
+        context.resources.getString(com.ludaxord.projectsup.R.string.language_option_en)
     )
 
     constructor(context: Context, attrs: AttributeSet) : this(
         context,
         attrs,
-        DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA,
-        DEFAULT_CALENDAR_EVENTS_ARRAY_LIST,
-        DEFAULT_LANGUAGE
+        Pair(
+            com.ludaxord.projectsup.R.integer.sup_default_style,
+            com.ludaxord.projectsup.R.integer.sup_default_color_schema
+        ),
+        ArrayList<Date>(),
+        context.resources.getString(com.ludaxord.projectsup.R.string.language_option_en)
     )
 
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : this(
         context,
         attrs,
         defStyleAttr,
-        DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA,
-        DEFAULT_CALENDAR_EVENTS_ARRAY_LIST,
-        DEFAULT_LANGUAGE
+        Pair(
+            com.ludaxord.projectsup.R.integer.sup_default_style,
+            com.ludaxord.projectsup.R.integer.sup_default_color_schema
+        ),
+        ArrayList<Date>(),
+        context.resources.getString(com.ludaxord.projectsup.R.string.language_option_en)
     )
 
     internal open fun setDefaultViewUtils() {
@@ -146,7 +151,7 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
     }
 
     private fun setDefaultWeekDaysLanguage(languageName: String = this.languageName) {
-        calendarLanguage = setLanguage(languageName, resources)
+        calendarLanguage = setLanguage(languageName, context)
     }
 
     private fun inflaterViews(root: ViewGroup = this) {
@@ -230,5 +235,31 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
     protected fun setDefaultTheme(themeRes: Int) {
         this.initTheme(themeRes)
     }
+
+//    TODO: REMOVE ON RELEASE
+
+//    constructor(context: Context) : this(
+//        context,
+//        DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA,
+//        DEFAULT_CALENDAR_EVENTS_ARRAY_LIST,
+//        DEFAULT_LANGUAGE
+//    )
+
+//    constructor(context: Context, attrs: AttributeSet) : this(
+//        context,
+//        attrs,
+//        DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA,
+//        DEFAULT_CALENDAR_EVENTS_ARRAY_LIST,
+//        DEFAULT_LANGUAGE
+//    )
+
+//    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : this(
+//        context,
+//        attrs,
+//        defStyleAttr,
+//        DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA,
+//        DEFAULT_CALENDAR_EVENTS_ARRAY_LIST,
+//        DEFAULT_LANGUAGE
+//    )
 
 }

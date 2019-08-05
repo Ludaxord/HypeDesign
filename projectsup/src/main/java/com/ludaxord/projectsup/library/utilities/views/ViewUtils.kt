@@ -73,7 +73,7 @@ object ViewUtils {
         dayNames: HashMap<String, String>,
         short: Boolean
     ) {
-        val dayName = name.replace(Defaults.DEFAULT_TEXT_PREFIX, "")
+        val dayName = name.replace(textView.context.resources.getString(R.string.prefix_text), "")
         setWeekDaysBasedOnPrefix(
             textView,
             dayName,
@@ -186,19 +186,19 @@ object ViewUtils {
         short: Boolean
     ) {
         var dayName = name
-        if (dayName.contains(Defaults.DEFAULT_LANGUAGE_SHORT_PREFIX)) {
+        if (dayName.contains(textView.resources.getString(R.string.prefix_language_short))) {
             if (!short) {
                 dayName = dayName.replace(
-                    Defaults.DEFAULT_LANGUAGE_SHORT_PREFIX,
-                    Defaults.DEFAULT_LANGUAGE_FULL_PREFIX
+                    textView.resources.getString(R.string.prefix_language_short),
+                    textView.resources.getString(R.string.prefix_language_full)
                 )
             }
             textView.text = dayNames[dayName]
-        } else if (dayName.contains(Defaults.DEFAULT_LANGUAGE_FULL_PREFIX)) {
+        } else if (dayName.contains(textView.resources.getString(R.string.prefix_language_full))) {
             if (short) {
                 dayName = dayName.replace(
-                    Defaults.DEFAULT_LANGUAGE_FULL_PREFIX,
-                    Defaults.DEFAULT_LANGUAGE_SHORT_PREFIX
+                    textView.resources.getString(R.string.prefix_language_full),
+                    textView.resources.getString(R.string.prefix_language_short)
                 )
             }
             textView.text = dayNames[dayName]

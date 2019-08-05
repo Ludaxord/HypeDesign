@@ -5,7 +5,6 @@ import android.util.AttributeSet
 import com.ludaxord.projectsup.library.button.button.circlebutton.AbstractSupCircleButton
 import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_BOTTOM_MARGIN_FLOAT
 import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_CORNER_ROUND_FLOAT
-import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA
 import com.ludaxord.projectsup.library.utilities.stickViewToBottom
 
 abstract class AbstractSupFloatingButton : AbstractSupCircleButton {
@@ -113,7 +112,10 @@ abstract class AbstractSupFloatingButton : AbstractSupCircleButton {
 
     protected constructor(context: Context) : this(
         context,
-        DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA,
+        Pair(
+            com.ludaxord.projectsup.R.integer.sup_default_style,
+            com.ludaxord.projectsup.R.integer.sup_default_color_schema
+        ),
         DEFAULT_CORNER_ROUND_FLOAT,
         DEFAULT_BOTTOM_MARGIN_FLOAT
     )
@@ -121,7 +123,10 @@ abstract class AbstractSupFloatingButton : AbstractSupCircleButton {
     protected constructor(context: Context, attrs: AttributeSet) : this(
         context,
         attrs,
-        DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA,
+        Pair(
+            com.ludaxord.projectsup.R.integer.sup_default_style,
+            com.ludaxord.projectsup.R.integer.sup_default_color_schema
+        ),
         DEFAULT_CORNER_ROUND_FLOAT,
         DEFAULT_BOTTOM_MARGIN_FLOAT
     )
@@ -130,7 +135,10 @@ abstract class AbstractSupFloatingButton : AbstractSupCircleButton {
         context,
         attrs,
         defStyle,
-        DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA,
+        Pair(
+            com.ludaxord.projectsup.R.integer.sup_default_style,
+            com.ludaxord.projectsup.R.integer.sup_default_color_schema
+        ),
         DEFAULT_CORNER_ROUND_FLOAT,
         DEFAULT_BOTTOM_MARGIN_FLOAT
     )

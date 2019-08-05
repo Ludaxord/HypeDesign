@@ -1,3 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <declare-styleable name="SupCalendarView">
+        <attr name="theme_res" format="integer"/>
+        <attr name="theme_name_res" format="string"/>
+        <attr name="color_schema_res" format="integer"/>
+        <attr name="language_res" format="string"/>
+    </declare-styleable>
 </resources>
