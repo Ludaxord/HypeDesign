@@ -1,6 +1,7 @@
 package com.ludaxord.projectsup.library.utilities.views
 
 import android.graphics.drawable.GradientDrawable
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -53,8 +54,8 @@ object ViewUtils {
         }
     }
 
-    fun getViewIdName(view: View): String {
-        return getIdName(view)
+    fun getViewIdName(view: View, withLibraryName: Boolean): String {
+        return getIdName(view, withLibraryName)
     }
 
     fun setViewsToRootView(rootView: ViewGroup, views: ArrayList<View>) {
@@ -205,11 +206,17 @@ object ViewUtils {
         }
     }
 
-    private fun getIdName(view: View): String {
+    private fun getIdName(view: View, withLibraryName: Boolean): String {
         return if (view.id == View.NO_ID)
             "no-id"
-        else
-            view.resources.getResourceName(view.id)
+        else {
+            val name = view.resources.getResourceName(view.id)
+            if (!withLibraryName) {
+                name.substringAfter("/")
+            } else {
+                name
+            }
+        }
     }
 
     private fun setViewId(view: View) {

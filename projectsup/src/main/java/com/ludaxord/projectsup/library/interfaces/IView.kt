@@ -9,14 +9,8 @@ import com.ludaxord.projectsup.library.utilities.themes.Theme
 
 interface IView {
 
-    fun getStyledAttributes(
-        context: Context,
-        attributeSet: AttributeSet,
-        attrs: IntArray,
-        defStyle: Int,
-        defStyleRes: Int = 0
-    ): TypedArray {
-        return context.obtainStyledAttributes(attributeSet, attrs, defStyle, defStyleRes)
+    fun getStyledAttributes(context: Context, attributeSet: AttributeSet, attrs: IntArray): TypedArray {
+        return context.obtainStyledAttributes(attributeSet, attrs)
     }
 
     fun getStyledAttributesTheme(styledAttributes: TypedArray, index: Int): Int {

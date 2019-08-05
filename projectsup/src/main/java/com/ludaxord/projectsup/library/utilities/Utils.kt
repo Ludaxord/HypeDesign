@@ -2,6 +2,7 @@ package com.ludaxord.projectsup.library.utilities
 
 import android.content.Context
 import android.graphics.Typeface
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -30,6 +31,7 @@ import com.ludaxord.projectsup.library.widget.calendarview.AbstractSupCalendarVi
 import com.ludaxord.projectsup.library.widget.calendarview.elements.adapter.SupCalendarAdapter
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 //View extensions
 
@@ -59,16 +61,15 @@ fun View.stickViewToBottom(withMargin: Int) {
     setViewToBottom(this, withMargin)
 }
 
-fun View.getIdName(): String {
-    return getViewIdName(this)
+fun View.getIdName(withLibraryName: Boolean = false): String {
+    return getViewIdName(this, withLibraryName)
 }
 
 fun View.setMonthForCalendarView(calendarView: AbstractSupCalendarView, newEvents: ArrayList<Date>?, amount: Int) {
     if (this is ImageView || this is Button) {
         this.setOnClickListener {
             calendarView.calendar.add(Calendar.MONTH, amount)
-            calendarView.updateEventsCalendar(newEvents)
-            calendarView.updateCalendarCells()
+            calendarView.setCalendar(newEvents)
         }
     } else {
         throw UtilsException(context.resources.getString(com.ludaxord.projectsup.R.string.utils_exception_calendar_view_button))
@@ -86,7 +87,6 @@ fun ViewGroup.setViewsToRoot(views: ArrayList<View>) {
 fun TextView.setWeekDayNames(language: Language, rootView: ViewGroup, short: Boolean = true) {
     val name = this.getIdName()
     val dayNames = if (short) language.getShortDayNames() else language.getFullDayNames()
-
     if (name.contains(rootView.context.getString(R.string.prefix_text))) {
         setWeekDayWithDefaultPrefix(this, name, dayNames, short)
     } else {
@@ -107,6 +107,11 @@ fun TextView.setTypeFaceTheme(typeFace: Any?, type: Int) {
 }
 
 //AbstractSupCalendarView extensions
+
+fun AbstractSupCalendarView.setCalendar(events: ArrayList<Date>?) {
+    this.updateEventsCalendar(events)
+    this.updateCalendarCells()
+}
 
 fun AbstractSupCalendarView.updateEventsCalendar(newEvents: ArrayList<Date>?) {
     if (newEvents != null) {
@@ -198,40 +203,40 @@ fun Int.getColorSchemaKey(context: Context): String {
 
 fun Int.getThemeKey(context: Context): String {
     return when (this) {
-        com.ludaxord.projectsup.R.integer.sup_default_style -> {
+        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_default_style) -> {
             context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_default_style)
         }
-        com.ludaxord.projectsup.R.integer.sup_box_style -> {
+        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_box_style) -> {
             context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_box_style)
         }
-        com.ludaxord.projectsup.R.integer.sup_arc_style -> {
+        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_arc_style) -> {
             context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_arc_style)
         }
-        com.ludaxord.projectsup.R.integer.sup_s_style -> {
+        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_s_style) -> {
             context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_s_style)
         }
-        com.ludaxord.projectsup.R.integer.sup_script_style -> {
+        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_script_style) -> {
             context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_script_style)
         }
-        com.ludaxord.projectsup.R.integer.sup_photo_style -> {
+        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_photo_style) -> {
             context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_photo_style)
         }
-        com.ludaxord.projectsup.R.integer.sup_mini_box_style -> {
+        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_mini_box_style) -> {
             context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_mini_box_style)
         }
-        com.ludaxord.projectsup.R.integer.sup_swoosh_style -> {
+        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_swoosh_style) -> {
             context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_swoosh_style)
         }
-        com.ludaxord.projectsup.R.integer.sup_jump_man_style -> {
+        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_jump_man_style) -> {
             context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_jump_man_style)
         }
-        com.ludaxord.projectsup.R.integer.sup_champion_style -> {
+        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_champion_style) -> {
             context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_champion_style)
         }
-        com.ludaxord.projectsup.R.integer.sup_denim_style -> {
+        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_denim_style) -> {
             context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_denim_style)
         }
-        com.ludaxord.projectsup.R.integer.sup_tag_style -> {
+        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_tag_style) -> {
             context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_tag_style)
         }
         else -> {

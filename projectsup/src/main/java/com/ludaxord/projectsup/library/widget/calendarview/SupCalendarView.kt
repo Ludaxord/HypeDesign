@@ -3,7 +3,6 @@ package com.ludaxord.projectsup.library.widget.calendarview
 import android.content.Context
 import android.util.AttributeSet
 import android.util.Log
-import com.ludaxord.projectsup.R
 import com.ludaxord.projectsup.library.utilities.checkLanguage
 import com.ludaxord.projectsup.library.utilities.colors.Color
 import com.ludaxord.projectsup.library.utilities.languages.Language
@@ -12,29 +11,19 @@ import com.ludaxord.projectsup.library.utilities.themes.Theme
 
 class SupCalendarView : AbstractSupCalendarView {
 
+    private lateinit var styledAttributes: StyledAttributes
+
     constructor(context: Context) : super(context)
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
-
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
-
-        val a = getStyledAttributes(context, attrs, R.styleable.SupCalendarView, defStyleAttr)
-
-        val themeRes = getStyledAttributesTheme(a, R.styleable.SupCalendarView_theme_res)
-        val themeNameRes = getStyledAttributesThemeName(a, R.styleable.SupCalendarView_theme_name_res)
-        val colorSchemaRes = getStyledAttributesColorSchema(a, R.styleable.SupCalendarView_color_schema_res)
-        val languageRes = getStyledAttributesLanguage(a, R.styleable.SupCalendarView_language_res)
-
-        a.recycle()
-
-        Log.w(
-            "tripoloski",
-            "defStyleAttr -> $defStyleAttr theme -> $themeRes, themeName -> $themeNameRes, colorSchema -> $colorSchemaRes, language -> $languageRes"
-        )
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
+        styledAttributes = setViewUtilsFromStyledAttributes(attrs)
+        setDefaultViewUtils()
     }
 
-    override fun changeLanguageWeekDays(actualLanguage: Language, newLanguage: String) {
-        super.changeLanguageWeekDays(actualLanguage, newLanguage)
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+
+    override fun setDefaultViewUtils() {
+        super.setDefaultViewUtils()
     }
 
     override fun changeLanguage(actualLanguage: Language, newLanguage: String): Language {

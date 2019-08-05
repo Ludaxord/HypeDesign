@@ -2,12 +2,12 @@ package com.ludaxord.projectsup.library.widget.calendarview
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridView
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
+import android.widget.*
+import com.ludaxord.projectsup.R
 import com.ludaxord.projectsup.library.text.textview.SupTextView
 import com.ludaxord.projectsup.library.utilities.*
 import com.ludaxord.projectsup.library.utilities.colors.Color
@@ -23,11 +23,18 @@ import kotlin.collections.ArrayList
 
 abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
 
+    data class StyledAttributes(
+        var themeRes: Int,
+        var themeResName: String?,
+        var colorSchemaRes: Int,
+        var languageRes: String?
+    )
+
     internal val calendar = Calendar.getInstance()
 
     internal var res: Pair<Int, Int> = Pair(0, 0)
 
-    internal var languageName: String
+    internal var languageName: String = context.resources.getString(R.string.language_option_en)
 
     internal var events: ArrayList<Date> = ArrayList()
 
@@ -43,11 +50,11 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
 
     internal lateinit var controlsRelativeLayout: RelativeLayout
 
-    internal lateinit var leftImageView: SupImageView
+    internal lateinit var leftImageView: ImageView
 
-    internal lateinit var rightImageView: SupImageView
+    internal lateinit var rightImageView: ImageView
 
-    internal lateinit var dateTextView: SupTextView
+    internal lateinit var dateTextView: TextView
 
     internal lateinit var calendarGridView: GridView
 
@@ -102,8 +109,8 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
     constructor(context: Context) : this(
         context,
         Pair(
-            com.ludaxord.projectsup.R.integer.sup_default_style,
-            com.ludaxord.projectsup.R.integer.sup_default_color_schema
+            context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_default_style),
+            context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_default_color_schema)
         ),
         ArrayList<Date>(),
         context.resources.getString(com.ludaxord.projectsup.R.string.language_option_en)
@@ -113,8 +120,8 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
         context,
         attrs,
         Pair(
-            com.ludaxord.projectsup.R.integer.sup_default_style,
-            com.ludaxord.projectsup.R.integer.sup_default_color_schema
+            context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_default_style),
+            context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_default_color_schema)
         ),
         ArrayList<Date>(),
         context.resources.getString(com.ludaxord.projectsup.R.string.language_option_en)
@@ -125,12 +132,32 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
         attrs,
         defStyleAttr,
         Pair(
-            com.ludaxord.projectsup.R.integer.sup_default_style,
-            com.ludaxord.projectsup.R.integer.sup_default_color_schema
+            context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_default_style),
+            context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_default_color_schema)
         ),
         ArrayList<Date>(),
         context.resources.getString(com.ludaxord.projectsup.R.string.language_option_en)
     )
+
+
+    fun setViewUtilsFromStyledAttributes(attrs: AttributeSet): StyledAttributes {
+        val a = getStyledAttributes(context, attrs, R.styleable.SupCalendarView)
+
+        val themeRes = getStyledAttributesTheme(a, R.styleable.SupCalendarView_theme_res)
+        val themeNameRes = getStyledAttributesThemeName(a, R.styleable.SupCalendarView_theme_name_res)
+        val colorSchemaRes = getStyledAttributesColorSchema(a, R.styleable.SupCalendarView_color_schema_res)
+        val languageRes = getStyledAttributesLanguage(a, R.styleable.SupCalendarView_language_res)
+
+        this.res = Pair(themeRes, colorSchemaRes)
+
+        if (languageRes != null) {
+            this.languageName = languageRes
+        }
+
+        a.recycle()
+
+        return StyledAttributes(themeRes, themeNameRes, colorSchemaRes, languageRes)
+    }
 
     internal open fun setDefaultViewUtils() {
         setDefaultTheme(res.first)
@@ -139,6 +166,7 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
         setDefaultWeekDaysLanguage()
         setWeekDays()
         initListeners()
+        setCalendarView()
     }
 
     internal open fun changeLanguageWeekDays(actualLanguage: Language, newLanguage: String) {
@@ -208,7 +236,7 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
         this.setViewsToRoot(subViewHelperArrayList)
     }
 
-    private fun createViews(fromInflater: Boolean = false) {
+    private fun createViews(fromInflater: Boolean = true) {
         if (fromInflater) {
             inflaterViews()
         } else {
@@ -218,6 +246,10 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
 
     protected fun setWeekDays(language: Language = calendarLanguage) {
         language.setWeeksToViews(headerLinearLayout)
+    }
+
+    protected fun setCalendarView() {
+        this.setCalendar(events)
     }
 
     protected fun getDefaultColorSchema(): Color {
@@ -235,31 +267,5 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
     protected fun setDefaultTheme(themeRes: Int) {
         this.initTheme(themeRes)
     }
-
-//    TODO: REMOVE ON RELEASE
-
-//    constructor(context: Context) : this(
-//        context,
-//        DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA,
-//        DEFAULT_CALENDAR_EVENTS_ARRAY_LIST,
-//        DEFAULT_LANGUAGE
-//    )
-
-//    constructor(context: Context, attrs: AttributeSet) : this(
-//        context,
-//        attrs,
-//        DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA,
-//        DEFAULT_CALENDAR_EVENTS_ARRAY_LIST,
-//        DEFAULT_LANGUAGE
-//    )
-
-//    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : this(
-//        context,
-//        attrs,
-//        defStyleAttr,
-//        DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA,
-//        DEFAULT_CALENDAR_EVENTS_ARRAY_LIST,
-//        DEFAULT_LANGUAGE
-//    )
 
 }
