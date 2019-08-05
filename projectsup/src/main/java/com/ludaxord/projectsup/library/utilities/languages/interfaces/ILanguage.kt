@@ -1,5 +1,6 @@
 package com.ludaxord.projectsup.library.utilities.languages.interfaces
 
+import android.content.Context
 import android.content.res.Resources
 import android.view.View
 import com.ludaxord.projectsup.R
@@ -10,28 +11,28 @@ interface ILanguage {
 
     fun changeLanguage(actualLanguage: Language, newLanguage: String): Language
 
-    fun setLanguage(language: String, resources: Resources): Language {
+    fun setLanguage(language: String, context: Context): Language {
         return when (language) {
-            resources.getString(R.string.language_option_pl) -> {
-                Polish()
+            context.resources.getString(R.string.language_option_pl) -> {
+                Polish(context)
             }
-            resources.getString(R.string.language_option_en) -> {
-                English()
+            context.resources.getString(R.string.language_option_en) -> {
+                English(context)
             }
-            resources.getString(R.string.language_option_fr) -> {
-                French()
+            context.resources.getString(R.string.language_option_fr) -> {
+                French(context)
             }
-            resources.getString(R.string.language_option_de) -> {
-                German()
+            context.resources.getString(R.string.language_option_de) -> {
+                German(context)
             }
-            resources.getString(R.string.language_option_jp) -> {
-                Japanese()
+            context.resources.getString(R.string.language_option_jp) -> {
+                Japanese(context)
             }
-            resources.getString(R.string.language_option_no) -> {
-                Norwegian()
+            context.resources.getString(R.string.language_option_no) -> {
+                Norwegian(context)
             }
             else -> {
-                English()
+                English(context)
             }
         }
     }

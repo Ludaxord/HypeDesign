@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <com.ludaxord.projectsup.library.widget.calendarview.SupCalendarView
+            android:id="@+id/calendar_view"
+            app:theme_res="@integer/sup_box_style"
+            app:color_schema_res="@integer/sup_camo_color_schema"
+            app:language_res="@string/language_option_pl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+</RelativeLayout>

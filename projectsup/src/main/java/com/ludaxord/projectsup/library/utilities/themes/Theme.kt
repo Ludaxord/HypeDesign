@@ -1,17 +1,12 @@
 package com.ludaxord.projectsup.library.utilities.themes
 
 import android.content.Context
-import android.content.res.Resources
 import android.graphics.Typeface
 import com.ludaxord.projectsup.R
-import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_STYLE_KEY
-import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_STYLE_PREFIX
-import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_THEME
-import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_TYPEFACE_KEY
 import com.ludaxord.projectsup.library.utilities.combine
 import com.ludaxord.projectsup.library.utilities.getResourceId
 
-abstract class Theme(private val context: Context, protected val themeKey: String = DEFAULT_THEME) {
+abstract class Theme(private val context: Context, protected val themeKey: String = context.resources.getString(R.string.key_sup_default_style)) {
 
     fun theme(themeKey: String = this.themeKey): HashMap<String, Any> {
         val themeCredentials = HashMap<String, Any>()
@@ -22,7 +17,7 @@ abstract class Theme(private val context: Context, protected val themeKey: Strin
     private fun getStyleId(key: String): HashMap<String, Any> {
         val styleId = context.getResourceId(key, context.getString(R.string.key_style), context.packageName)
 
-        return hashMapOf(DEFAULT_STYLE_KEY to styleId)
+        return hashMapOf(context.resources.getString(R.string.key_style) to styleId)
     }
 
     private fun HashMap<String, Any>.getDefaultThemeCredentials(key: String) {
@@ -33,16 +28,16 @@ abstract class Theme(private val context: Context, protected val themeKey: Strin
 
     private fun getTypeface(path: String): HashMap<String, Any> {
         val tf = Typeface.createFromAsset(context.assets, path)
-        return hashMapOf(DEFAULT_TYPEFACE_KEY to tf)
+        return hashMapOf(context.resources.getString(R.string.key_typeface) to tf)
 
     }
 
     internal fun getStyleKey(key: String): String {
-        return "$DEFAULT_STYLE_PREFIX$key"
+        return "${context.resources.getString(R.string.prefix_style)}$key"
     }
 
     internal fun getTypeFaceKey(key: String): String {
-        return "${DEFAULT_TYPEFACE_KEY}_$key.tff"
+        return "${context.resources.getString(R.string.key_typeface)}_$key.tff"
     }
 
     protected fun getDefaultColorSchemaForTheme(themeKey: String) {

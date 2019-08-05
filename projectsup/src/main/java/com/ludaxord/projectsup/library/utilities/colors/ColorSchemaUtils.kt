@@ -17,14 +17,14 @@ object ColorSchemaUtils : IColor {
     }
 
     fun setColorSchemaResources(view: View, res: Int) {
-        val colorKey = res.getColorSchemaKey()
-        view.context.getPreferences().setPreference(Defaults.DEFAULT_COLOR_SCHEMA_KEY, colorKey)
+        val colorKey = res.getColorSchemaKey(view.context)
+        view.context.getPreferences().setPreference(view.context.resources.getString(R.string.key_project_sup_color_schema), colorKey)
     }
 
     private fun getColorSchemaResources(context: Context): String {
-        var colorSchemaKey = context.getPreferences().getPreference(Defaults.DEFAULT_COLOR_SCHEMA_KEY)
+        var colorSchemaKey = context.getPreferences().getPreference(context.resources.getString(R.string.key_project_sup_color_schema))
         if (colorSchemaKey == null) {
-            colorSchemaKey = Defaults.DEFAULT_COLOR_SCHEMA
+            colorSchemaKey = context.resources.getString(R.string.key_sup_default_color_schema)
         }
         return colorSchemaKey!!
     }

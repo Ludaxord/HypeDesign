@@ -2,18 +2,14 @@ package com.ludaxord.projectsup.library.widget.calendarview
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridView
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
+import android.widget.*
+import com.ludaxord.projectsup.R
 import com.ludaxord.projectsup.library.text.textview.SupTextView
 import com.ludaxord.projectsup.library.utilities.*
-import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_CALENDAR_EVENTS_ARRAY_LIST
-import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_LANGUAGE
-import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA
-import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_SIMPLE_DATE_FORMAT_4
 import com.ludaxord.projectsup.library.utilities.colors.Color
 import com.ludaxord.projectsup.library.utilities.languages.Language
 import com.ludaxord.projectsup.library.utilities.themes.Theme
@@ -27,11 +23,18 @@ import kotlin.collections.ArrayList
 
 abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
 
+    data class StyledAttributes(
+        var themeRes: Int,
+        var themeResName: String?,
+        var colorSchemaRes: Int,
+        var languageRes: String?
+    )
+
     internal val calendar = Calendar.getInstance()
 
     internal var res: Pair<Int, Int> = Pair(0, 0)
 
-    internal var languageName: String
+    internal var languageName: String = context.resources.getString(R.string.language_option_en)
 
     internal var events: ArrayList<Date> = ArrayList()
 
@@ -39,7 +42,7 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
 
     internal var subViewHelperArrayList: ArrayList<View> = ArrayList()
 
-    internal var dateFormat = DEFAULT_SIMPLE_DATE_FORMAT_4
+    internal var dateFormat = context.resources.getString(com.ludaxord.projectsup.R.string.date_format_4)
 
     internal lateinit var calendarLanguage: Language
 
@@ -47,11 +50,11 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
 
     internal lateinit var controlsRelativeLayout: RelativeLayout
 
-    internal lateinit var leftImageView: SupImageView
+    internal lateinit var leftImageView: ImageView
 
-    internal lateinit var rightImageView: SupImageView
+    internal lateinit var rightImageView: ImageView
 
-    internal lateinit var dateTextView: SupTextView
+    internal lateinit var dateTextView: TextView
 
     internal lateinit var calendarGridView: GridView
 
@@ -105,27 +108,56 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
 
     constructor(context: Context) : this(
         context,
-        DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA,
-        DEFAULT_CALENDAR_EVENTS_ARRAY_LIST,
-        DEFAULT_LANGUAGE
+        Pair(
+            context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_default_style),
+            context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_default_color_schema)
+        ),
+        ArrayList<Date>(),
+        context.resources.getString(com.ludaxord.projectsup.R.string.language_option_en)
     )
 
     constructor(context: Context, attrs: AttributeSet) : this(
         context,
         attrs,
-        DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA,
-        DEFAULT_CALENDAR_EVENTS_ARRAY_LIST,
-        DEFAULT_LANGUAGE
+        Pair(
+            context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_default_style),
+            context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_default_color_schema)
+        ),
+        ArrayList<Date>(),
+        context.resources.getString(com.ludaxord.projectsup.R.string.language_option_en)
     )
 
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : this(
         context,
         attrs,
         defStyleAttr,
-        DEFAULT_PAIR_OF_THEME_COLOR_SCHEMA,
-        DEFAULT_CALENDAR_EVENTS_ARRAY_LIST,
-        DEFAULT_LANGUAGE
+        Pair(
+            context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_default_style),
+            context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_default_color_schema)
+        ),
+        ArrayList<Date>(),
+        context.resources.getString(com.ludaxord.projectsup.R.string.language_option_en)
     )
+
+
+    fun setViewUtilsFromStyledAttributes(attrs: AttributeSet): StyledAttributes {
+        val a = getStyledAttributes(context, attrs, R.styleable.SupCalendarView)
+
+        val themeRes = getStyledAttributesTheme(a, R.styleable.SupCalendarView_theme_res)
+        val themeNameRes = getStyledAttributesThemeName(a, R.styleable.SupCalendarView_theme_name_res)
+        val colorSchemaRes = getStyledAttributesColorSchema(a, R.styleable.SupCalendarView_color_schema_res)
+        val languageRes = getStyledAttributesLanguage(a, R.styleable.SupCalendarView_language_res)
+
+        this.res = Pair(themeRes, colorSchemaRes)
+
+        if (languageRes != null) {
+            this.languageName = languageRes
+        }
+
+        a.recycle()
+
+        return StyledAttributes(themeRes, themeNameRes, colorSchemaRes, languageRes)
+    }
 
     internal open fun setDefaultViewUtils() {
         setDefaultTheme(res.first)
@@ -134,6 +166,7 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
         setDefaultWeekDaysLanguage()
         setWeekDays()
         initListeners()
+        setCalendarView()
     }
 
     internal open fun changeLanguageWeekDays(actualLanguage: Language, newLanguage: String) {
@@ -146,7 +179,7 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
     }
 
     private fun setDefaultWeekDaysLanguage(languageName: String = this.languageName) {
-        calendarLanguage = setLanguage(languageName, resources)
+        calendarLanguage = setLanguage(languageName, context)
     }
 
     private fun inflaterViews(root: ViewGroup = this) {
@@ -203,7 +236,7 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
         this.setViewsToRoot(subViewHelperArrayList)
     }
 
-    private fun createViews(fromInflater: Boolean = false) {
+    private fun createViews(fromInflater: Boolean = true) {
         if (fromInflater) {
             inflaterViews()
         } else {
@@ -213,6 +246,10 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
 
     protected fun setWeekDays(language: Language = calendarLanguage) {
         language.setWeeksToViews(headerLinearLayout)
+    }
+
+    protected fun setCalendarView() {
+        this.setCalendar(events)
     }
 
     protected fun getDefaultColorSchema(): Color {

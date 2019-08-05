@@ -14,14 +14,6 @@ import android.widget.ImageView
 import android.widget.ListView
 import android.widget.TextView
 import com.ludaxord.projectsup.R
-import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_SIMPLE_DATE_FORMAT_1
-import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_SIMPLE_DATE_FORMAT_3
-import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_SIMPLE_DATE_FORMAT_4
-import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_TYPEFACE_KEY
-import com.ludaxord.projectsup.library.utilities.Defaults.GREYED_OUT_KEY
-import com.ludaxord.projectsup.library.utilities.Defaults.STANDARD_KEY
-import com.ludaxord.projectsup.library.utilities.Defaults.TODAY_KEY
-import com.ludaxord.projectsup.library.utilities.Defaults.WARNING_KEY
 import com.ludaxord.projectsup.library.utilities.setTextColorSchema
 import com.ludaxord.projectsup.library.utilities.setTypeFaceTheme
 import com.ludaxord.projectsup.library.utilities.themes.Theme
@@ -128,12 +120,12 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
 
     private fun setItemDetails(view: View, time: Time) {
         if (view is TextView) {
-            view.setTypeFaceTheme(themeCredentials[DEFAULT_TYPEFACE_KEY], Typeface.NORMAL)
-            view.setTextColorSchema(colorSet[STANDARD_KEY])
+            view.setTypeFaceTheme(themeCredentials[context.resources.getString(R.string.key_typeface)], Typeface.NORMAL)
+            view.setTextColorSchema(colorSet[context.resources.getString(R.string.key_standard)])
 
             val (date, day, month, year, today) = time
 
-            val simpleDateFormat = SimpleDateFormat(DEFAULT_SIMPLE_DATE_FORMAT_3, Locale.getDefault())
+            val simpleDateFormat = SimpleDateFormat(context.resources.getString(R.string.date_format_3), Locale.getDefault())
 
             val timeStamp = simpleDateFormat.format(Calendar.getInstance().time)
 
@@ -141,24 +133,24 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
 
             today?.let {
                 if (month != today.get(Calendar.MONTH) || year != today.get(Calendar.YEAR)) {
-                    view.setTextColorSchema(colorSet[GREYED_OUT_KEY])
+                    view.setTextColorSchema(colorSet[context.resources.getString(R.string.key_greyed_out)])
                 } else if (day == Calendar.getInstance().get(Calendar.DAY_OF_MONTH) && formatDate == timeStamp) {
-                    view.setTypeFaceTheme(themeCredentials[DEFAULT_TYPEFACE_KEY], Typeface.BOLD)
-                    view.setTextColorSchema(colorSet[TODAY_KEY])
+                    view.setTypeFaceTheme(themeCredentials[context.resources.getString(R.string.key_typeface)], Typeface.BOLD)
+                    view.setTextColorSchema(colorSet[context.resources.getString(R.string.key_today)])
                 } else {
-                    view.setTypeFaceTheme(themeCredentials[DEFAULT_TYPEFACE_KEY], Typeface.NORMAL)
-                    view.setTextColorSchema(colorSet[STANDARD_KEY])
+                    view.setTypeFaceTheme(themeCredentials[context.resources.getString(R.string.key_typeface)], Typeface.NORMAL)
+                    view.setTextColorSchema(colorSet[context.resources.getString(R.string.key_standard)])
                 }
             }
 
-            val format = SimpleDateFormat(DEFAULT_SIMPLE_DATE_FORMAT_4, Locale.getDefault())
-            val form = SimpleDateFormat(DEFAULT_SIMPLE_DATE_FORMAT_3, Locale.getDefault())
+            val format = SimpleDateFormat(context.resources.getString(R.string.date_format_4), Locale.getDefault())
+            val form = SimpleDateFormat(context.resources.getString(R.string.date_format_3), Locale.getDefault())
 
             for (event in schedule) {
                 val begin = event.beginDate
                 val end = event.endDate
                 val id = event.id
-                val f = SimpleDateFormat(DEFAULT_SIMPLE_DATE_FORMAT_1, Locale.getDefault())
+                val f = SimpleDateFormat(context.resources.getString(R.string.date_format_1), Locale.getDefault())
 
                 val formattedDate = f.format(date.time)
 
@@ -169,7 +161,7 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
                 val parsefDS = form.format(fDS)
 
                 if (parsebS == parsefDS) {
-                    view.setTextColorSchema(colorSet[WARNING_KEY])
+                    view.setTextColorSchema(colorSet[context.resources.getString(R.string.key_warning)])
                     break
                 } else {
 //                    view.setBackgroundResource(0)

@@ -1,6 +1,8 @@
 package com.ludaxord.projectsup.library.utilities.languages
 
-abstract class Language {
+import android.content.Context
+
+abstract class Language(val context: Context) {
 
     abstract val languageName: String
 

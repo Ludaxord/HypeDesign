@@ -1,10 +1,9 @@
 package com.ludaxord.projectsup.library.utilities.themes
 
 import android.content.Context
+import android.util.Log
 import android.view.View
 import com.ludaxord.projectsup.R
-import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_THEME
-import com.ludaxord.projectsup.library.utilities.Defaults.DEFAULT_THEME_KEY
 import com.ludaxord.projectsup.library.utilities.getPreferences
 import com.ludaxord.projectsup.library.utilities.getResourceFromInt
 import com.ludaxord.projectsup.library.utilities.getResourceId
@@ -21,14 +20,16 @@ object ThemeUtils : ITheme {
     }
 
     fun setThemeFromResources(view: View, res: Int) {
-        val themeKey = res.getThemeKey()
-        view.context.getPreferences().setPreference(DEFAULT_THEME_KEY, themeKey)
+        val themeKey = res.getThemeKey(view.context)
+        Log.v("tripoloski", "setThemeKey -> $themeKey")
+        view.context.getPreferences().setPreference(view.resources.getString(R.string.key_project_sup_theme), themeKey)
     }
 
     private fun getThemeFromResources(context: Context): String {
-        var themeKey = context.getPreferences().getPreference(DEFAULT_THEME_KEY)
+        var themeKey = context.getPreferences().getPreference(context.resources.getString(R.string.key_project_sup_theme))
+        Log.v("tripoloski", "getThemeKey -> $themeKey")
         if (themeKey == null) {
-            themeKey = DEFAULT_THEME
+            themeKey = context.resources.getString(R.string.key_sup_default_style)
         }
         return themeKey!!
     }
@@ -52,6 +53,9 @@ object ThemeUtils : ITheme {
             }
             com.ludaxord.projectsup.R.string.key_sup_motion_style -> {
                 Motion(context, themeKey)
+            }
+            com.ludaxord.projectsup.R.string.key_sup_olde_english_style -> {
+                OldeEnglish(context, themeKey)
             }
             com.ludaxord.projectsup.R.string.key_sup_photo_style -> {
                 Photo(context, themeKey)
