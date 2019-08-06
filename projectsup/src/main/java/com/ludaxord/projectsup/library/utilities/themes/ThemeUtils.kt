@@ -1,12 +1,16 @@
 package com.ludaxord.projectsup.library.utilities.themes
 
 import android.content.Context
+import android.graphics.Typeface
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
 import com.ludaxord.projectsup.R
 import com.ludaxord.projectsup.library.utilities.getPreferences
 import com.ludaxord.projectsup.library.utilities.getResourceId
 import com.ludaxord.projectsup.library.utilities.getThemeKey
+import com.ludaxord.projectsup.library.utilities.setTypeFaceTheme
 import com.ludaxord.projectsup.library.utilities.themes.interfaces.ITheme
 import com.ludaxord.projectsup.library.utilities.themes.themeoptions.*
 
@@ -15,15 +19,27 @@ object ThemeUtils : ITheme {
     override fun getTheme(context: Context): Theme {
         val theme = getThemeFromPreferences(context)
         val resourceId = context.getResourceId(theme, context.getString(R.string.key_string), context.packageName)
-        Log.e("tripoloski", "theme -> $theme")
-        Log.w("tripoloski", "resourceId -> $resourceId")
         return getThemeFromResources(resourceId, theme, context)
+    }
+
+    fun overrideFonts(context: Context, v: View) {
+        try {
+            if (v is ViewGroup) {
+                for (i in 0 until v.childCount) {
+                    val child = v.getChildAt(i)
+                    overrideFonts(context, child)
+                }
+            } else if (v is TextView) {
+                v.setTypeFaceTheme(getTheme(context).theme()[context.resources.getString(R.string.key_typeface)])
+            }
+        } catch (e: Exception) {
+            Log.e("ProjectSup", "exception ${e.message}")
+        }
     }
 
     fun setThemeFromResources(view: View, res: Int) {
         val themeKey = res.getThemeKey(view.context)
         val previousThemeKey = getThemeFromPreferences(view.context)
-        Log.d("tripoloski", "theme -> $themeKey previousThemeKey -> $previousThemeKey viewName -> ${view.javaClass}")
         if (themeKey != previousThemeKey ||
             (
                     previousThemeKey != view.context.resources.getString(R.string.key_sup_default_style) &&

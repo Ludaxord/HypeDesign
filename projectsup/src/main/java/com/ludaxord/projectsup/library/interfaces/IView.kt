@@ -3,8 +3,11 @@ package com.ludaxord.projectsup.library.interfaces
 import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
+import android.view.View
 import com.ludaxord.projectsup.R
 import com.ludaxord.projectsup.library.utilities.colors.Color
+import com.ludaxord.projectsup.library.utilities.overrideFontColor
+import com.ludaxord.projectsup.library.utilities.overrideFontTypeFace
 import com.ludaxord.projectsup.library.utilities.themes.Theme
 
 interface IView {
@@ -33,4 +36,8 @@ interface IView {
 
     fun getTheme(): Theme
 
+    fun setFonts(rootView: View) {
+        rootView.overrideFontTypeFace()
+        rootView.overrideFontColor()
+    }
 }

@@ -145,5 +145,6 @@
     <color name="color_sup_default_color_schema_greyed_out">@color/dark_gray</color>
     <color name="color_sup_default_color_schema_today">@color/cornflower_blue</color>
     <color name="color_sup_default_color_schema_standard">@color/dim_gray</color>
-    <color name="color_sup_default_color_schema_warning">@color/dim_gray</color>
+    <color name="color_sup_default_color_schema_warning">@color/orange</color>
+    <color name="color_sup_default_color_schema_day">@color/slate_gray</color>
 </resources>

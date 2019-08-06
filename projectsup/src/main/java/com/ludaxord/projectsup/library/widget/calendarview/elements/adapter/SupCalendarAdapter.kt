@@ -4,9 +4,7 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Color
-import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -121,8 +119,8 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
 
     private fun setItemDetails(view: View, time: Time) {
         if (view is TextView) {
-            view.setTypeFaceTheme(themeCredentials[context.resources.getString(R.string.key_typeface)], Typeface.NORMAL)
-            view.setTextColorSchema(colorSet[context.resources.getString(R.string.key_standard)])
+            view.setTypeFaceTheme(themeCredentials[context.resources.getString(R.string.key_typeface)])
+            view.setTextColorSchema(colorSet[context.resources.getString(R.string.key_day)])
 
             val (date, day, month, year, today) = time
 
@@ -137,17 +135,11 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
                 if (month != today.get(Calendar.MONTH) || year != today.get(Calendar.YEAR)) {
                     view.setTextColorSchema(colorSet[context.resources.getString(R.string.key_greyed_out)])
                 } else if (day == Calendar.getInstance().get(Calendar.DAY_OF_MONTH) && formatDate == timeStamp) {
-                    view.setTypeFaceTheme(
-                        themeCredentials[context.resources.getString(R.string.key_typeface)],
-                        Typeface.BOLD
-                    )
+                    view.setTypeFaceTheme(themeCredentials[context.resources.getString(R.string.key_typeface)])
                     view.setTextColorSchema(colorSet[context.resources.getString(R.string.key_today)])
                 } else {
-                    view.setTypeFaceTheme(
-                        themeCredentials[context.resources.getString(R.string.key_typeface)],
-                        Typeface.NORMAL
-                    )
-                    view.setTextColorSchema(colorSet[context.resources.getString(R.string.key_standard)])
+                    view.setTypeFaceTheme(themeCredentials[context.resources.getString(R.string.key_typeface)])
+                    view.setTextColorSchema(colorSet[context.resources.getString(R.string.key_day)])
                 }
             }
 

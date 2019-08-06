@@ -29,7 +29,6 @@ abstract class Color(
 
     private fun getGreyedOut(key: String): HashMap<String, Any> {
         val greyedOutKey = "${key}_${context.resources.getString(R.string.key_greyed_out)}"
-        Log.d("tripoloski", greyedOutKey)
         val greyedOut =
             context.getResourceId(greyedOutKey, context.getString(R.string.key_color), context.packageName).getColor()
         return hashMapOf(context.resources.getString(R.string.key_greyed_out) to greyedOut)

@@ -66,7 +66,7 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
         events: ArrayList<Date> = ArrayList(),
         language: String
     ) : super(context) {
-        Log.i("tripoloski", "Chicago")
+        Log.i("ProjectSup", "Chicago")
         this.res = res
         this.events = events
         this.languageName = language
@@ -83,7 +83,7 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
         context,
         attrs
     ) {
-        Log.i("tripoloski", "NRG")
+        Log.i("ProjectSup", "NRG")
         this.res = res
         this.events = events
         this.languageName = language
@@ -102,7 +102,7 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
         attrs,
         defStyleAttr
     ) {
-        Log.i("tripoloski", "UNC")
+        Log.i("ProjectSup", "UNC")
         this.res = res
         this.events = events
         this.languageName = language
@@ -153,8 +153,6 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
 
         this.res = Pair(themeRes, colorSchemaRes)
 
-        Log.i("tripoloski", "res from attrs -> ${res}")
-
         if (languageRes != null) {
             this.languageName = languageRes
         }
@@ -172,6 +170,7 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
         setWeekDays()
         initListeners()
         setCalendarView()
+        setFonts(this)
     }
 
     internal open fun changeLanguageWeekDays(actualLanguage: Language, newLanguage: String) {
