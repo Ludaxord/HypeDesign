@@ -5,5 +5,7 @@
         <attr name="theme_name_res" format="string"/>
         <attr name="color_schema_res" format="integer"/>
         <attr name="language_res" format="string"/>
+        <attr name="button_left_res" format="reference"/>
+        <attr name="button_right_res" format="reference"/>
     </declare-styleable>
 </resources>

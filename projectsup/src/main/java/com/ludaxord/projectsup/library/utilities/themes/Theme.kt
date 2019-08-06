@@ -2,10 +2,13 @@ package com.ludaxord.projectsup.library.utilities.themes
 
 import android.content.Context
 import android.graphics.Typeface
+import android.graphics.drawable.Drawable
 import android.util.Log
 import com.ludaxord.projectsup.library.utilities.combine
 import com.ludaxord.projectsup.library.utilities.getResourceId
 import java.lang.Exception
+import android.R
+import android.support.v4.content.ContextCompat
 
 
 abstract class Theme(
@@ -30,23 +33,51 @@ abstract class Theme(
     }
 
     private fun HashMap<String, Any>.getDefaultThemeCredentials(key: String) {
+
         val style = getStyleId(getStyleKey(key))
+
+        val drawableLeftButton =
+            getDrawable(
+                getDrawableKey("${key}_${context.getString(com.ludaxord.projectsup.R.string.key_left_button)}"),
+                com.ludaxord.projectsup.R.string.key_drawable_left_button
+            )
+
+        val drawableRightButton =
+            getDrawable(
+                getDrawableKey("${key}_${context.getString(com.ludaxord.projectsup.R.string.key_right_button)}"),
+                com.ludaxord.projectsup.R.string.key_drawable_right_button
+            )
+
         val typeface = try {
             getTypeface(getTypeFaceKey(key))
         } catch (e: Exception) {
             getTypeface(getTypeFaceKey(key, "otf"))
         }
-        this.combine(listOf(style, typeface))
+
+        this.combine(listOf(style, typeface, drawableLeftButton, drawableRightButton))
     }
 
     private fun getTypeface(path: String): HashMap<String, Any> {
         val tf = Typeface.createFromAsset(context.resources.assets, path)
         return hashMapOf(context.resources.getString(com.ludaxord.projectsup.R.string.key_typeface) to tf)
+    }
 
+    private fun getDrawable(resource: String, key: Int): HashMap<String, Any> {
+        val res = context.getResourceId(
+            resource,
+            context.getString(com.ludaxord.projectsup.R.string.key_drawable),
+            context.packageName
+        )
+        val drawable = ContextCompat.getDrawable(context, res)!!
+        return hashMapOf(context.resources.getString(key) to drawable)
     }
 
     internal fun getStyleKey(key: String): String {
         return "${context.resources.getString(com.ludaxord.projectsup.R.string.prefix_style)}$key"
+    }
+
+    internal fun getDrawableKey(key: String): String {
+        return "${context.resources.getString(com.ludaxord.projectsup.R.string.key_drawable)}_$key"
     }
 
     internal fun getTypeFaceKey(key: String, extension: String = "ttf"): String {

@@ -33,6 +33,19 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
+//Data classes
+
+abstract class StyledAttributes(
+    open var themeRes: Int,
+    open var themeResName: String?,
+    open var colorSchemaRes: Int
+)
+
+data class SupStyledAttributes(
+    override var themeRes: Int,
+    override var themeResName: String?,
+    override var colorSchemaRes: Int
+) : StyledAttributes(themeRes, themeResName, colorSchemaRes)
 
 //View extensions
 
