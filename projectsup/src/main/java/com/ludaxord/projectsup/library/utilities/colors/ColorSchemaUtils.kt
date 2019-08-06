@@ -13,7 +13,7 @@ object ColorSchemaUtils : IColor {
     override fun getColorSchema(context: Context): Color {
         val colorSchema = getColorSchemaResources(context)
         val resourceId = context.getResourceId(colorSchema, context.getString(R.string.key_string), context.packageName)
-        return getColorSchemaResources(resourceId, context)
+        return getColorSchemaFromPreferences(resourceId, colorSchema, context)
     }
 
     fun setColorSchemaResources(view: View, res: Int) {
@@ -29,10 +29,7 @@ object ColorSchemaUtils : IColor {
         return colorSchemaKey!!
     }
 
-    private fun getColorSchemaResources(res: Int, context: Context): Color {
-        val colorKey = res.getResourceFromInt(context) { resource, ctx ->
-            ctx.getString(resource)
-        }
+    private fun getColorSchemaFromPreferences(res: Int, colorKey: String, context: Context): Color {
         return when (res) {
             com.ludaxord.projectsup.R.string.key_sup_camo_color_schema -> {
                 Camo(context, colorKey)

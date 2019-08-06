@@ -66,6 +66,7 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
         events: ArrayList<Date> = ArrayList(),
         language: String
     ) : super(context) {
+        Log.i("tripoloski", "Chicago")
         this.res = res
         this.events = events
         this.languageName = language
@@ -82,6 +83,7 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
         context,
         attrs
     ) {
+        Log.i("tripoloski", "NRG")
         this.res = res
         this.events = events
         this.languageName = language
@@ -100,6 +102,7 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
         attrs,
         defStyleAttr
     ) {
+        Log.i("tripoloski", "UNC")
         this.res = res
         this.events = events
         this.languageName = language
@@ -149,6 +152,8 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
         val languageRes = getStyledAttributesLanguage(a, R.styleable.SupCalendarView_language_res)
 
         this.res = Pair(themeRes, colorSchemaRes)
+
+        Log.i("tripoloski", "res from attrs -> ${res}")
 
         if (languageRes != null) {
             this.languageName = languageRes

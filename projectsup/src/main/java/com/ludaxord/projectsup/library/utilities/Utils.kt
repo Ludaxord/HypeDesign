@@ -36,6 +36,7 @@ import kotlin.collections.ArrayList
 //View extensions
 
 fun View.initTheme(res: Int) {
+    Log.v("tripoloski", "setThemeKey -> $res")
     setThemeFromResources(this, res)
 }
 

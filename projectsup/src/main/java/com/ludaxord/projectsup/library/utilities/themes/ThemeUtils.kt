@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.View
 import com.ludaxord.projectsup.R
 import com.ludaxord.projectsup.library.utilities.getPreferences
-import com.ludaxord.projectsup.library.utilities.getResourceFromInt
 import com.ludaxord.projectsup.library.utilities.getResourceId
 import com.ludaxord.projectsup.library.utilities.getThemeKey
 import com.ludaxord.projectsup.library.utilities.themes.interfaces.ITheme
@@ -14,30 +13,38 @@ import com.ludaxord.projectsup.library.utilities.themes.themeoptions.*
 object ThemeUtils : ITheme {
 
     override fun getTheme(context: Context): Theme {
-        val theme = getThemeFromResources(context)
+        val theme = getThemeFromPreferences(context)
         val resourceId = context.getResourceId(theme, context.getString(R.string.key_string), context.packageName)
-        return getThemeFromResources(resourceId, context)
+        Log.e("tripoloski", "theme -> $theme")
+        Log.w("tripoloski", "resourceId -> $resourceId")
+        return getThemeFromResources(resourceId, theme, context)
     }
 
     fun setThemeFromResources(view: View, res: Int) {
         val themeKey = res.getThemeKey(view.context)
-        Log.v("tripoloski", "setThemeKey -> $themeKey")
-        view.context.getPreferences().setPreference(view.resources.getString(R.string.key_project_sup_theme), themeKey)
+        val previousThemeKey = getThemeFromPreferences(view.context)
+        Log.d("tripoloski", "theme -> $themeKey previousThemeKey -> $previousThemeKey viewName -> ${view.javaClass}")
+        if (themeKey != previousThemeKey ||
+            (
+                    previousThemeKey != view.context.resources.getString(R.string.key_sup_default_style) &&
+                            themeKey != view.context.resources.getString(R.string.key_sup_default_style)
+                    )
+        ) {
+            view.context.getPreferences()
+                .setPreference(view.resources.getString(R.string.key_project_sup_theme), themeKey)
+        }
     }
 
-    private fun getThemeFromResources(context: Context): String {
-        var themeKey = context.getPreferences().getPreference(context.resources.getString(R.string.key_project_sup_theme))
-        Log.v("tripoloski", "getThemeKey -> $themeKey")
+    private fun getThemeFromPreferences(context: Context): String {
+        var themeKey =
+            context.getPreferences().getPreference(context.resources.getString(R.string.key_project_sup_theme))
         if (themeKey == null) {
             themeKey = context.resources.getString(R.string.key_sup_default_style)
         }
         return themeKey!!
     }
 
-    private fun getThemeFromResources(res: Int, context: Context): Theme {
-        val themeKey = res.getResourceFromInt(context) { resource, ctx ->
-            ctx.getString(resource)
-        }
+    private fun getThemeFromResources(res: Int, themeKey: String, context: Context): Theme {
         return when (res) {
             com.ludaxord.projectsup.R.string.key_sup_default_style -> {
                 Default(context, themeKey)

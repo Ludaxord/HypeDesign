@@ -2,6 +2,7 @@ package com.ludaxord.projectsup.library.utilities.colors
 
 import android.content.Context
 import android.support.v4.content.ContextCompat
+import android.util.Log
 import com.ludaxord.projectsup.R
 import com.ludaxord.projectsup.library.utilities.combine
 import com.ludaxord.projectsup.library.utilities.getResourceId
@@ -28,6 +29,7 @@ abstract class Color(
 
     private fun getGreyedOut(key: String): HashMap<String, Any> {
         val greyedOutKey = "${key}_${context.resources.getString(R.string.key_greyed_out)}"
+        Log.d("tripoloski", greyedOutKey)
         val greyedOut =
             context.getResourceId(greyedOutKey, context.getString(R.string.key_color), context.packageName).getColor()
         return hashMapOf(context.resources.getString(R.string.key_greyed_out) to greyedOut)
