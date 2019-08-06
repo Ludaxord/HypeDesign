@@ -161,7 +161,9 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
 
         val navigationDrawables = Pair(leftButtonRes, rightButtonRes)
 
-        this.navigationRes = navigationDrawables
+        if (leftButtonRes != null && rightButtonRes != null) {
+            this.navigationRes = navigationDrawables
+        }
 
         if (languageRes != null) {
             this.languageName = languageRes
@@ -187,18 +189,24 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
         initListeners()
         setCalendarView()
         setFonts(this)
-        setNavigationButtonsDrawable(
-            Pair(
-                getTheme().theme()[context.getString(R.string.key_drawable_left_button)] as Drawable,
-                getTheme().theme()[context.getString(R.string.key_drawable_left_button)] as Drawable
-            ),
-            Pair(leftImageView, rightImageView)
-        )
+        setNavigationButtons()
     }
 
     internal open fun changeLanguageWeekDays(actualLanguage: Language, newLanguage: String) {
         val language = changeLanguage(actualLanguage, newLanguage)
         setWeekDays(language)
+    }
+
+    private fun setNavigationButtons() {
+        val navs = if (::navigationRes.isInitialized) {
+            navigationRes
+        } else {
+            Pair(
+                getTheme().theme()[context.getString(R.string.key_drawable_left_button)] as Drawable,
+                getTheme().theme()[context.getString(R.string.key_drawable_right_button)] as Drawable
+            )
+        }
+        setNavigationButtonsDrawable(navs, Pair(leftImageView, rightImageView))
     }
 
     private fun setInitializer() {
