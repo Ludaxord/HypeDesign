@@ -2,6 +2,7 @@ package com.ludaxord.projectsup.library.utilities.colors
 
 import android.content.Context
 import android.support.v4.content.ContextCompat
+import android.util.Log
 import com.ludaxord.projectsup.R
 import com.ludaxord.projectsup.library.utilities.combine
 import com.ludaxord.projectsup.library.utilities.getResourceId

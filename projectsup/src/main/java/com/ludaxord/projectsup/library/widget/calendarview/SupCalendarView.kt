@@ -13,14 +13,19 @@ class SupCalendarView : AbstractSupCalendarView {
 
     private lateinit var styledAttributes: StyledAttributes
 
-    constructor(context: Context) : super(context)
+    constructor(context: Context) : super(context) {
+        Log.i("ProjectSup", "ComplexCon")
+    }
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
+        Log.i("ProjectSup", "MCA")
         styledAttributes = setViewUtilsFromStyledAttributes(attrs)
         setDefaultViewUtils()
     }
 
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+        Log.i("ProjectSup", "MoMA")
+    }
 
     override fun setDefaultViewUtils() {
         super.setDefaultViewUtils()

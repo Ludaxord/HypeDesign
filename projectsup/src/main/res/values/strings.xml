@@ -87,6 +87,7 @@
     <string name="key_greyed_out">greyed_out</string>
     <string name="key_today">today</string>
     <string name="key_standard">standard</string>
+    <string name="key_day">day</string>
     <string name="key_warning">warning</string>
 
     <!--theme keys-->

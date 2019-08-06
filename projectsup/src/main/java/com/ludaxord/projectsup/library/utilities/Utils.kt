@@ -33,6 +33,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
+
 //View extensions
 
 fun View.initTheme(res: Int) {
@@ -100,10 +101,22 @@ fun TextView.setTextColorSchema(color: Any?) {
     }
 }
 
-fun TextView.setTypeFaceTheme(typeFace: Any?, type: Int) {
+fun TextView.setTypeFaceTheme(typeFace: Any?, type: Int? = null) {
     if (typeFace is Typeface) {
-        this.setTypeface(typeface, type)
+        if (type == null) {
+            this.typeface = typeFace
+        } else {
+            this.setTypeface(typeface, type)
+        }
     }
+}
+
+fun View.overrideFontTypeFace() {
+    ThemeUtils.overrideFonts(this.context, this)
+}
+
+fun View.overrideFontColor() {
+    ColorSchemaUtils.overrideFontColors(this.context, this)
 }
 
 //AbstractSupCalendarView extensions
