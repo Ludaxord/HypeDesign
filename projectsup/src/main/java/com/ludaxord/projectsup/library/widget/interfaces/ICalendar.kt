@@ -1,6 +1,10 @@
 package com.ludaxord.projectsup.library.widget.interfaces
 
 import android.content.res.TypedArray
+import android.graphics.drawable.Drawable
+import android.view.View
+import android.widget.Button
+import android.widget.ImageView
 import com.ludaxord.projectsup.R
 import com.ludaxord.projectsup.library.interfaces.IView
 import com.ludaxord.projectsup.library.utilities.languages.interfaces.ILanguage
@@ -16,4 +20,12 @@ interface ICalendar : ILanguage, IView {
         return styledAttributes.getString(index)
     }
 
+    fun setNavigationButtonsDrawable(drawables: Pair<Drawable?, Drawable?>, buttons: Pair<View, View>) {
+        if (buttons.first is ImageView) {
+            (buttons.first as ImageView).setImageDrawable(drawables.first)
+        }
+        if (buttons.second is ImageView) {
+            (buttons.second as ImageView).setImageDrawable(drawables.second)
+        }
+    }
 }

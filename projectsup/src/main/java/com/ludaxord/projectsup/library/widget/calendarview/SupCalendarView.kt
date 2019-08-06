@@ -1,8 +1,11 @@
 package com.ludaxord.projectsup.library.widget.calendarview
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.Log
+import com.ludaxord.projectsup.R
+import com.ludaxord.projectsup.library.utilities.StyledAttributes
 import com.ludaxord.projectsup.library.utilities.checkLanguage
 import com.ludaxord.projectsup.library.utilities.colors.Color
 import com.ludaxord.projectsup.library.utilities.languages.Language
@@ -19,7 +22,7 @@ class SupCalendarView : AbstractSupCalendarView {
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
         Log.i("ProjectSup", "MCA")
-        styledAttributes = setViewUtilsFromStyledAttributes(attrs)
+        styledAttributes = setViewUtilsFromStyledAttributes(context, attrs)
         setDefaultViewUtils()
     }
 

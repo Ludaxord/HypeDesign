@@ -1,6 +1,7 @@
 package com.ludaxord.projectsup.library.widget.calendarview
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
@@ -23,16 +24,19 @@ import kotlin.collections.ArrayList
 
 abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
 
-    data class StyledAttributes(
-        var themeRes: Int,
-        var themeResName: String?,
-        var colorSchemaRes: Int,
-        var languageRes: String?
-    )
+    data class SupCalendarStyledAttributes(
+        override var themeRes: Int,
+        override var themeResName: String?,
+        override var colorSchemaRes: Int,
+        var languageName: String?,
+        var buttonsDrawable: Pair<Drawable?, Drawable?>
+    ) : StyledAttributes(themeRes, themeResName, colorSchemaRes)
 
     internal val calendar = Calendar.getInstance()
 
     internal var res: Pair<Int, Int> = Pair(0, 0)
+
+    internal lateinit var navigationRes: Pair<Drawable?, Drawable?>
 
     internal var languageName: String = context.resources.getString(R.string.language_option_en)
 
@@ -143,15 +147,23 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
     )
 
 
-    fun setViewUtilsFromStyledAttributes(attrs: AttributeSet): StyledAttributes {
+    override fun setViewUtilsFromStyledAttributes(context: Context, attrs: AttributeSet): StyledAttributes {
         val a = getStyledAttributes(context, attrs, R.styleable.SupCalendarView)
 
         val themeRes = getStyledAttributesTheme(a, R.styleable.SupCalendarView_theme_res)
         val themeNameRes = getStyledAttributesThemeName(a, R.styleable.SupCalendarView_theme_name_res)
         val colorSchemaRes = getStyledAttributesColorSchema(a, R.styleable.SupCalendarView_color_schema_res)
         val languageRes = getStyledAttributesLanguage(a, R.styleable.SupCalendarView_language_res)
+        val leftButtonRes = getStyledAttributesDrawable(a, R.styleable.SupCalendarView_button_left_res)
+        val rightButtonRes = getStyledAttributesDrawable(a, R.styleable.SupCalendarView_button_right_res)
 
         this.res = Pair(themeRes, colorSchemaRes)
+
+        val navigationDrawables = Pair(leftButtonRes, rightButtonRes)
+
+        if (leftButtonRes != null && rightButtonRes != null) {
+            this.navigationRes = navigationDrawables
+        }
 
         if (languageRes != null) {
             this.languageName = languageRes
@@ -159,7 +171,13 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
 
         a.recycle()
 
-        return StyledAttributes(themeRes, themeNameRes, colorSchemaRes, languageRes)
+        return SupCalendarStyledAttributes(
+            themeRes,
+            themeNameRes,
+            colorSchemaRes,
+            languageRes,
+            navigationDrawables
+        )
     }
 
     internal open fun setDefaultViewUtils() {
@@ -171,11 +189,24 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
         initListeners()
         setCalendarView()
         setFonts(this)
+        setNavigationButtons()
     }
 
     internal open fun changeLanguageWeekDays(actualLanguage: Language, newLanguage: String) {
         val language = changeLanguage(actualLanguage, newLanguage)
         setWeekDays(language)
+    }
+
+    private fun setNavigationButtons() {
+        val navs = if (::navigationRes.isInitialized) {
+            navigationRes
+        } else {
+            Pair(
+                getTheme().theme()[context.getString(R.string.key_drawable_left_button)] as Drawable,
+                getTheme().theme()[context.getString(R.string.key_drawable_right_button)] as Drawable
+            )
+        }
+        setNavigationButtonsDrawable(navs, Pair(leftImageView, rightImageView))
     }
 
     private fun setInitializer() {
