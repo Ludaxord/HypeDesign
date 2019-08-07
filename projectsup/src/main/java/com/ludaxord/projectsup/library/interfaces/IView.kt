@@ -17,28 +17,26 @@ interface IView : IDefaults {
     fun setViewUtilsFromStyledAttributes(context: Context, attrs: AttributeSet): StyledAttributes {
         val a = getStyledAttributes(context, attrs, com.ludaxord.projectsup.R.styleable.SupCalendarView)
         val themeRes = getStyledAttributesTheme(a, com.ludaxord.projectsup.R.styleable.SupCalendarView_theme_res)
-        val themeNameRes =
-            getStyledAttributesThemeName(a, com.ludaxord.projectsup.R.styleable.SupCalendarView_theme_name_res)
         val colorSchemaRes =
             getStyledAttributesColorSchema(a, com.ludaxord.projectsup.R.styleable.SupCalendarView_color_schema_res)
         a.recycle()
-        return SupStyledAttributes(themeRes, themeNameRes, colorSchemaRes)
+        return SupStyledAttributes(themeRes, colorSchemaRes)
     }
 
     fun getStyledAttributes(context: Context, attributeSet: AttributeSet, attrs: IntArray): TypedArray {
         return context.obtainStyledAttributes(attributeSet, attrs)
     }
 
-    fun getStyledAttributesTheme(styledAttributes: TypedArray, index: Int): Int {
-        return styledAttributes.getInt(index, com.ludaxord.projectsup.R.integer.sup_default_style)
+    fun getStyledAttributesTheme(styledAttributes: TypedArray, index: Int): String? {
+        return styledAttributes.getString(index)
     }
 
     fun getStyledAttributesThemeName(styledAttributes: TypedArray, index: Int): String? {
         return styledAttributes.getString(index)
     }
 
-    fun getStyledAttributesColorSchema(styledAttributes: TypedArray, index: Int): Int {
-        return styledAttributes.getInt(index, com.ludaxord.projectsup.R.integer.sup_default_color_schema)
+    fun getStyledAttributesColorSchema(styledAttributes: TypedArray, index: Int): String? {
+        return styledAttributes.getString(index)
     }
 
     fun getStyledAttributesDrawable(styledAttributes: TypedArray, index: Int): Drawable? {
@@ -53,6 +51,10 @@ interface IView : IDefaults {
     fun setColorSchema(colorRes: Int)
 
     fun setTheme(themeRes: Int)
+
+    fun setColorSchema(colorRes: String)
+
+    fun setTheme(themeRes: String)
 
     fun getColorSchema(): Color
 

@@ -21,48 +21,19 @@ object ColorSchemaUtils : IColor {
         return getColorSchemaFromPreferences(resourceId, colorSchema, context)
     }
 
-    override fun getColorSchema(context: Context): Color {
-        val colorSchema = getColorSchemaResources(context)
-        val resourceId = context.getResourceId(colorSchema, context.getString(R.string.key_string), context.packageName)
-        return getColorSchemaFromPreferences(resourceId, colorSchema, context)
-    }
-
-    fun setColorSchemaResources(view: View, res: Int) {
-        val colorKey = res.getColorSchemaKey(view.context)
-        val previousColorKey = getColorSchemaResources(view.context)
-        if (colorKey != previousColorKey ||
-            (
-                    previousColorKey != view.context.resources.getString(R.string.key_sup_default_color_schema) &&
-                            colorKey != view.context.resources.getString(R.string.key_sup_default_color_schema)
-                    )
-        ) {
-            view.context.getPreferences()
-                .setPreference(view.context.resources.getString(R.string.key_project_sup_color_schema), colorKey)
-        }
-    }
-
-    fun overrideFontColors(context: Context, v: View) {
+    fun overrideFontColors(context: Context, v: View, res: Color) {
         try {
             if (v is ViewGroup) {
                 for (i in 0 until v.childCount) {
                     val child = v.getChildAt(i)
-                    overrideFontColors(context, child)
+                    overrideFontColors(context, child, res)
                 }
             } else if (v is TextView) {
-                v.setTextColorSchema(getColorSchema(context).color()[context.resources.getString(R.string.key_standard)])
+                v.setTextColorSchema(res.color()[context.resources.getString(R.string.key_standard)])
             }
         } catch (e: Exception) {
             Log.e(TAG, "exception color ${e.message}")
         }
-    }
-
-    private fun getColorSchemaResources(context: Context): String {
-        var colorSchemaKey =
-            context.getPreferences().getPreference(context.resources.getString(R.string.key_project_sup_color_schema))
-        if (colorSchemaKey == null) {
-            colorSchemaKey = context.resources.getString(R.string.key_sup_default_color_schema)
-        }
-        return colorSchemaKey!!
     }
 
     private fun getColorSchemaFromPreferences(res: Int, colorKey: String, context: Context): Color {
@@ -74,11 +45,7 @@ object ColorSchemaUtils : IColor {
                 Default(context, colorKey)
             }
             else -> {
-                if (colorKey.contains(context.getString(R.string.key_theme))) {
-                    ThemeUtils.getTheme(context).theme(colorKey)[context.getString(R.string.key_project_sup_color_schema)] as Color
-                } else {
-                    Default(context, colorKey)
-                }
+                Default(context, colorKey)
             }
         }
     }

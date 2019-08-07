@@ -69,6 +69,7 @@
 
     <string name="key_sup_default_color_schema">sup_default_color_schema</string>
     <string name="key_sup_camo_color_schema">sup_camo_color_schema</string>
+    <string name="key_sup_box_color_schema">sup_box_color_schema</string>
 
     <string name="key_project_sup_color_schema">project_sup_color_schema</string>
     <string name="key_project_sup_theme">project_sup_theme</string>

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.ludaxord.projectsup.R
+import com.ludaxord.projectsup.library.utilities.themes.Theme
 import com.ludaxord.projectsup.library.widget.calendarview.elements.models.Schedule
 import com.ludaxord.projectsup.library.widget.interfaces.IAdapter
 import java.util.*
@@ -16,13 +17,21 @@ class SupEventsAdapter(context: Context) : BaseAdapter(), IAdapter {
     private lateinit var inflater: LayoutInflater
     private lateinit var _scheduleEvents: ArrayList<Schedule>
     private lateinit var _dialog: AlertDialog
+    private lateinit var color: com.ludaxord.projectsup.library.utilities.colors.Color
+    private lateinit var theme: Theme
 
     private var layout: Int? = null
 
-    constructor(context: Context, scheduleEvents: ArrayList<Schedule>, dialog: AlertDialog) : this(context) {
+    constructor(
+        context: Context, scheduleEvents: ArrayList<Schedule>, dialog: AlertDialog,
+        theme: Theme,
+        color: com.ludaxord.projectsup.library.utilities.colors.Color
+    ) : this(context) {
         inflater = LayoutInflater.from(context)
         _scheduleEvents = scheduleEvents
         _dialog = dialog
+        this.theme = theme
+        this.color = color
         sortByDate(_scheduleEvents)
     }
 
@@ -30,8 +39,10 @@ class SupEventsAdapter(context: Context) : BaseAdapter(), IAdapter {
         context: Context,
         scheduleEvents: ArrayList<Schedule>,
         dialog: AlertDialog,
+        theme: Theme,
+        color: com.ludaxord.projectsup.library.utilities.colors.Color,
         layout: Int?
-    ) : this(context, scheduleEvents, dialog) {
+    ) : this(context, scheduleEvents, dialog, theme, color) {
         this.layout = layout
     }
 
@@ -39,7 +50,7 @@ class SupEventsAdapter(context: Context) : BaseAdapter(), IAdapter {
         val view = setView(convertView, parent)
         val item = setItem(position) as Schedule
 
-        setFonts(view, false)
+        setFonts(view, theme, color, false)
 
         return view
     }

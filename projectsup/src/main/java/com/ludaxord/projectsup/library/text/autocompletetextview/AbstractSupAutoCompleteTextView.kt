@@ -8,15 +8,15 @@ import com.ludaxord.projectsup.library.utilities.initTheme
 
 abstract class AbstractSupAutoCompleteTextView : AutoCompleteTextView {
 
-    protected constructor(context: Context, res: Pair<Int, Int>) : super(context) {
+    protected constructor(context: Context, res: Pair<String, String>) : super(context) {
 //        this.initTheme(res.first)
     }
 
-    protected constructor(context: Context, attrs: AttributeSet, res: Pair<Int, Int>) : super(context, attrs) {
+    protected constructor(context: Context, attrs: AttributeSet, res: Pair<String, String>) : super(context, attrs) {
 //        this.initTheme(res.first)
     }
 
-    protected constructor(context: Context, attrs: AttributeSet, defStyle: Int, res: Pair<Int, Int>) : super(
+    protected constructor(context: Context, attrs: AttributeSet, defStyle: Int, res: Pair<String, String>) : super(
         context,
         attrs,
         defStyle
@@ -27,8 +27,8 @@ abstract class AbstractSupAutoCompleteTextView : AutoCompleteTextView {
     protected constructor(context: Context) : this(
         context,
         Pair(
-            com.ludaxord.projectsup.R.integer.sup_default_style,
-            com.ludaxord.projectsup.R.integer.sup_default_color_schema
+            context.getString(com.ludaxord.projectsup.R.string.key_sup_default_style),
+            context.getString(com.ludaxord.projectsup.R.string.key_sup_default_color_schema)
         )
     )
 
@@ -36,8 +36,8 @@ abstract class AbstractSupAutoCompleteTextView : AutoCompleteTextView {
         context,
         attrs,
         Pair(
-            com.ludaxord.projectsup.R.integer.sup_default_style,
-            com.ludaxord.projectsup.R.integer.sup_default_color_schema
+            context.getString(com.ludaxord.projectsup.R.string.key_sup_default_style),
+            context.getString(com.ludaxord.projectsup.R.string.key_sup_default_color_schema)
         )
     )
 
@@ -46,8 +46,8 @@ abstract class AbstractSupAutoCompleteTextView : AutoCompleteTextView {
         attrs,
         defStyle,
         Pair(
-            com.ludaxord.projectsup.R.integer.sup_default_style,
-            com.ludaxord.projectsup.R.integer.sup_default_color_schema
+            context.getString(com.ludaxord.projectsup.R.string.key_sup_default_style),
+            context.getString(com.ludaxord.projectsup.R.string.key_sup_default_color_schema)
         )
     )
 }

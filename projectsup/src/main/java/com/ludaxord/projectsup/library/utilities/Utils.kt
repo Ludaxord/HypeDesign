@@ -13,12 +13,9 @@ import com.ludaxord.projectsup.library.utilities.DateUtils.setEventsToExistedEve
 import com.ludaxord.projectsup.library.utilities.Defaults.TAG
 import com.ludaxord.projectsup.library.utilities.colors.Color
 import com.ludaxord.projectsup.library.utilities.colors.ColorSchemaUtils
-import com.ludaxord.projectsup.library.utilities.colors.ColorSchemaUtils.setColorSchemaResources
 import com.ludaxord.projectsup.library.utilities.languages.Language
 import com.ludaxord.projectsup.library.utilities.themes.Theme
 import com.ludaxord.projectsup.library.utilities.themes.ThemeUtils
-import com.ludaxord.projectsup.library.utilities.themes.ThemeUtils.setThemeFromResources
-import com.ludaxord.projectsup.library.utilities.userpreferences.UserPreferences
 import com.ludaxord.projectsup.library.utilities.views.ViewUtils.getChildren
 import com.ludaxord.projectsup.library.utilities.views.ViewUtils.getViewIdName
 import com.ludaxord.projectsup.library.utilities.views.ViewUtils.setViewCorners
@@ -33,30 +30,27 @@ import com.ludaxord.projectsup.library.widget.calendarview.elements.adapter.SupC
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 
 //Data classes
 
 abstract class StyledAttributes(
-    open var themeRes: Int,
-    open var themeResName: String?,
-    open var colorSchemaRes: Int
+    open var themeRes: String?,
+    open var colorSchemaRes: String?
 )
 
 data class SupStyledAttributes(
-    override var themeRes: Int,
-    override var themeResName: String?,
-    override var colorSchemaRes: Int
-) : StyledAttributes(themeRes, themeResName, colorSchemaRes)
+    override var themeRes: String?,
+    override var colorSchemaRes: String?
+) : StyledAttributes(themeRes, colorSchemaRes)
 
 //View extensions
 
 fun View.initTheme(res: Int) {
-    setThemeFromResources(this, res)
+
 }
 
 fun View.initColorsSchema(res: Int) {
-    setColorSchemaResources(this, res)
+
 }
 
 fun View.setCorners(corners: Float) {
@@ -130,17 +124,12 @@ fun TextView.setTypeFaceTheme(typeFace: Any?, type: Int? = null) {
     }
 }
 
-fun View.overrideFontTypeFace(res: Any?) {
-    val th = when (res) {
-        is Int -> res.getThemeKey(this.context)
-        is String -> res
-        else -> context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_default_style)
-    }
-    ThemeUtils.overrideFonts(this.context, this, th)
+fun View.overrideFontTypeFace(res: Theme) {
+    ThemeUtils.overrideFonts(this.context, this, res)
 }
 
-fun View.overrideFontColor() {
-    ColorSchemaUtils.overrideFontColors(this.context, this)
+fun View.overrideFontColor(res: Color) {
+    ColorSchemaUtils.overrideFontColors(this.context, this, res)
 }
 
 //AbstractSupCalendarView extensions
@@ -200,28 +189,6 @@ fun ArrayList<View>.setIds(rootView: View) {
 
 //Context extensions
 
-fun Context.getThemeFromPreferences(res: Int? = null): Theme {
-    return if (res == null) {
-        ThemeUtils.getTheme(this)
-    } else {
-        val theme = res.getThemeKey(this)
-        ThemeUtils.getTheme(this, theme)
-    }
-}
-
-fun Context.getPreferences(): UserPreferences {
-    return UserPreferences(this)
-}
-
-fun Context.getColorSchemaFromPreferences(res: Int? = null): Color {
-    return if (res == null) {
-        ColorSchemaUtils.getColorSchema(this)
-    } else {
-        val color = res.getColorSchemaKey(this)
-        ColorSchemaUtils.getColorSchema(this, color)
-    }
-}
-
 fun Context.getResourceId(pVariableName: String, pResourceName: String, pPackageName: String): Int {
     return try {
         this.resources.getIdentifier(pVariableName, pResourceName, pPackageName)
@@ -233,69 +200,6 @@ fun Context.getResourceId(pVariableName: String, pResourceName: String, pPackage
 }
 
 //Int extensions
-
-fun Int.getColorSchemaKey(context: Context): String {
-    return when (this) {
-        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_camo_color_schema) -> {
-            context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_camo_color_schema)
-        }
-        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_default_color_schema) -> {
-            context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_default_color_schema)
-        }
-        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_theme_color_schema) -> {
-            val themeKey =
-                context.getThemeFromPreferences().theme()[context.resources.getString(com.ludaxord.projectsup.R.string.key_color)] as String
-            themeKey
-        }
-        else -> {
-            context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_default_color_schema)
-        }
-    }
-}
-
-fun Int.getThemeKey(context: Context): String {
-    return when (this) {
-        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_default_style) -> {
-            context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_default_style)
-        }
-        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_box_style) -> {
-            context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_box_style)
-        }
-        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_arc_style) -> {
-            context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_arc_style)
-        }
-        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_s_style) -> {
-            context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_s_style)
-        }
-        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_script_style) -> {
-            context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_script_style)
-        }
-        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_photo_style) -> {
-            context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_photo_style)
-        }
-        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_mini_box_style) -> {
-            context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_mini_box_style)
-        }
-        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_swoosh_style) -> {
-            context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_swoosh_style)
-        }
-        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_jump_man_style) -> {
-            context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_jump_man_style)
-        }
-        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_champion_style) -> {
-            context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_champion_style)
-        }
-        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_denim_style) -> {
-            context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_denim_style)
-        }
-        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_tag_style) -> {
-            context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_tag_style)
-        }
-        else -> {
-            context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_default_style)
-        }
-    }
-}
 
 inline fun Int.getResourceFromInt(context: Context, res: (Int, Context) -> String): String {
     return res(this, context)

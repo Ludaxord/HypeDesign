@@ -10,8 +10,9 @@ import com.ludaxord.projectsup.library.utilities.getResourceId
 
 abstract class Color(private val context: Context) {
 
-    fun color(colorKey: String = context.resources.getString(R.string.key_sup_default_color_schema)): HashMap<String, Any> {
-        Log.v(TAG, colorKey)
+    protected var colorKey: String = context.resources.getString(R.string.key_sup_default_color_schema)
+
+    fun color(): HashMap<String, Any> {
         val colorCredentials = HashMap<String, Any>()
         colorCredentials.getColorSet(colorKey)
         return colorCredentials

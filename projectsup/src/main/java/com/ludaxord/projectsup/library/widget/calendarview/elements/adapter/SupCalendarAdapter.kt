@@ -36,9 +36,9 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
 
     private data class Time(val date: Calendar, val day: Int, val month: Int, val year: Int, val today: Calendar?)
 
-    private lateinit var colorSet: HashMap<String, Any>
+    private lateinit var colorSet: com.ludaxord.projectsup.library.utilities.colors.Color
 
-    private lateinit var themeCredentials: HashMap<String, Any>
+    private lateinit var themeCredentials: Theme
 
     private lateinit var inflater: LayoutInflater
 
@@ -53,8 +53,8 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
         this.days = days
         this.events = calendarView.events
         this.schedule = calendarView.schedule
-        this.themeCredentials = theme.theme()
-        this.colorSet = color.color()
+        this.themeCredentials = theme
+        this.colorSet = color
         this.date = date
         inflater = LayoutInflater.from(context)
     }
@@ -71,8 +71,8 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
         this.days = days
         this.events = events
         this.schedule = schedule
-        this.themeCredentials = theme.theme()
-        this.colorSet = color.color()
+        this.themeCredentials = theme
+        this.colorSet = color
         this.date = date
         inflater = LayoutInflater.from(context)
     }
@@ -83,7 +83,7 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
         val time = getItemDetails(item)
         setItemDetails(view, time)
 
-        setFonts(view, "${themeCredentials[context.getString(R.string.key_theme_name)]}_style", false)
+        setFonts(view, themeCredentials, colorSet, false)
 
         return view
     }
@@ -117,7 +117,7 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
 
     private fun setBackground(view: View) {
         view.background =
-            themeCredentials[context.resources.getString(R.string.key_drawable_background_1)] as Drawable
+            themeCredentials.theme()[context.resources.getString(R.string.key_drawable_background_1)] as Drawable
     }
 
     private fun getItemDetails(item: Calendar): Time {
@@ -130,8 +130,8 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
 
     private fun setItemDetails(view: View, time: Time) {
         if (view is TextView) {
-            view.setTypeFaceTheme(themeCredentials[context.resources.getString(R.string.key_typeface)])
-            view.setTextColorSchema(colorSet[context.resources.getString(R.string.key_day)])
+            view.setTypeFaceTheme(themeCredentials.theme()[context.resources.getString(R.string.key_typeface)])
+            view.setTextColorSchema(colorSet.color()[context.resources.getString(R.string.key_day)])
 
             val (date, day, month, year, today) = time
 
@@ -144,13 +144,13 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
 
             today?.let {
                 if (month != today.get(Calendar.MONTH) || year != today.get(Calendar.YEAR)) {
-                    view.setTextColorSchema(colorSet[context.resources.getString(R.string.key_greyed_out)])
+                    view.setTextColorSchema(colorSet.color()[context.resources.getString(R.string.key_greyed_out)])
                 } else if (day == Calendar.getInstance().get(Calendar.DAY_OF_MONTH) && formatDate == timeStamp) {
-                    view.setTypeFaceTheme(themeCredentials[context.resources.getString(R.string.key_typeface)])
-                    view.setTextColorSchema(colorSet[context.resources.getString(R.string.key_today)])
+                    view.setTypeFaceTheme(themeCredentials.theme()[context.resources.getString(R.string.key_typeface)])
+                    view.setTextColorSchema(colorSet.color()[context.resources.getString(R.string.key_today)])
                 } else {
-                    view.setTypeFaceTheme(themeCredentials[context.resources.getString(R.string.key_typeface)])
-                    view.setTextColorSchema(colorSet[context.resources.getString(R.string.key_day)])
+                    view.setTypeFaceTheme(themeCredentials.theme()[context.resources.getString(R.string.key_typeface)])
+                    view.setTextColorSchema(colorSet.color()[context.resources.getString(R.string.key_day)])
                 }
             }
 
@@ -172,7 +172,7 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
                 val parsefDS = form.format(fDS)
 
                 if (parsebS == parsefDS) {
-                    view.setTextColorSchema(colorSet[context.resources.getString(R.string.key_warning)])
+                    view.setTextColorSchema(colorSet.color()[context.resources.getString(R.string.key_warning)])
                     break
                 } else {
 //                    view.setBackgroundResource(0)
@@ -206,7 +206,7 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
         alert.setView(calendarDetailsView)
 
         setBackground(calendarDetailsView)
-        setFonts(calendarDetailsView, "${themeCredentials[context.getString(R.string.key_theme_name)]}_style", false)
+        setFonts(calendarDetailsView, themeCredentials, colorSet, false)
 
         val add = calendarDetailsView.findViewById<ImageView>(R.id.calendar_event_add)
         val cancel = calendarDetailsView.findViewById<ImageView>(R.id.calendar_event_cancel)
@@ -216,7 +216,7 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
 
         val dialog = alert.create()
 
-        eventsList.adapter = SupEventsAdapter(context, events, dialog)
+        eventsList.adapter = SupEventsAdapter(context, events, dialog, themeCredentials, colorSet)
 
         if (events.isNotEmpty()) {
             eventsList.visibility = View.VISIBLE

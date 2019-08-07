@@ -22,14 +22,6 @@ class SupFloatingButton : AbstractSupFloatingButton {
         setDefaultTheme(themeRes)
     }
 
-    override fun getColorSchema(): Color {
-        return getDefaultColorSchema()
-    }
-
-    override fun getTheme(): Theme {
-        return getDefaultTheme()
-    }
-
     override fun setCorners(cornerList: List<Float>, view: View?) {
         setCornersFromList(cornerList)
     }
@@ -40,6 +32,22 @@ class SupFloatingButton : AbstractSupFloatingButton {
 
     override fun setStickToBottom(withMargin: Int, view: View?) {
         setStickToBottomOfView(withMargin)
+    }
+
+    override fun setColorSchema(colorRes: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun setTheme(themeRes: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getColorSchema(): Color {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getTheme(): Theme {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 }
