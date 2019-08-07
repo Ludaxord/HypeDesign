@@ -4,27 +4,31 @@ import android.content.Context
 import android.support.v4.content.ContextCompat
 import android.util.Log
 import com.ludaxord.projectsup.R
+import com.ludaxord.projectsup.library.utilities.Defaults.TAG
 import com.ludaxord.projectsup.library.utilities.combine
 import com.ludaxord.projectsup.library.utilities.getResourceId
 
-abstract class Color(
-    private val context: Context,
-    protected val colorKey: String = context.resources.getString(R.string.key_sup_default_color_schema)
-) {
+abstract class Color(private val context: Context) {
 
-    fun color(colorKey: String = this.colorKey): HashMap<String, Any> {
+    fun color(colorKey: String = context.resources.getString(R.string.key_sup_default_color_schema)): HashMap<String, Any> {
+        Log.v(TAG, colorKey)
         val colorCredentials = HashMap<String, Any>()
         colorCredentials.getColorSet(colorKey)
         return colorCredentials
     }
 
     private fun HashMap<String, Any>.getColorSet(key: String) {
+        val colorSetName = getColorSetName(key)
         val grayedOut = getGreyedOut(getColorKey(key))
         val today = getToday(getColorKey(key))
         val standard = getStandard(getColorKey(key))
         val warning = getWarning(getColorKey(key))
 
-        this.combine(listOf(grayedOut, today, standard, warning))
+        this.combine(listOf(colorSetName, grayedOut, today, standard, warning))
+    }
+
+    private fun getColorSetName(key: String): HashMap<String, Any> {
+        return hashMapOf(context.getString(R.string.key_color_set_name) to key)
     }
 
     private fun getGreyedOut(key: String): HashMap<String, Any> {

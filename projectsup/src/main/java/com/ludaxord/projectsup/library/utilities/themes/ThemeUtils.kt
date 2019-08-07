@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.ludaxord.projectsup.R
+import com.ludaxord.projectsup.library.utilities.Defaults.TAG
 import com.ludaxord.projectsup.library.utilities.getPreferences
 import com.ludaxord.projectsup.library.utilities.getResourceId
 import com.ludaxord.projectsup.library.utilities.getThemeKey
@@ -15,6 +16,11 @@ import com.ludaxord.projectsup.library.utilities.themes.interfaces.ITheme
 import com.ludaxord.projectsup.library.utilities.themes.themeoptions.*
 
 object ThemeUtils : ITheme {
+
+    override fun getTheme(context: Context, theme: String): Theme {
+        val resourceId = context.getResourceId(theme, context.getString(R.string.key_string), context.packageName)
+        return getThemeFromResources(resourceId, theme, context)
+    }
 
     override fun getTheme(context: Context): Theme {
         val theme = getThemeFromPreferences(context)
@@ -33,7 +39,7 @@ object ThemeUtils : ITheme {
                 v.setTypeFaceTheme(getTheme(context).theme()[context.resources.getString(R.string.key_typeface)])
             }
         } catch (e: Exception) {
-            Log.e("ProjectSup", "exception ${e.message}")
+            Log.e(TAG, "exception ${e.message}")
         }
     }
 

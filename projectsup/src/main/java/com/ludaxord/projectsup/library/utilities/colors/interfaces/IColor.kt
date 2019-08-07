@@ -5,4 +5,5 @@ import com.ludaxord.projectsup.library.utilities.colors.Color
 
 interface IColor {
     fun getColorSchema(context: Context): Color
+    fun getColorSchema(context: Context, colorSchema: String): Color
 }

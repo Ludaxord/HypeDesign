@@ -67,8 +67,8 @@ abstract class AbstractSupImageButton : ImageButton, IButton {
     }
 
     internal open fun setDefaultViewUtils() {
-        setDefaultTheme(res.first)
-        setDefaultColorSchema(res.second)
+//        setDefaultTheme(res.first)
+//        setDefaultColorSchema(res.second)
     }
 
     protected fun setDefaultColorSchema(colorRes: Int) {

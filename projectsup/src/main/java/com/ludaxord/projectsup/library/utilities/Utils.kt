@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.ludaxord.projectsup.R
 import com.ludaxord.projectsup.library.utilities.DateUtils.setEventsToExistedEvents
+import com.ludaxord.projectsup.library.utilities.Defaults.TAG
 import com.ludaxord.projectsup.library.utilities.colors.Color
 import com.ludaxord.projectsup.library.utilities.colors.ColorSchemaUtils
 import com.ludaxord.projectsup.library.utilities.colors.ColorSchemaUtils.setColorSchemaResources
@@ -32,6 +33,7 @@ import com.ludaxord.projectsup.library.widget.calendarview.elements.adapter.SupC
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 //Data classes
 
@@ -88,6 +90,10 @@ fun View.setMonthForCalendarView(calendarView: AbstractSupCalendarView, newEvent
     } else {
         throw UtilsException(context.resources.getString(com.ludaxord.projectsup.R.string.utils_exception_calendar_view_button))
     }
+}
+
+fun View.getThemeColorsCredentials(colorName: String, themeName: String) {
+    Log.d(TAG, "credentials for ${this.javaClass} colorSet => $colorName || theme => $themeName")
 }
 
 //ViewGroup extensions

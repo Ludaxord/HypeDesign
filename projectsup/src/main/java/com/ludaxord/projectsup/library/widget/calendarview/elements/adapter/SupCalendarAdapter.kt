@@ -6,6 +6,7 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import android.widget.ImageView
 import android.widget.ListView
 import android.widget.TextView
 import com.ludaxord.projectsup.R
+import com.ludaxord.projectsup.library.utilities.getThemeColorsCredentials
 import com.ludaxord.projectsup.library.utilities.setTextColorSchema
 import com.ludaxord.projectsup.library.utilities.setTypeFaceTheme
 import com.ludaxord.projectsup.library.utilities.themes.Theme
@@ -80,6 +82,9 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
         val item = setItem(position) as Calendar
         val time = getItemDetails(item)
         setItemDetails(view, time)
+
+        setFonts(view, false)
+
         return view
     }
 
@@ -201,6 +206,7 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
         alert.setView(calendarDetailsView)
 
         setBackground(calendarDetailsView)
+        setFonts(calendarDetailsView, false)
 
         val add = calendarDetailsView.findViewById<ImageView>(R.id.calendar_event_add)
         val cancel = calendarDetailsView.findViewById<ImageView>(R.id.calendar_event_cancel)

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.ludaxord.projectsup.R
 import com.ludaxord.projectsup.library.utilities.*
+import com.ludaxord.projectsup.library.utilities.Defaults.TAG
 import com.ludaxord.projectsup.library.utilities.colors.colorschema.Camo
 import com.ludaxord.projectsup.library.utilities.colors.colorschema.Default
 import com.ludaxord.projectsup.library.utilities.colors.interfaces.IColor
@@ -14,6 +15,11 @@ import com.ludaxord.projectsup.library.utilities.themes.ThemeUtils
 import com.ludaxord.projectsup.library.utilities.themes.ThemeUtils.overrideFonts
 
 object ColorSchemaUtils : IColor {
+
+    override fun getColorSchema(context: Context, colorSchema: String): Color {
+        val resourceId = context.getResourceId(colorSchema, context.getString(R.string.key_string), context.packageName)
+        return getColorSchemaFromPreferences(resourceId, colorSchema, context)
+    }
 
     override fun getColorSchema(context: Context): Color {
         val colorSchema = getColorSchemaResources(context)
@@ -46,7 +52,7 @@ object ColorSchemaUtils : IColor {
                 v.setTextColorSchema(getColorSchema(context).color()[context.resources.getString(R.string.key_standard)])
             }
         } catch (e: Exception) {
-            Log.e("ProjectSup", "exception ${e.message}")
+            Log.e(TAG, "exception ${e.message}")
         }
     }
 
@@ -60,7 +66,6 @@ object ColorSchemaUtils : IColor {
     }
 
     private fun getColorSchemaFromPreferences(res: Int, colorKey: String, context: Context): Color {
-        Log.i("ProjectSup", "colorKey from Preferences -> $colorKey")
         return when (res) {
             com.ludaxord.projectsup.R.string.key_sup_camo_color_schema -> {
                 Camo(context, colorKey)
@@ -70,7 +75,7 @@ object ColorSchemaUtils : IColor {
             }
             else -> {
                 if (colorKey.contains(context.getString(R.string.key_theme))) {
-                    Default(context, colorKey)
+                    ThemeUtils.getTheme(context).theme()[context.getString(R.string.key_project_sup_color_schema)] as Color
                 } else {
                     Default(context, colorKey)
                 }

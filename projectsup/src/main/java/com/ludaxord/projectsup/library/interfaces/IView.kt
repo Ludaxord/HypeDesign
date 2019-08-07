@@ -9,12 +9,10 @@ import android.view.View
 import com.ludaxord.projectsup.library.utilities.StyledAttributes
 import com.ludaxord.projectsup.library.utilities.SupStyledAttributes
 import com.ludaxord.projectsup.library.utilities.colors.Color
-import com.ludaxord.projectsup.library.utilities.overrideFontColor
-import com.ludaxord.projectsup.library.utilities.overrideFontTypeFace
 import com.ludaxord.projectsup.library.utilities.themes.Theme
 
 
-interface IView {
+interface IView : IDefaults {
 
     fun setViewUtilsFromStyledAttributes(context: Context, attrs: AttributeSet): StyledAttributes {
         val a = getStyledAttributes(context, attrs, com.ludaxord.projectsup.R.styleable.SupCalendarView)
@@ -59,9 +57,4 @@ interface IView {
     fun getColorSchema(): Color
 
     fun getTheme(): Theme
-
-    fun setFonts(rootView: View) {
-        rootView.overrideFontTypeFace()
-        rootView.overrideFontColor()
-    }
 }

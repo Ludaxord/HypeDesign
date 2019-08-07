@@ -39,6 +39,8 @@ class SupEventsAdapter(context: Context) : BaseAdapter(), IAdapter {
         val view = setView(convertView, parent)
         val item = setItem(position) as Schedule
 
+        setFonts(view, false)
+
         return view
     }
 

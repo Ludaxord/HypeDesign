@@ -7,6 +7,6 @@ class Default : Color {
 
     constructor(context: Context) : super(context)
 
-    constructor(context: Context, colorKey: String) : super(context, colorKey)
+    constructor(context: Context, colorKey: String) : super(context)
 
 }

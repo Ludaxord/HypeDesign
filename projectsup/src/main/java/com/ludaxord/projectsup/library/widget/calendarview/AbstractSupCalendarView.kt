@@ -11,6 +11,7 @@ import android.widget.*
 import com.ludaxord.projectsup.R
 import com.ludaxord.projectsup.library.text.textview.SupTextView
 import com.ludaxord.projectsup.library.utilities.*
+import com.ludaxord.projectsup.library.utilities.Defaults.TAG
 import com.ludaxord.projectsup.library.utilities.colors.Color
 import com.ludaxord.projectsup.library.utilities.languages.Language
 import com.ludaxord.projectsup.library.utilities.themes.Theme
@@ -31,6 +32,8 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
         var languageName: String?,
         var buttonsDrawable: Pair<Drawable?, Drawable?>
     ) : StyledAttributes(themeRes, themeResName, colorSchemaRes)
+
+    internal lateinit var styledAttributes: StyledAttributes
 
     internal val calendar = Calendar.getInstance()
 
@@ -70,7 +73,7 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
         events: ArrayList<Date> = ArrayList(),
         language: String
     ) : super(context) {
-        Log.i("ProjectSup", "Chicago")
+        Log.i(TAG, "Chicago")
         this.res = res
         this.events = events
         this.languageName = language
@@ -87,7 +90,7 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
         context,
         attrs
     ) {
-        Log.i("ProjectSup", "NRG")
+        Log.i(TAG, "NRG")
         this.res = res
         this.events = events
         this.languageName = language
@@ -106,7 +109,7 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
         attrs,
         defStyleAttr
     ) {
-        Log.i("ProjectSup", "UNC")
+        Log.i(TAG, "UNC")
         this.res = res
         this.events = events
         this.languageName = language
@@ -182,8 +185,8 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
     }
 
     internal open fun setDefaultViewUtils() {
-        setDefaultTheme(res.first)
-        setDefaultColorSchema(res.second)
+//        setDefaultTheme(res.first)
+//        setDefaultColorSchema(res.second)
         createViews()
         setDefaultWeekDaysLanguage()
         setWeekDays()
