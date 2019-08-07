@@ -28,18 +28,18 @@ object ThemeUtils : ITheme {
         return getThemeFromResources(resourceId, theme, context)
     }
 
-    fun overrideFonts(context: Context, v: View) {
+    fun overrideFonts(context: Context, v: View, res: String) {
         try {
             if (v is ViewGroup) {
                 for (i in 0 until v.childCount) {
                     val child = v.getChildAt(i)
-                    overrideFonts(context, child)
+                    overrideFonts(context, child, res)
                 }
             } else if (v is TextView) {
-                v.setTypeFaceTheme(getTheme(context).theme()[context.resources.getString(R.string.key_typeface)])
+                v.setTypeFaceTheme(getTheme(context).theme(res)[context.resources.getString(R.string.key_typeface)])
             }
         } catch (e: Exception) {
-            Log.e(TAG, "exception ${e.message}")
+            Log.e(TAG, "exception theme ${e.message}")
         }
     }
 

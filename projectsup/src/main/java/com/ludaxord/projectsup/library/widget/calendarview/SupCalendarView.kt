@@ -21,7 +21,6 @@ class SupCalendarView : AbstractSupCalendarView {
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
         Log.i(TAG, "MCA")
-        styledAttributes = setViewUtilsFromStyledAttributes(context, attrs)
         setDefaultViewUtils()
     }
 

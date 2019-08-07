@@ -16,7 +16,6 @@ import com.ludaxord.projectsup.library.utilities.colors.colorschema.themecolorsc
 abstract class Theme(private val context: Context) {
 
     fun theme(themeKey: String = context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_default_style)): HashMap<String, Any> {
-        Log.w(Defaults.TAG, themeKey)
         val themeCredentials = HashMap<String, Any>()
         themeCredentials.getDefaultThemeCredentials(themeKey)
         return themeCredentials

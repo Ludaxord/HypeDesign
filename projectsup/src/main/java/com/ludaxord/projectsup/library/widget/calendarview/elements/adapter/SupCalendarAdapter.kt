@@ -83,7 +83,7 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
         val time = getItemDetails(item)
         setItemDetails(view, time)
 
-        setFonts(view, false)
+        setFonts(view, "${themeCredentials[context.getString(R.string.key_theme_name)]}_style", false)
 
         return view
     }
@@ -206,7 +206,7 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
         alert.setView(calendarDetailsView)
 
         setBackground(calendarDetailsView)
-        setFonts(calendarDetailsView, false)
+        setFonts(calendarDetailsView, "${themeCredentials[context.getString(R.string.key_theme_name)]}_style", false)
 
         val add = calendarDetailsView.findViewById<ImageView>(R.id.calendar_event_add)
         val cancel = calendarDetailsView.findViewById<ImageView>(R.id.calendar_event_cancel)

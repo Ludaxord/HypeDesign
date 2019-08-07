@@ -52,7 +52,7 @@ object ColorSchemaUtils : IColor {
                 v.setTextColorSchema(getColorSchema(context).color()[context.resources.getString(R.string.key_standard)])
             }
         } catch (e: Exception) {
-            Log.e(TAG, "exception ${e.message}")
+            Log.e(TAG, "exception color ${e.message}")
         }
     }
 
@@ -75,7 +75,7 @@ object ColorSchemaUtils : IColor {
             }
             else -> {
                 if (colorKey.contains(context.getString(R.string.key_theme))) {
-                    ThemeUtils.getTheme(context).theme()[context.getString(R.string.key_project_sup_color_schema)] as Color
+                    ThemeUtils.getTheme(context).theme(colorKey)[context.getString(R.string.key_project_sup_color_schema)] as Color
                 } else {
                     Default(context, colorKey)
                 }

@@ -130,8 +130,13 @@ fun TextView.setTypeFaceTheme(typeFace: Any?, type: Int? = null) {
     }
 }
 
-fun View.overrideFontTypeFace() {
-    ThemeUtils.overrideFonts(this.context, this)
+fun View.overrideFontTypeFace(res: Any?) {
+    val th = when (res) {
+        is Int -> res.getThemeKey(this.context)
+        is String -> res
+        else -> context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_default_style)
+    }
+    ThemeUtils.overrideFonts(this.context, this, th)
 }
 
 fun View.overrideFontColor() {
@@ -195,16 +200,26 @@ fun ArrayList<View>.setIds(rootView: View) {
 
 //Context extensions
 
-fun Context.getThemeFromPreferences(): Theme {
-    return ThemeUtils.getTheme(this)
+fun Context.getThemeFromPreferences(res: Int? = null): Theme {
+    return if (res == null) {
+        ThemeUtils.getTheme(this)
+    } else {
+        val theme = res.getThemeKey(this)
+        ThemeUtils.getTheme(this, theme)
+    }
 }
 
 fun Context.getPreferences(): UserPreferences {
     return UserPreferences(this)
 }
 
-fun Context.getColorSchemaFromPreferences(): Color {
-    return ColorSchemaUtils.getColorSchema(this)
+fun Context.getColorSchemaFromPreferences(res: Int? = null): Color {
+    return if (res == null) {
+        ColorSchemaUtils.getColorSchema(this)
+    } else {
+        val color = res.getColorSchemaKey(this)
+        ColorSchemaUtils.getColorSchema(this, color)
+    }
 }
 
 fun Context.getResourceId(pVariableName: String, pResourceName: String, pPackageName: String): Int {

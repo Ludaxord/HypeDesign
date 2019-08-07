@@ -33,13 +33,9 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
         var buttonsDrawable: Pair<Drawable?, Drawable?>
     ) : StyledAttributes(themeRes, themeResName, colorSchemaRes)
 
-    internal lateinit var styledAttributes: StyledAttributes
-
     internal val calendar = Calendar.getInstance()
 
     internal var res: Pair<Int, Int> = Pair(0, 0)
-
-    internal lateinit var navigationRes: Pair<Drawable?, Drawable?>
 
     internal var languageName: String = context.resources.getString(R.string.language_option_en)
 
@@ -50,6 +46,12 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
     internal var subViewHelperArrayList: ArrayList<View> = ArrayList()
 
     internal var dateFormat = context.resources.getString(com.ludaxord.projectsup.R.string.date_format_4)
+
+    internal lateinit var navigationRes: Pair<Drawable?, Drawable?>
+
+    internal lateinit var styledAttributes: StyledAttributes
+
+    internal lateinit var attrs: AttributeSet
 
     internal lateinit var calendarLanguage: Language
 
@@ -91,6 +93,7 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
         attrs
     ) {
         Log.i(TAG, "NRG")
+        this.attrs = attrs
         this.res = res
         this.events = events
         this.languageName = language
@@ -110,6 +113,7 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
         defStyleAttr
     ) {
         Log.i(TAG, "UNC")
+        this.attrs = attrs
         this.res = res
         this.events = events
         this.languageName = language
@@ -161,7 +165,7 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
         val rightButtonRes = getStyledAttributesDrawable(a, R.styleable.SupCalendarView_button_right_res)
 //        TODO: adding layout from styled attributes
 
-        this.res = Pair(themeRes, colorSchemaRes)
+//        this.res = Pair(themeRes, colorSchemaRes)
 
         val navigationDrawables = Pair(leftButtonRes, rightButtonRes)
 
@@ -187,12 +191,14 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
     internal open fun setDefaultViewUtils() {
 //        setDefaultTheme(res.first)
 //        setDefaultColorSchema(res.second)
+        styledAttributes = setViewUtilsFromStyledAttributes(context, attrs)
+        Log.v(TAG, styledAttributes.toString())
         createViews()
         setDefaultWeekDaysLanguage()
         setWeekDays()
         initListeners()
         setCalendarView()
-        setFonts(this)
+        setFonts(this, styledAttributes.themeRes)
         setNavigationButtons()
     }
 
@@ -292,11 +298,21 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
     }
 
     protected fun getDefaultColorSchema(): Color {
-        return context.getColorSchemaFromPreferences()
+        return if (::styledAttributes.isInitialized) {
+            Log.d(TAG, "getDefaultColorSchema -> $styledAttributes")
+            context.getColorSchemaFromPreferences(styledAttributes.colorSchemaRes)
+        } else {
+            context.getColorSchemaFromPreferences()
+        }
     }
 
     protected fun getDefaultTheme(): Theme {
-        return context.getThemeFromPreferences()
+        return if (::styledAttributes.isInitialized) {
+            Log.d(TAG, "getDefaultTheme -> $styledAttributes")
+            context.getThemeFromPreferences(styledAttributes.themeRes)
+        } else {
+            context.getThemeFromPreferences()
+        }
     }
 
     protected fun setDefaultColorSchema(colorRes: Int) {
