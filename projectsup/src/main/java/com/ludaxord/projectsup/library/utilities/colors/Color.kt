@@ -42,16 +42,16 @@ abstract class Color(
     }
 
     private fun getStandard(key: String): HashMap<String, Any> {
-        val todayKey = "${key}_${context.resources.getString(R.string.key_standard)}"
+        val standardKey = "${key}_${context.resources.getString(R.string.key_standard)}"
         val today =
-            context.getResourceId(todayKey, context.getString(R.string.key_color), context.packageName).getColor()
+            context.getResourceId(standardKey, context.getString(R.string.key_color), context.packageName).getColor()
         return hashMapOf(context.resources.getString(R.string.key_standard) to today)
     }
 
     private fun getWarning(key: String): HashMap<String, Any> {
-        val todayKey = "${key}_${context.resources.getString(R.string.key_warning)}"
+        val warningKey = "${key}_${context.resources.getString(R.string.key_warning)}"
         val today =
-            context.getResourceId(todayKey, context.getString(R.string.key_color), context.packageName).getColor()
+            context.getResourceId(warningKey, context.getString(R.string.key_color), context.packageName).getColor()
         return hashMapOf(context.resources.getString(R.string.key_warning) to today)
     }
 

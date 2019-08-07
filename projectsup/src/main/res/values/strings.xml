@@ -30,6 +30,7 @@
     <string name="prefix_text">_text</string>
     <string name="prefix_style">style_</string>
     <string name="prefix_color">color_</string>
+    <string name="prefix_color_schema">_color_schema</string>
     <string name="prefix_language_short">language_short_</string>
     <string name="prefix_language_full">language_full_</string>
 
@@ -81,6 +82,8 @@
     <string name="key_drawable">drawable</string>
     <string name="key_left_button">left_button</string>
     <string name="key_right_button">right_button</string>
+    <string name="key_background_1">background_1</string>
+    <string name="key_background_2">background_1</string>
     <string name="key_font">style</string>
     <string name="key_attr">attr</string>
     <string name="key_theme">theme</string>
@@ -99,6 +102,8 @@
     <string name="key_typeface">typeface</string>
     <string name="key_drawable_left_button">drawable_left_button</string>
     <string name="key_drawable_right_button">drawable_right_button</string>
+    <string name="key_drawable_background_1">drawable_background_1</string>
+    <string name="key_drawable_background_2">drawable_background_1</string>
 
     <!--language options-->
     <string name="language_option_pl">pl-PL</string>

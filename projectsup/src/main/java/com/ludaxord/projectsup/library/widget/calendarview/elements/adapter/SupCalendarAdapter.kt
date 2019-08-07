@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -94,7 +95,7 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
         return days.count()
     }
 
-    private fun setView(convertView: View?, parent: ViewGroup?): View {
+    override fun setView(convertView: View?, parent: ViewGroup?): View {
         var view = convertView
 
         if (view == null) {
@@ -107,6 +108,11 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
     override fun setItem(position: Int): Any {
         val item = getItem(position) as Date
         return item.toCalendar()
+    }
+
+    private fun setBackground(view: View) {
+        view.background =
+            themeCredentials[context.resources.getString(R.string.key_drawable_background_1)] as Drawable
     }
 
     private fun getItemDetails(item: Calendar): Time {
@@ -171,7 +177,7 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
             view.text = "${date.get(Calendar.DAY_OF_MONTH)}"
 
             view.setOnClickListener {
-                val convertedDate = form.format(date)
+                val convertedDate = form.format(date.time)
                 val matchDate = ArrayList<Schedule>()
                 for (event in schedule) {
                     if (event.date == convertedDate) {
@@ -189,9 +195,12 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
     private fun calendarDetails(events: ArrayList<Schedule>, date: String) {
         val layoutInflater = LayoutInflater.from(context)
         val calendarDetailsView = layoutInflater.inflate(R.layout.sup_calendar_details_view, null)
+
         val alert = AlertDialog.Builder(context)
 
         alert.setView(calendarDetailsView)
+
+        setBackground(calendarDetailsView)
 
         val add = calendarDetailsView.findViewById<ImageView>(R.id.calendar_event_add)
         val cancel = calendarDetailsView.findViewById<ImageView>(R.id.calendar_event_cancel)

@@ -2,12 +2,9 @@ package com.ludaxord.projectsup.library.utilities.themes
 
 import android.content.Context
 import android.graphics.Typeface
-import android.graphics.drawable.Drawable
-import android.util.Log
 import com.ludaxord.projectsup.library.utilities.combine
 import com.ludaxord.projectsup.library.utilities.getResourceId
 import java.lang.Exception
-import android.R
 import android.support.v4.content.ContextCompat
 
 
@@ -48,13 +45,21 @@ abstract class Theme(
                 com.ludaxord.projectsup.R.string.key_drawable_right_button
             )
 
+        val drawableBackground1 =
+            getDrawable(
+                getDrawableKey("${key}_${context.getString(com.ludaxord.projectsup.R.string.key_background_1)}"),
+                com.ludaxord.projectsup.R.string.key_drawable_background_1
+            )
+
         val typeface = try {
             getTypeface(getTypeFaceKey(key))
         } catch (e: Exception) {
             getTypeface(getTypeFaceKey(key, "otf"))
         }
 
-        this.combine(listOf(style, typeface, drawableLeftButton, drawableRightButton))
+        val colorSchema = getColorSchemaKeyFromTheme(key)
+
+        this.combine(listOf(style, typeface, drawableLeftButton, drawableRightButton, drawableBackground1, colorSchema))
     }
 
     private fun getTypeface(path: String): HashMap<String, Any> {
@@ -72,6 +77,20 @@ abstract class Theme(
         return hashMapOf(context.resources.getString(key) to drawable)
     }
 
+    private fun getColorSchemaKeyFromTheme(resource: String): HashMap<String, Any> {
+        val replacement = context.getString(com.ludaxord.projectsup.R.string.key_style)
+        val key = if (resource.contains(replacement)) {
+            resource.replace("_$replacement", "")
+        } else {
+            resource
+        }
+        val r =
+            "${key}_${context.resources.getString(com.ludaxord.projectsup.R.string.key_theme)}${context.resources.getString(
+                com.ludaxord.projectsup.R.string.prefix_color_schema
+            )}"
+        return hashMapOf(context.resources.getString(com.ludaxord.projectsup.R.string.key_color) to r)
+    }
+
     internal fun getStyleKey(key: String): String {
         return "${context.resources.getString(com.ludaxord.projectsup.R.string.prefix_style)}$key"
     }
@@ -82,10 +101,6 @@ abstract class Theme(
 
     internal fun getTypeFaceKey(key: String, extension: String = "ttf"): String {
         return "${context.resources.getString(com.ludaxord.projectsup.R.string.key_typeface)}_$key.$extension"
-    }
-
-    protected fun getDefaultColorSchemaForTheme(themeKey: String) {
-
     }
 
 }

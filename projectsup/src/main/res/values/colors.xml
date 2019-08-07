@@ -147,4 +147,16 @@
     <color name="color_sup_default_color_schema_standard">@color/dim_gray</color>
     <color name="color_sup_default_color_schema_warning">@color/orange</color>
     <color name="color_sup_default_color_schema_day">@color/slate_gray</color>
+    <color name="color_sup_default_color_background">@color/white_smoke</color>
+    <color name="color_sup_default_color_additions">@color/dark_slate_gray</color>
+
+    <!--color_sup_box-->
+    <color name="color_sup_box_theme_color_schema_greyed_out">@color/light_pink</color>
+    <color name="color_sup_box_theme_color_schema_today">@color/dark_red</color>
+    <color name="color_sup_box_theme_color_schema_standard">@color/slate_gray</color>
+    <color name="color_sup_box_theme_color_schema_warning">@color/orange_red</color>
+    <color name="color_sup_box_theme_color_schema_day">@color/light_slate_gray</color>
+    <color name="color_sup_box_theme_color_background">@color/antique_white</color>
+    <color name="color_sup_box_theme_color_additions">@color/dark_orange</color>
+
 </resources>

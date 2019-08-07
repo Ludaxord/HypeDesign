@@ -23,8 +23,16 @@ object ColorSchemaUtils : IColor {
 
     fun setColorSchemaResources(view: View, res: Int) {
         val colorKey = res.getColorSchemaKey(view.context)
-        view.context.getPreferences()
-            .setPreference(view.context.resources.getString(R.string.key_project_sup_color_schema), colorKey)
+        val previousColorKey = getColorSchemaResources(view.context)
+        if (colorKey != previousColorKey ||
+            (
+                    previousColorKey != view.context.resources.getString(R.string.key_sup_default_color_schema) &&
+                            colorKey != view.context.resources.getString(R.string.key_sup_default_color_schema)
+                    )
+        ) {
+            view.context.getPreferences()
+                .setPreference(view.context.resources.getString(R.string.key_project_sup_color_schema), colorKey)
+        }
     }
 
     fun overrideFontColors(context: Context, v: View) {
@@ -52,6 +60,7 @@ object ColorSchemaUtils : IColor {
     }
 
     private fun getColorSchemaFromPreferences(res: Int, colorKey: String, context: Context): Color {
+        Log.i("ProjectSup", "colorKey from Preferences -> $colorKey")
         return when (res) {
             com.ludaxord.projectsup.R.string.key_sup_camo_color_schema -> {
                 Camo(context, colorKey)
@@ -60,7 +69,11 @@ object ColorSchemaUtils : IColor {
                 Default(context, colorKey)
             }
             else -> {
-                Default(context, colorKey)
+                if (colorKey.contains(context.getString(R.string.key_theme))) {
+                    Default(context, colorKey)
+                } else {
+                    Default(context, colorKey)
+                }
             }
         }
     }

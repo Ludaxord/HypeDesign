@@ -156,6 +156,7 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
         val languageRes = getStyledAttributesLanguage(a, R.styleable.SupCalendarView_language_res)
         val leftButtonRes = getStyledAttributesDrawable(a, R.styleable.SupCalendarView_button_left_res)
         val rightButtonRes = getStyledAttributesDrawable(a, R.styleable.SupCalendarView_button_right_res)
+//        TODO: adding layout from styled attributes
 
         this.res = Pair(themeRes, colorSchemaRes)
 

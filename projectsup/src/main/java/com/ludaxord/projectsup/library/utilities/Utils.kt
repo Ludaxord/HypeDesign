@@ -215,11 +215,16 @@ fun Context.getResourceId(pVariableName: String, pResourceName: String, pPackage
 
 fun Int.getColorSchemaKey(context: Context): String {
     return when (this) {
-        com.ludaxord.projectsup.R.integer.sup_camo_color_schema -> {
+        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_camo_color_schema) -> {
             context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_camo_color_schema)
         }
-        com.ludaxord.projectsup.R.integer.sup_default_color_schema -> {
+        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_default_color_schema) -> {
             context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_default_color_schema)
+        }
+        context.resources.getInteger(com.ludaxord.projectsup.R.integer.sup_theme_color_schema) -> {
+            val themeKey =
+                context.getThemeFromPreferences().theme()[context.resources.getString(com.ludaxord.projectsup.R.string.key_color)] as String
+            themeKey
         }
         else -> {
             context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_default_color_schema)
