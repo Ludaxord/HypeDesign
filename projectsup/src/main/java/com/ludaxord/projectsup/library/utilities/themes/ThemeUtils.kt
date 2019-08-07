@@ -15,8 +15,8 @@ import com.ludaxord.projectsup.library.utilities.themes.themeoptions.*
 object ThemeUtils : ITheme {
 
     override fun getTheme(context: Context, theme: String): Theme {
-        val resourceId = context.getResourceId(theme, context.getString(R.string.key_string), context.packageName)
-        return getThemeFromResources(resourceId, theme, context)
+        Log.w(TAG, "theme => $theme")
+        return getThemeFromResources(theme, context)
     }
 
     fun overrideFonts(context: Context, v: View, theme: Theme) {
@@ -34,48 +34,48 @@ object ThemeUtils : ITheme {
         }
     }
 
-    private fun getThemeFromResources(res: Int, themeKey: String, context: Context): Theme {
-        return when (res) {
-            com.ludaxord.projectsup.R.string.key_sup_default_style -> {
+    private fun getThemeFromResources(themeKey: String, context: Context): Theme {
+        return when (themeKey) {
+            context.getString(com.ludaxord.projectsup.R.string.key_sup_default_style) -> {
                 Default(context, themeKey)
             }
-            com.ludaxord.projectsup.R.string.key_sup_box_style -> {
+            context.getString(com.ludaxord.projectsup.R.string.key_sup_box_style) -> {
                 Box(context, themeKey)
             }
-            com.ludaxord.projectsup.R.string.key_sup_champion_style -> {
+            context.getString(com.ludaxord.projectsup.R.string.key_sup_champion_style) -> {
                 Champion(context, themeKey)
             }
-            com.ludaxord.projectsup.R.string.key_sup_denim_style -> {
+            context.getString(com.ludaxord.projectsup.R.string.key_sup_denim_style) -> {
                 Denim(context, themeKey)
             }
-            com.ludaxord.projectsup.R.string.key_sup_motion_style -> {
+            context.getString(com.ludaxord.projectsup.R.string.key_sup_motion_style) -> {
                 Motion(context, themeKey)
             }
-            com.ludaxord.projectsup.R.string.key_sup_olde_english_style -> {
+            context.getString(com.ludaxord.projectsup.R.string.key_sup_olde_english_style) -> {
                 OldeEnglish(context, themeKey)
             }
-            com.ludaxord.projectsup.R.string.key_sup_photo_style -> {
+            context.getString(com.ludaxord.projectsup.R.string.key_sup_photo_style) -> {
                 Photo(context, themeKey)
             }
-            com.ludaxord.projectsup.R.string.key_sup_jump_man_style -> {
+            context.getString(com.ludaxord.projectsup.R.string.key_sup_jump_man_style) -> {
                 JumpMan(context, themeKey)
             }
-            com.ludaxord.projectsup.R.string.key_sup_s_style -> {
+            context.getString(com.ludaxord.projectsup.R.string.key_sup_s_style) -> {
                 S(context, themeKey)
             }
-            com.ludaxord.projectsup.R.string.key_sup_script_style -> {
+            context.getString(com.ludaxord.projectsup.R.string.key_sup_script_style) -> {
                 Script(context, themeKey)
             }
-            com.ludaxord.projectsup.R.string.key_sup_arc_style -> {
+            context.getString(com.ludaxord.projectsup.R.string.key_sup_arc_style) -> {
                 Arc(context, themeKey)
             }
-            com.ludaxord.projectsup.R.string.key_sup_mini_box_style -> {
+            context.getString(com.ludaxord.projectsup.R.string.key_sup_mini_box_style) -> {
                 MiniBox(context, themeKey)
             }
-            com.ludaxord.projectsup.R.string.key_sup_swoosh_style -> {
+            context.getString(com.ludaxord.projectsup.R.string.key_sup_swoosh_style) -> {
                 Swoosh(context, themeKey)
             }
-            com.ludaxord.projectsup.R.string.key_sup_tag_style -> {
+            context.getString(com.ludaxord.projectsup.R.string.key_sup_tag_style) -> {
                 Tag(context, themeKey)
             }
             else -> {

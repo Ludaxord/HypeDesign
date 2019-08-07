@@ -171,8 +171,8 @@ fun AbstractSupCalendarView.updateCalendarCells() {
         this.events,
         this.schedule,
         this.calendar.time,
-        this.getTheme(),
-        this.getColorSchema()
+        this.theme,
+        this.color
     )
     this.calendarGridView.adapter = calendarAdapter
 

@@ -17,8 +17,9 @@ import com.ludaxord.projectsup.library.utilities.themes.ThemeUtils.overrideFonts
 object ColorSchemaUtils : IColor {
 
     override fun getColorSchema(context: Context, colorSchema: String): Color {
-        val resourceId = context.getResourceId(colorSchema, context.getString(R.string.key_string), context.packageName)
-        return getColorSchemaFromPreferences(resourceId, colorSchema, context)
+        Log.w(TAG, "color => $colorSchema")
+//        val resourceId = context.getResourceId(colorSchema, context.getString(R.string.key_string), context.packageName)
+        return getColorSchemaFromPreferences(colorSchema, context)
     }
 
     fun overrideFontColors(context: Context, v: View, res: Color) {
@@ -36,12 +37,12 @@ object ColorSchemaUtils : IColor {
         }
     }
 
-    private fun getColorSchemaFromPreferences(res: Int, colorKey: String, context: Context): Color {
-        return when (res) {
-            com.ludaxord.projectsup.R.string.key_sup_camo_color_schema -> {
+    private fun getColorSchemaFromPreferences(colorKey: String, context: Context): Color {
+        return when (colorKey) {
+            context.getString(com.ludaxord.projectsup.R.string.key_sup_camo_color_schema) -> {
                 Camo(context, colorKey)
             }
-            com.ludaxord.projectsup.R.string.key_sup_default_color_schema -> {
+            context.getString(com.ludaxord.projectsup.R.string.key_sup_default_color_schema) -> {
                 Default(context, colorKey)
             }
             else -> {

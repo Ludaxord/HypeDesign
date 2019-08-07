@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat
 import android.util.Log
 import com.ludaxord.projectsup.R
 import com.ludaxord.projectsup.library.utilities.Defaults
+import com.ludaxord.projectsup.library.utilities.Defaults.TAG
 import com.ludaxord.projectsup.library.utilities.colors.colorschema.Default
 import com.ludaxord.projectsup.library.utilities.colors.colorschema.themecolorschema.ThemeBox
 

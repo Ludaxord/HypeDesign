@@ -53,9 +53,9 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
 
     internal var dateFormat = context.resources.getString(com.ludaxord.projectsup.R.string.date_format_4)
 
-    internal var theme: Theme = Default(context)
+    internal lateinit var theme: Theme
 
-    internal var color: Color = com.ludaxord.projectsup.library.utilities.colors.colorschema.Default(context)
+    internal lateinit var color: Color
 
     internal lateinit var navigationRes: Pair<Drawable?, Drawable?>
 
@@ -174,9 +174,17 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
         val rightButtonRes = getStyledAttributesDrawable(a, R.styleable.SupCalendarView_button_right_res)
 //        TODO: adding layout from styled attributes
 
-        if (themeRes != null && colorSchemaRes != null) {
-            this.res = Pair(themeRes, colorSchemaRes)
+        val modifiedRes = if (themeRes != null && colorSchemaRes != null) {
+            Pair(themeRes, colorSchemaRes)
+        } else if (themeRes != null && colorSchemaRes == null) {
+            Pair(themeRes, this.res.second)
+        } else if (themeRes == null && colorSchemaRes != null) {
+            Pair(this.res.first, colorSchemaRes)
+        } else {
+            this.res
         }
+
+        this.res = modifiedRes
 
         val navigationDrawables = Pair(leftButtonRes, rightButtonRes)
 
@@ -200,7 +208,6 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
 
     internal open fun setDefaultViewUtils() {
         styledAttributes = setViewUtilsFromStyledAttributes(context, attrs)
-        Log.w(TAG, "res -> ${res.first} ${res.second}")
         setTheme(res.first)
         setColorSchema(res.second)
         createViews()

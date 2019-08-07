@@ -12,7 +12,7 @@ import com.ludaxord.projectsup.library.widget.calendarview.elements.models.Sched
 import com.ludaxord.projectsup.library.widget.interfaces.IAdapter
 import java.util.*
 
-class SupEventsAdapter(context: Context) : BaseAdapter(), IAdapter {
+class SupEventsAdapter(private val context: Context) : BaseAdapter(), IAdapter {
 
     private lateinit var inflater: LayoutInflater
     private lateinit var _scheduleEvents: ArrayList<Schedule>
