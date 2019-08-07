@@ -5,11 +5,11 @@ import android.util.AttributeSet
 
 class SupEditText: AbstractSupEditText {
 
-    constructor(context: Context, res: Pair<Int, Int>) : super(context, res)
+    constructor(context: Context, res: Pair<String, String>) : super(context, res)
 
-    constructor(context: Context, attrs: AttributeSet, res: Pair<Int, Int>) : super(context, attrs, res)
+    constructor(context: Context, attrs: AttributeSet, res: Pair<String, String>) : super(context, attrs, res)
 
-    constructor(context: Context, attrs: AttributeSet, defStyle: Int, res: Pair<Int, Int>) : super(
+    constructor(context: Context, attrs: AttributeSet, defStyle: Int, res: Pair<String, String>) : super(
         context,
         attrs,
         defStyle,

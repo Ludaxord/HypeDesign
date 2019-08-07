@@ -1,12 +1,20 @@
 package com.ludaxord.projectsup.library.utilities.colors.colorschema
 
 import android.content.Context
+import android.util.Log
+import com.ludaxord.projectsup.R
+import com.ludaxord.projectsup.library.utilities.Defaults.TAG
 import com.ludaxord.projectsup.library.utilities.colors.Color
 
 class Camo : Color {
 
-    constructor(context: Context) : super(context)
+    constructor(context: Context) : super(context) {
+        this.colorKey = context.resources.getString(R.string.key_sup_camo_color_schema)
+    }
 
-    constructor(context: Context, colorKey: String) : super(context, colorKey)
+    constructor(context: Context, colorKey: String) : super(context) {
+        Log.e(TAG, colorKey)
+        this.colorKey = colorKey
+    }
 
 }

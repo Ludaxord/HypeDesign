@@ -11,7 +11,7 @@ abstract class AbstractSupFloatingButton : AbstractSupCircleButton {
 
     internal var withMargin: Int = 0
 
-    protected constructor(context: Context, res: Pair<Int, Int>, corners: Float, bottomMargin: Int) : super(
+    protected constructor(context: Context, res: Pair<String, String>, corners: Float, bottomMargin: Int) : super(
         context,
         res,
         corners
@@ -25,7 +25,7 @@ abstract class AbstractSupFloatingButton : AbstractSupCircleButton {
     protected constructor(
         context: Context,
         attrs: AttributeSet,
-        res: Pair<Int, Int>,
+        res: Pair<String, String>,
         corners: Float,
         bottomMargin: Int
     ) : super(
@@ -44,7 +44,7 @@ abstract class AbstractSupFloatingButton : AbstractSupCircleButton {
         context: Context,
         attrs: AttributeSet,
         defStyle: Int,
-        res: Pair<Int, Int>,
+        res: Pair<String, String>,
         corners: Float,
         bottomMargin: Int
     ) : super(
@@ -60,7 +60,7 @@ abstract class AbstractSupFloatingButton : AbstractSupCircleButton {
         setInitializer()
     }
 
-    protected constructor(context: Context, res: Pair<Int, Int>, cornerList: List<Float>, bottomMargin: Int) : super(
+    protected constructor(context: Context, res: Pair<String, String>, cornerList: List<Float>, bottomMargin: Int) : super(
         context,
         res,
         cornerList
@@ -74,7 +74,7 @@ abstract class AbstractSupFloatingButton : AbstractSupCircleButton {
     protected constructor(
         context: Context,
         attrs: AttributeSet,
-        res: Pair<Int, Int>,
+        res: Pair<String, String>,
         cornerList: List<Float>,
         bottomMargin: Int
     ) : super(
@@ -93,7 +93,7 @@ abstract class AbstractSupFloatingButton : AbstractSupCircleButton {
         context: Context,
         attrs: AttributeSet,
         defStyle: Int,
-        res: Pair<Int, Int>,
+        res: Pair<String, String>,
         cornerList: List<Float>,
         bottomMargin: Int
     ) : super(
@@ -113,8 +113,8 @@ abstract class AbstractSupFloatingButton : AbstractSupCircleButton {
     protected constructor(context: Context) : this(
         context,
         Pair(
-            com.ludaxord.projectsup.R.integer.sup_default_style,
-            com.ludaxord.projectsup.R.integer.sup_default_color_schema
+            context.getString(com.ludaxord.projectsup.R.string.key_sup_default_style),
+            context.getString(com.ludaxord.projectsup.R.string.key_sup_default_color_schema)
         ),
         DEFAULT_CORNER_ROUND_FLOAT,
         DEFAULT_BOTTOM_MARGIN_FLOAT
@@ -124,8 +124,8 @@ abstract class AbstractSupFloatingButton : AbstractSupCircleButton {
         context,
         attrs,
         Pair(
-            com.ludaxord.projectsup.R.integer.sup_default_style,
-            com.ludaxord.projectsup.R.integer.sup_default_color_schema
+            context.getString(com.ludaxord.projectsup.R.string.key_sup_default_style),
+            context.getString(com.ludaxord.projectsup.R.string.key_sup_default_color_schema)
         ),
         DEFAULT_CORNER_ROUND_FLOAT,
         DEFAULT_BOTTOM_MARGIN_FLOAT
@@ -136,8 +136,8 @@ abstract class AbstractSupFloatingButton : AbstractSupCircleButton {
         attrs,
         defStyle,
         Pair(
-            com.ludaxord.projectsup.R.integer.sup_default_style,
-            com.ludaxord.projectsup.R.integer.sup_default_color_schema
+            context.getString(com.ludaxord.projectsup.R.string.key_sup_default_style),
+            context.getString(com.ludaxord.projectsup.R.string.key_sup_default_color_schema)
         ),
         DEFAULT_CORNER_ROUND_FLOAT,
         DEFAULT_BOTTOM_MARGIN_FLOAT

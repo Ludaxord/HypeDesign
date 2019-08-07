@@ -16,6 +16,7 @@
     <integer name="sup_motion_style">100012</integer>
 
     <!--color schema style-->
+    <integer name="sup_theme_color_schema">119000</integer>
     <integer name="sup_default_color_schema">110000</integer>
     <integer name="sup_camo_color_schema">110001</integer>
 

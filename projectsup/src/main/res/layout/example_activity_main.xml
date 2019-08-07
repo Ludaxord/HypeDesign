@@ -7,11 +7,8 @@
 
     <com.ludaxord.projectsup.library.widget.calendarview.SupCalendarView
             android:id="@+id/calendar_view"
-            app:theme_res="@integer/sup_box_style"
-            app:color_schema_res="@integer/sup_camo_color_schema"
-            app:language_res="@string/language_option_pl"
-            app:button_left_res="@drawable/drawable_sup_default_style_left_button"
-            app:button_right_res="@drawable/drawable_sup_default_style_right_button"
+            app:theme_res="@string/key_sup_box_style"
+            app:language_res="@string/language_option_fr"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 

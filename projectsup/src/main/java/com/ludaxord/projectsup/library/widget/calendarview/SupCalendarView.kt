@@ -2,36 +2,36 @@ package com.ludaxord.projectsup.library.widget.calendarview
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import android.support.v4.graphics.ColorUtils
 import android.util.AttributeSet
 import android.util.Log
 import com.ludaxord.projectsup.R
+import com.ludaxord.projectsup.library.utilities.Defaults.TAG
 import com.ludaxord.projectsup.library.utilities.StyledAttributes
 import com.ludaxord.projectsup.library.utilities.checkLanguage
 import com.ludaxord.projectsup.library.utilities.colors.Color
+import com.ludaxord.projectsup.library.utilities.colors.ColorSchemaUtils
+import com.ludaxord.projectsup.library.utilities.getResourceFromInt
 import com.ludaxord.projectsup.library.utilities.languages.Language
 import com.ludaxord.projectsup.library.utilities.themes.Theme
+import com.ludaxord.projectsup.library.utilities.themes.ThemeUtils
 
 
 class SupCalendarView : AbstractSupCalendarView {
 
-    private lateinit var styledAttributes: StyledAttributes
-
     constructor(context: Context) : super(context) {
-        Log.i("ProjectSup", "ComplexCon")
+        Log.i(TAG, "ComplexCon")
     }
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        Log.i("ProjectSup", "MCA")
-        styledAttributes = setViewUtilsFromStyledAttributes(context, attrs)
+        Log.i(TAG, "MCA")
         setDefaultViewUtils()
+        Log.i(TAG, "$theme")
+        Log.i(TAG, "$color")
     }
 
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
-        Log.i("ProjectSup", "MoMA")
-    }
-
-    override fun setDefaultViewUtils() {
-        super.setDefaultViewUtils()
+        Log.i(TAG, "MoMA")
     }
 
     override fun changeLanguage(actualLanguage: Language, newLanguage: String): Language {
@@ -43,21 +43,5 @@ class SupCalendarView : AbstractSupCalendarView {
         } else {
             actualLanguage
         }
-    }
-
-    override fun setColorSchema(colorRes: Int) {
-        setDefaultColorSchema(colorRes)
-    }
-
-    override fun setTheme(themeRes: Int) {
-        setDefaultTheme(themeRes)
-    }
-
-    override fun getColorSchema(): Color {
-        return getDefaultColorSchema()
-    }
-
-    override fun getTheme(): Theme {
-        return getDefaultTheme()
     }
 }

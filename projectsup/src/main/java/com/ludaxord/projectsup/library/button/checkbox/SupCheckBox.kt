@@ -20,11 +20,20 @@ class SupCheckBox : AbstractSupCheckBox {
         setDefaultTheme(themeRes)
     }
 
+    override fun setColorSchema(colorRes: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun setTheme(themeRes: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun getColorSchema(): Color {
-        return getDefaultColorSchema()
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun getTheme(): Theme {
-        return getDefaultTheme()
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
 }
