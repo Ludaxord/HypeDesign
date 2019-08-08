@@ -2,21 +2,19 @@ package com.ludaxord.projectsup.library.utilities.themes
 
 import android.content.Context
 import android.graphics.Typeface
-import com.ludaxord.projectsup.library.utilities.combine
-import com.ludaxord.projectsup.library.utilities.getResourceId
-import java.lang.Exception
 import android.support.v4.content.ContextCompat
 import android.util.Log
-import com.ludaxord.projectsup.R
-import com.ludaxord.projectsup.library.utilities.Defaults
 import com.ludaxord.projectsup.library.utilities.Defaults.TAG
 import com.ludaxord.projectsup.library.utilities.colors.colorschema.Default
 import com.ludaxord.projectsup.library.utilities.colors.colorschema.themecolorschema.ThemeBox
+import com.ludaxord.projectsup.library.utilities.combine
+import com.ludaxord.projectsup.library.utilities.getResourceId
+import com.ludaxord.projectsup.library.utilities.themes.interfaces.IThemeOptions
 
 
-abstract class Theme(private val context: Context) {
+abstract class Theme(private val context: Context) : IThemeOptions {
 
-    protected var themeKey: String = context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_default_style)
+    internal var themeKey: String = context.resources.getString(com.ludaxord.projectsup.R.string.key_sup_default_style)
 
     fun theme(): HashMap<String, Any> {
         val themeCredentials = HashMap<String, Any>()
@@ -74,6 +72,9 @@ abstract class Theme(private val context: Context) {
         val colorSchema =
             getColorSchema(color[context.resources.getString(com.ludaxord.projectsup.R.string.key_color)] as String)
 
+        val corner = getCornerRadius(getCornersKey(key))
+        val stroke = getStrokeWidth(getStrokeKey(key))
+
         this.combine(
             listOf(
                 themeName,
@@ -83,9 +84,35 @@ abstract class Theme(private val context: Context) {
                 drawableRightButton,
                 drawableBackground1,
                 color,
-                colorSchema
+                colorSchema,
+                corner,
+                stroke
             )
         )
+    }
+
+    private fun getCornerRadius(key: String): HashMap<String, Any> {
+        val res = context.getResourceId(
+            key,
+            context.getString(com.ludaxord.projectsup.R.string.key_integer),
+            context.packageName
+        )
+
+        val corner = context.resources.getInteger(res)
+
+        return hashMapOf(context.resources.getString(com.ludaxord.projectsup.R.string.key_corners) to corner)
+    }
+
+    private fun getStrokeWidth(key: String): HashMap<String, Any> {
+        val res = context.getResourceId(
+            key,
+            context.getString(com.ludaxord.projectsup.R.string.key_integer),
+            context.packageName
+        )
+
+        val width = context.resources.getInteger(res)
+
+        return hashMapOf(context.resources.getString(com.ludaxord.projectsup.R.string.key_stroke) to width)
     }
 
     private fun getTypeface(path: String): HashMap<String, Any> {
@@ -99,14 +126,16 @@ abstract class Theme(private val context: Context) {
             context.getString(com.ludaxord.projectsup.R.string.key_drawable),
             context.packageName
         )
+
         val drawable = ContextCompat.getDrawable(context, res)!!
+
         return hashMapOf(context.resources.getString(key) to drawable)
     }
 
     private fun getColorSchemaKeyFromTheme(resource: String): HashMap<String, Any> {
         val key = removeStyleFromThemeKey(resource)
         val r =
-            "${key}_${context.resources.getString(com.ludaxord.projectsup.R.string.key_theme)}${context.resources.getString(
+            "${key}_${context.resources.getString(
                 com.ludaxord.projectsup.R.string.prefix_color_schema
             )}"
         return hashMapOf(context.resources.getString(com.ludaxord.projectsup.R.string.key_color) to r)
@@ -114,7 +143,7 @@ abstract class Theme(private val context: Context) {
 
     private fun getColorSchema(key: String): HashMap<String, Any> {
         val color = when (key) {
-            removeStyleFromThemeKey(context.getString(R.string.key_sup_box_style)) -> {
+            removeStyleFromThemeKey(context.getString(com.ludaxord.projectsup.R.string.key_sup_box_style)) -> {
                 ThemeBox(context, key)
             }
             else -> {
@@ -135,6 +164,14 @@ abstract class Theme(private val context: Context) {
 
     internal fun getStyleKey(key: String): String {
         return "${context.resources.getString(com.ludaxord.projectsup.R.string.prefix_style)}$key"
+    }
+
+    internal fun getCornersKey(key: String): String {
+        return "${context.resources.getString(com.ludaxord.projectsup.R.string.key_corners)}_$key"
+    }
+
+    internal fun getStrokeKey(key: String): String {
+        return "${context.resources.getString(com.ludaxord.projectsup.R.string.key_stroke)}_$key"
     }
 
     internal fun getDrawableKey(key: String): String {

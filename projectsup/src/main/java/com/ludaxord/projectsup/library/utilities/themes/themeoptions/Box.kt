@@ -12,5 +12,4 @@ class Box : Theme {
     constructor(context: Context, themeKey: String) : super(context) {
         this.themeKey = themeKey
     }
-
 }

@@ -3,8 +3,6 @@ package com.ludaxord.projectsup.library.text.textview
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.TextView
-import com.ludaxord.projectsup.library.utilities.Defaults
-import com.ludaxord.projectsup.library.utilities.initTheme
 
 abstract class AbstractSupTextView : TextView {
 

@@ -2,6 +2,9 @@ package com.ludaxord.projectsup.library.utilities
 
 import android.content.Context
 import android.graphics.Typeface
+import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.LayerDrawable
+import android.graphics.drawable.ShapeDrawable
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -45,11 +48,26 @@ data class SupStyledAttributes(
 
 //View extensions
 
-fun View.initTheme(res: Int) {
+fun View.setDrawableColor(theme: Theme, color: Int, type: String) {
 
-}
+    val shape = this.background
 
-fun View.initColorsSchema(res: Int) {
+    if (type == this.context.getString(R.string.key_solid)) {
+        if (shape is GradientDrawable) {
+            shape.setColor(color)
+        }
+    } else if (type == this.context.getString(R.string.key_corners)) {
+
+    } else if (type == this.context.getString(R.string.key_stroke)) {
+        if (shape is GradientDrawable) {
+            val strokeWidth = theme.theme()[this.context.getString(R.string.key_stroke)]
+            shape.setStroke(strokeWidth as Int, color)
+        }
+    } else if (type == context.resources.getString(R.string.key_padding)) {
+
+    }
+
+    this.invalidate()
 
 }
 
@@ -170,13 +188,16 @@ fun AbstractSupCalendarView.updateCalendarCells() {
         cells,
         this.events,
         this.schedule,
+        this.languageName,
         this.calendar.time,
         this.theme,
         this.color
     )
     this.calendarGridView.adapter = calendarAdapter
 
-    val simpleDateFormat = SimpleDateFormat(dateFormat, Locale.getDefault())
+    val lang = this.languageName.split("-")
+
+    val simpleDateFormat = SimpleDateFormat(dateFormat, Locale(lang[0], lang[1]))
     this.dateTextView.text = simpleDateFormat.format(this.calendar.time)
 
 }
@@ -197,6 +218,12 @@ fun Context.getResourceId(pVariableName: String, pResourceName: String, pPackage
         -1
     }
 
+}
+
+//Theme extensions
+
+fun Theme.getThemeColorSchema(context: Context): Color {
+    return ThemeUtils.getColorFromTheme(context, this)
 }
 
 //Int extensions

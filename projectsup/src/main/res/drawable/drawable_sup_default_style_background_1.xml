@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/color_sup_default_color_background"/>
-    <corners android:radius="30dp"/>
+    <solid
+            android:id="@+id/sup_default_solid_background"/>
+    <corners
+            android:id="@+id/sup_default_corners_background"
+            android:radius="30dp"/>
+    <stroke
+            android:id="@+id/sup_default_stroke_background"
+            android:width="0dp"/>
     <padding
+            android:id="@+id/sup_default_padding_background"
             android:bottom="10dp"
             android:left="10dp"
             android:right="10dp"

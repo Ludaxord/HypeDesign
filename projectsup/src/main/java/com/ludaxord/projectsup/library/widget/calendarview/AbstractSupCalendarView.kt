@@ -329,7 +329,11 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
     }
 
     override fun setColorSchema(colorRes: String) {
-        color = ColorSchemaUtils.getColorSchema(context, colorRes)
+        color = if (styledAttributes.themeRes != null && styledAttributes.colorSchemaRes == null) {
+            getTheme().getThemeColorSchema(context)
+        } else {
+            ColorSchemaUtils.getColorSchema(context, colorRes)
+        }
     }
 
     override fun setTheme(themeRes: String) {

@@ -24,8 +24,10 @@ abstract class Color(private val context: Context) {
         val today = getToday(getColorKey(key))
         val standard = getStandard(getColorKey(key))
         val warning = getWarning(getColorKey(key))
+        val background = getBackground(getColorKey(key))
+        val additions = getAdditions(getColorKey(key))
 
-        this.combine(listOf(colorSetName, grayedOut, today, standard, warning))
+        this.combine(listOf(colorSetName, grayedOut, today, standard, warning, background, additions))
     }
 
     private fun getColorSetName(key: String): HashMap<String, Any> {
@@ -58,6 +60,20 @@ abstract class Color(private val context: Context) {
         val today =
             context.getResourceId(warningKey, context.getString(R.string.key_color), context.packageName).getColor()
         return hashMapOf(context.resources.getString(R.string.key_warning) to today)
+    }
+
+    private fun getBackground(key: String): HashMap<String, Any> {
+        val warningKey = "${key}_${context.resources.getString(R.string.key_background)}"
+        val today =
+            context.getResourceId(warningKey, context.getString(R.string.key_color), context.packageName).getColor()
+        return hashMapOf(context.resources.getString(R.string.key_background) to today)
+    }
+
+    private fun getAdditions(key: String): HashMap<String, Any> {
+        val warningKey = "${key}_${context.resources.getString(R.string.key_additions)}"
+        val today =
+            context.getResourceId(warningKey, context.getString(R.string.key_color), context.packageName).getColor()
+        return hashMapOf(context.resources.getString(R.string.key_additions) to today)
     }
 
     private fun Int.getColor(): Int {

@@ -5,8 +5,6 @@ import android.util.AttributeSet
 import android.widget.Button
 import com.ludaxord.projectsup.R
 import com.ludaxord.projectsup.library.button.interfaces.IButton
-import com.ludaxord.projectsup.library.utilities.initColorsSchema
-import com.ludaxord.projectsup.library.utilities.initTheme
 
 abstract class AbstractSupButton : Button, IButton {
 
@@ -69,21 +67,5 @@ abstract class AbstractSupButton : Button, IButton {
 
     private fun setInitializer() {
         setDefaultViewUtils()
-    }
-
-//    protected fun getDefaultColorSchema(): Color {
-//        return context.getColorSchemaFromPreferences()
-//    }
-//
-//    protected fun getDefaultTheme(): Theme {
-//        return context.getThemeFromPreferences()
-//    }
-
-    protected fun setDefaultColorSchema(colorRes: Int) {
-        this.initColorsSchema(colorRes)
-    }
-
-    protected fun setDefaultTheme(themeRes: Int) {
-        this.initTheme(themeRes)
     }
 }

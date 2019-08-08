@@ -3,8 +3,6 @@ package com.ludaxord.projectsup.library.text.multiautocompletetextview
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.MultiAutoCompleteTextView
-import com.ludaxord.projectsup.library.utilities.Defaults
-import com.ludaxord.projectsup.library.utilities.initTheme
 
 abstract class AbstractSupMultiAutoCompleteTextView : MultiAutoCompleteTextView {
 

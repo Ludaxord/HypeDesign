@@ -17,7 +17,6 @@ import com.ludaxord.projectsup.library.utilities.themes.ThemeUtils.overrideFonts
 object ColorSchemaUtils : IColor {
 
     override fun getColorSchema(context: Context, colorSchema: String): Color {
-        Log.w(TAG, "color => $colorSchema")
 //        val resourceId = context.getResourceId(colorSchema, context.getString(R.string.key_string), context.packageName)
         return getColorSchemaFromPreferences(colorSchema, context)
     }
