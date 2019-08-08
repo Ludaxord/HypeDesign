@@ -70,12 +70,4 @@ abstract class AbstractSupCheckBox : CheckBox, IButton {
         setDefaultViewUtils()
     }
 
-    protected fun setDefaultColorSchema(colorRes: Int) {
-        this.initColorsSchema(colorRes)
-    }
-
-    protected fun setDefaultTheme(themeRes: Int) {
-        this.initTheme(themeRes)
-    }
-
 }

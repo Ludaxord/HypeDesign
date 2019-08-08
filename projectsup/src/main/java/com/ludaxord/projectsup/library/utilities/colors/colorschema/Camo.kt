@@ -13,7 +13,6 @@ class Camo : Color {
     }
 
     constructor(context: Context, colorKey: String) : super(context) {
-        Log.e(TAG, colorKey)
         this.colorKey = colorKey
     }
 

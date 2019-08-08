@@ -20,6 +20,13 @@
     <integer name="sup_default_color_schema">110000</integer>
     <integer name="sup_camo_color_schema">110001</integer>
 
-    <!--calendar-->
+    <!--integers-->
     <integer name="calendar_days">42</integer>
+
+    <integer name="corners_sup_box_style">0</integer>
+    <integer name="corners_sup_default_style">30</integer>
+
+    <integer name="stroke_sup_box_style">4</integer>
+    <integer name="stroke_sup_default_style">0</integer>
+
 </resources>

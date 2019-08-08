@@ -69,12 +69,4 @@ abstract class AbstractSupRadioButton : RadioButton, IButton {
     private fun setInitializer() {
         setDefaultViewUtils()
     }
-
-    protected fun setDefaultColorSchema(colorRes: Int) {
-        this.initColorsSchema(colorRes)
-    }
-
-    protected fun setDefaultTheme(themeRes: Int) {
-        this.initTheme(themeRes)
-    }
 }

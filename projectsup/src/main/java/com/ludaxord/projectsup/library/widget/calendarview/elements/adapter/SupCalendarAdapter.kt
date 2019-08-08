@@ -15,11 +15,8 @@ import android.widget.ImageView
 import android.widget.ListView
 import android.widget.TextView
 import com.ludaxord.projectsup.R
-import com.ludaxord.projectsup.library.utilities.getThemeColorsCredentials
-import com.ludaxord.projectsup.library.utilities.setTextColorSchema
-import com.ludaxord.projectsup.library.utilities.setTypeFaceTheme
+import com.ludaxord.projectsup.library.utilities.*
 import com.ludaxord.projectsup.library.utilities.themes.Theme
-import com.ludaxord.projectsup.library.utilities.toCalendar
 import com.ludaxord.projectsup.library.widget.calendarview.AbstractSupCalendarView
 import com.ludaxord.projectsup.library.widget.calendarview.elements.models.Schedule
 import com.ludaxord.projectsup.library.widget.interfaces.IAdapter
@@ -32,6 +29,7 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
     private var days = java.util.ArrayList<Date>()
     private var events = java.util.ArrayList<Date>()
     private var date: Date? = null
+    private var languageName: String? = null
     private var schedule: ArrayList<Schedule> = ArrayList()
 
     private data class Time(val date: Calendar, val day: Int, val month: Int, val year: Int, val today: Calendar?)
@@ -64,11 +62,13 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
         days: ArrayList<Date>,
         events: ArrayList<Date>,
         schedule: ArrayList<Schedule>,
+        language: String,
         date: Date?,
         theme: Theme,
         color: com.ludaxord.projectsup.library.utilities.colors.Color
     ) : this(context) {
         this.days = days
+        this.languageName = language
         this.events = events
         this.schedule = schedule
         this.themeCredentials = theme
@@ -118,6 +118,17 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
     private fun setBackground(view: View) {
         view.background =
             themeCredentials.theme()[context.resources.getString(R.string.key_drawable_background_1)] as Drawable
+
+        view.setDrawableColor(
+            themeCredentials,
+            colorSet.color()[context.resources.getString(R.string.key_background)] as Int,
+            context.resources.getString(R.string.key_solid)
+        )
+        view.setDrawableColor(
+            themeCredentials,
+            colorSet.color()[context.resources.getString(R.string.key_additions)] as Int,
+            context.resources.getString(R.string.key_stroke)
+        )
     }
 
     private fun getItemDetails(item: Calendar): Time {
@@ -135,8 +146,13 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
 
             val (date, day, month, year, today) = time
 
+            val lang = this.languageName?.split("-")
+
             val simpleDateFormat =
-                SimpleDateFormat(context.resources.getString(R.string.date_format_3), Locale.getDefault())
+                SimpleDateFormat(
+                    context.resources.getString(R.string.date_format_3),
+                    Locale(lang?.get(0), lang?.get(1))
+                )
 
             val timeStamp = simpleDateFormat.format(Calendar.getInstance().time)
 
@@ -154,14 +170,29 @@ class SupCalendarAdapter(private val context: Context) : BaseAdapter(), IAdapter
                 }
             }
 
-            val format = SimpleDateFormat(context.resources.getString(R.string.date_format_4), Locale.getDefault())
-            val form = SimpleDateFormat(context.resources.getString(R.string.date_format_3), Locale.getDefault())
+            val format = SimpleDateFormat(
+                context.resources.getString(R.string.date_format_4), Locale(
+                    lang?.get(0),
+                    lang?.get(1)
+                )
+            )
+            val form = SimpleDateFormat(
+                context.resources.getString(R.string.date_format_3), Locale(
+                    lang?.get(0),
+                    lang?.get(1)
+                )
+            )
 
             for (event in schedule) {
                 val begin = event.beginDate
                 val end = event.endDate
                 val id = event.id
-                val f = SimpleDateFormat(context.resources.getString(R.string.date_format_1), Locale.getDefault())
+                val f = SimpleDateFormat(
+                    context.resources.getString(R.string.date_format_1), Locale(
+                        lang?.get(0),
+                        lang?.get(1)
+                    )
+                )
 
                 val formattedDate = f.format(date.time)
 

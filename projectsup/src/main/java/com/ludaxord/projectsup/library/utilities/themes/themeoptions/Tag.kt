@@ -8,5 +8,4 @@ class Tag : Theme {
     constructor(context: Context) : super(context)
 
     constructor(context: Context, themeKey: String) : super(context)
-
 }

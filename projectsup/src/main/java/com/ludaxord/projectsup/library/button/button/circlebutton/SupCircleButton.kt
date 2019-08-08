@@ -15,11 +15,9 @@ class SupCircleButton : AbstractSupCircleButton {
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle)
 
     override fun setColorSchema(colorRes: Int) {
-        setDefaultColorSchema(colorRes)
     }
 
     override fun setTheme(themeRes: Int) {
-        setDefaultTheme(themeRes)
     }
 
     override fun setCorners(cornerList: List<Float>, view: View?) {
