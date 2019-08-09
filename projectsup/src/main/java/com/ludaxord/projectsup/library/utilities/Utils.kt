@@ -1,17 +1,17 @@
 package com.ludaxord.projectsup.library.utilities
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
-import android.graphics.drawable.LayerDrawable
-import android.graphics.drawable.ShapeDrawable
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.GridView
 import android.widget.ImageView
 import android.widget.TextView
-import com.ludaxord.projectsup.R
 import com.ludaxord.projectsup.library.utilities.DateUtils.setEventsToExistedEvents
 import com.ludaxord.projectsup.library.utilities.Defaults.TAG
 import com.ludaxord.projectsup.library.utilities.colors.Color
@@ -33,6 +33,8 @@ import com.ludaxord.projectsup.library.widget.calendarview.elements.adapter.SupC
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import android.view.animation.AnimationUtils
+
 
 //Data classes
 
@@ -52,18 +54,18 @@ fun View.setDrawableColor(theme: Theme, color: Int, type: String) {
 
     val shape = this.background
 
-    if (type == this.context.getString(R.string.key_solid)) {
+    if (type == this.context.getString(com.ludaxord.projectsup.R.string.key_solid)) {
         if (shape is GradientDrawable) {
             shape.setColor(color)
         }
-    } else if (type == this.context.getString(R.string.key_corners)) {
+    } else if (type == this.context.getString(com.ludaxord.projectsup.R.string.key_corners)) {
 
-    } else if (type == this.context.getString(R.string.key_stroke)) {
+    } else if (type == this.context.getString(com.ludaxord.projectsup.R.string.key_stroke)) {
         if (shape is GradientDrawable) {
-            val strokeWidth = theme.theme()[this.context.getString(R.string.key_stroke)]
+            val strokeWidth = theme.theme()[this.context.getString(com.ludaxord.projectsup.R.string.key_stroke)]
             shape.setStroke(strokeWidth as Int, color)
         }
-    } else if (type == context.resources.getString(R.string.key_padding)) {
+    } else if (type == context.resources.getString(com.ludaxord.projectsup.R.string.key_padding)) {
 
     }
 
@@ -114,12 +116,59 @@ fun ViewGroup.setViewsToRoot(views: ArrayList<View>) {
     setViewsToRootView(this, views)
 }
 
+//GridView extensions
+
+@SuppressLint("ClickableViewAccessibility")
+fun GridView.setSwipeGridView(
+    newEvents: ArrayList<Date>?,
+    calendarView: AbstractSupCalendarView
+) {
+
+    this.setOnTouchListener { v, event ->
+        if (event.action == MotionEvent.ACTION_UP || event.action == MotionEvent.ACTION_CANCEL) {
+            calendarView.lastX.sort()
+            Log.w(TAG, "${calendarView.lastX} => ${event.x}")
+            if (calendarView.lastX.contains(event.x)) {
+                calendarView.lastX.remove(event.x)
+            }
+            if (calendarView.lastX.isNotEmpty()) {
+                if (event.x > calendarView.lastX.first()) {
+                    val enterAnimation =
+                        AnimationUtils.loadAnimation(this.context, com.ludaxord.projectsup.R.anim.sup_animation_left)
+                    val leaveAnimation =
+                        AnimationUtils.loadAnimation(this.context, com.ludaxord.projectsup.R.anim.sup_animation_left_end)
+                    this.startAnimation(enterAnimation)
+                    calendarView.calendar.add(Calendar.MONTH, -1)
+                    calendarView.setCalendar(newEvents)
+                    this.startAnimation(leaveAnimation)
+                } else if (event.x < calendarView.lastX.last()) {
+                    val enterAnimation =
+                        AnimationUtils.loadAnimation(this.context, com.ludaxord.projectsup.R.anim.sup_animation_right)
+                    val leaveAnimation =
+                        AnimationUtils.loadAnimation(this.context, com.ludaxord.projectsup.R.anim.sup_animation_right_end)
+                    this.startAnimation(enterAnimation)
+                    calendarView.calendar.add(Calendar.MONTH, 1)
+                    calendarView.setCalendar(newEvents)
+                    this.startAnimation(leaveAnimation)
+                }
+            }
+            calendarView.lastX.clear()
+            true
+        } else if (event.action == MotionEvent.ACTION_MOVE) {
+            calendarView.lastX.add(event.x)
+            false
+        } else {
+            false
+        }
+    }
+}
+
 //TextView extensions
 
 fun TextView.setWeekDayNames(language: Language, rootView: ViewGroup, short: Boolean = true) {
     val name = this.getIdName()
     val dayNames = if (short) language.getShortDayNames() else language.getFullDayNames()
-    if (name.contains(rootView.context.getString(R.string.prefix_text))) {
+    if (name.contains(rootView.context.getString(com.ludaxord.projectsup.R.string.prefix_text))) {
         setWeekDayWithDefaultPrefix(this, name, dayNames, short)
     } else {
         setWeekDaysManually(this, name, rootView, dayNames, short)
@@ -178,7 +227,7 @@ fun AbstractSupCalendarView.updateCalendarCells() {
     val monthBeginCell = calendar.get(Calendar.DAY_OF_WEEK) - 1
     calendar.add(Calendar.DAY_OF_MONTH, -monthBeginCell)
 
-    while (cells.count() < context.resources.getInteger(R.integer.calendar_days)) {
+    while (cells.count() < context.resources.getInteger(com.ludaxord.projectsup.R.integer.calendar_days)) {
         cells.add(calendar.time)
         calendar.add(Calendar.DAY_OF_MONTH, 1)
     }
