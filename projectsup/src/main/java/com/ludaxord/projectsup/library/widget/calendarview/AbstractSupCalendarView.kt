@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.ludaxord.projectsup.R
 import com.ludaxord.projectsup.library.text.textview.SupTextView
 import com.ludaxord.projectsup.library.utilities.*
 import com.ludaxord.projectsup.library.utilities.Defaults.TAG
@@ -16,9 +15,7 @@ import com.ludaxord.projectsup.library.utilities.colors.Color
 import com.ludaxord.projectsup.library.utilities.colors.ColorSchemaUtils
 import com.ludaxord.projectsup.library.utilities.languages.Language
 import com.ludaxord.projectsup.library.utilities.themes.Theme
-import com.ludaxord.projectsup.library.utilities.themes.ThemeUtils
 import com.ludaxord.projectsup.library.utilities.themes.ThemeUtils.getTheme
-import com.ludaxord.projectsup.library.utilities.themes.themeoptions.Default
 import com.ludaxord.projectsup.library.widget.calendarview.elements.adapter.SupCalendarAdapter
 import com.ludaxord.projectsup.library.widget.calendarview.elements.models.Schedule
 import com.ludaxord.projectsup.library.widget.gridview.SupGridView
@@ -26,6 +23,7 @@ import com.ludaxord.projectsup.library.widget.imageview.SupImageView
 import com.ludaxord.projectsup.library.widget.interfaces.ICalendar
 import java.util.*
 import kotlin.collections.ArrayList
+
 
 abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
 
@@ -43,7 +41,7 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
         context.getString(com.ludaxord.projectsup.R.string.key_sup_default_color_schema)
     )
 
-    internal var languageName: String = context.resources.getString(R.string.language_option_en)
+    internal var languageName: String = context.resources.getString(com.ludaxord.projectsup.R.string.language_option_en)
 
     internal var events: ArrayList<Date> = ArrayList()
 
@@ -52,6 +50,8 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
     internal var subViewHelperArrayList: ArrayList<View> = ArrayList()
 
     internal var dateFormat = context.resources.getString(com.ludaxord.projectsup.R.string.date_format_4)
+
+    internal var lastX = ArrayList<Float>()
 
     internal lateinit var theme: Theme
 
@@ -165,14 +165,17 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
 
 
     override fun setViewUtilsFromStyledAttributes(context: Context, attrs: AttributeSet): StyledAttributes {
-        val a = getStyledAttributes(context, attrs, R.styleable.SupCalendarView)
+        val a = getStyledAttributes(context, attrs, com.ludaxord.projectsup.R.styleable.SupCalendarView)
 
-        val themeRes = getStyledAttributesTheme(a, R.styleable.SupCalendarView_theme_res)
-        val colorSchemaRes = getStyledAttributesColorSchema(a, R.styleable.SupCalendarView_color_schema_res)
-        val languageRes = getStyledAttributesLanguage(a, R.styleable.SupCalendarView_language_res)
-        val leftButtonRes = getStyledAttributesDrawable(a, R.styleable.SupCalendarView_button_left_res)
-        val rightButtonRes = getStyledAttributesDrawable(a, R.styleable.SupCalendarView_button_right_res)
-//        TODO: adding layout from styled attributes
+        val themeRes = getStyledAttributesTheme(a, com.ludaxord.projectsup.R.styleable.SupCalendarView_theme_res)
+        val colorSchemaRes =
+            getStyledAttributesColorSchema(a, com.ludaxord.projectsup.R.styleable.SupCalendarView_color_schema_res)
+        val languageRes =
+            getStyledAttributesLanguage(a, com.ludaxord.projectsup.R.styleable.SupCalendarView_language_res)
+        val leftButtonRes =
+            getStyledAttributesDrawable(a, com.ludaxord.projectsup.R.styleable.SupCalendarView_button_left_res)
+        val rightButtonRes =
+            getStyledAttributesDrawable(a, com.ludaxord.projectsup.R.styleable.SupCalendarView_button_right_res)
 
         val modifiedRes = if (themeRes != null && colorSchemaRes != null) {
             Pair(themeRes, colorSchemaRes)
@@ -229,8 +232,8 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
             navigationRes
         } else {
             Pair(
-                getTheme().theme()[context.getString(R.string.key_drawable_left_button)] as Drawable,
-                getTheme().theme()[context.getString(R.string.key_drawable_right_button)] as Drawable
+                getTheme().theme()[context.getString(com.ludaxord.projectsup.R.string.key_drawable_left_button)] as Drawable,
+                getTheme().theme()[context.getString(com.ludaxord.projectsup.R.string.key_drawable_right_button)] as Drawable
             )
         }
         setNavigationButtonsDrawable(navs, Pair(leftImageView, rightImageView))
@@ -262,9 +265,10 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
 
     }
 
-    private fun initListeners() {
+    open fun initListeners() {
         leftImageView.setMonthForCalendarView(this, null, -1)
         rightImageView.setMonthForCalendarView(this, null, 1)
+        calendarGridView.setSwipeGridView( null, this)
     }
 
     private fun dynamicViews() {

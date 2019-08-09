@@ -8,7 +8,7 @@
     <com.ludaxord.projectsup.library.widget.calendarview.SupCalendarView
             android:id="@+id/calendar_view"
             app:color_schema_res="@string/key_sup_box_color_schema"
-            app:language_res="@string/language_option_no"
+            app:language_res="@string/language_option_pl"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
