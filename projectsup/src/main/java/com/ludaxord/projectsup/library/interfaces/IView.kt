@@ -14,28 +14,11 @@ import com.ludaxord.projectsup.library.utilities.themes.Theme
 
 interface IView : IDefaults {
 
-    fun setViewUtilsFromStyledAttributes(context: Context, attrs: AttributeSet): StyledAttributes {
-        val a = getStyledAttributes(context, attrs, com.ludaxord.projectsup.R.styleable.SupCalendarView)
-        val themeRes = getStyledAttributesTheme(a, com.ludaxord.projectsup.R.styleable.SupCalendarView_theme_res)
-        val colorSchemaRes =
-            getStyledAttributesColorSchema(a, com.ludaxord.projectsup.R.styleable.SupCalendarView_color_schema_res)
-        a.recycle()
-        return SupStyledAttributes(themeRes, colorSchemaRes)
-    }
-
     fun getStyledAttributes(context: Context, attributeSet: AttributeSet, attrs: IntArray): TypedArray {
         return context.obtainStyledAttributes(attributeSet, attrs)
     }
 
-    fun getStyledAttributesTheme(styledAttributes: TypedArray, index: Int): String? {
-        return styledAttributes.getString(index)
-    }
-
-    fun getStyledAttributesThemeName(styledAttributes: TypedArray, index: Int): String? {
-        return styledAttributes.getString(index)
-    }
-
-    fun getStyledAttributesColorSchema(styledAttributes: TypedArray, index: Int): String? {
+    fun getStyledAttributesString(styledAttributes: TypedArray, index: Int): String? {
         return styledAttributes.getString(index)
     }
 
@@ -47,6 +30,12 @@ interface IView : IDefaults {
         val li = LayoutInflater.from(context)
         return li.inflate(styledAttributes.getInt(index, 0), null)
     }
+
+    fun getStyledAttributesInteger(styledAttributes: TypedArray, index: Int): Int? {
+        return styledAttributes.getInt(index, 0)
+    }
+
+    fun setViewUtilsFromStyledAttributes(context: Context, attrs: AttributeSet): StyledAttributes
 
     fun setColorSchema(colorRes: Int)
 

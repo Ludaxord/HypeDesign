@@ -2,6 +2,7 @@ package com.ludaxord.projectsup.library.utilities.languages.interfaces
 
 import android.content.Context
 import android.content.res.Resources
+import android.content.res.TypedArray
 import android.view.View
 import com.ludaxord.projectsup.R
 import com.ludaxord.projectsup.library.utilities.languages.Language
