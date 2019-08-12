@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import com.ludaxord.projectsup.library.widget.webkit.webview.SupWebView;
 
+import java.util.ArrayList;
+
 public class ExampleMainActivity extends AppCompatActivity {
 
     @Override
@@ -16,6 +18,10 @@ public class ExampleMainActivity extends AppCompatActivity {
 
     public void loadWebView() {
         SupWebView supWebView = findViewById(R.id.web_view);
-        supWebView.loadUrl("https://google.com/");
+        supWebView.setAllowedUrls(new ArrayList<String>() {{
+            add("https://nike.com");
+            add("supremenewyork.com");
+        }});
+        supWebView.loadUrl("supremenewyork.com");
     }
 }

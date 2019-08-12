@@ -10,10 +10,6 @@ import com.ludaxord.projectsup.library.utilities.languages.languageoptions.*
 
 interface ILanguage {
 
-    fun getStyledAttributesLanguage(styledAttributes: TypedArray, index: Int): String? {
-        return styledAttributes.getString(index)
-    }
-
     fun changeLanguage(actualLanguage: Language, newLanguage: String): Language
 
     fun setLanguage(language: String, context: Context): Language {

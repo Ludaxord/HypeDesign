@@ -28,9 +28,9 @@ interface ICalendar : ILanguage, IView {
 
     override fun setViewUtilsFromStyledAttributes(context: Context, attrs: AttributeSet): StyledAttributes {
         val a = getStyledAttributes(context, attrs, com.ludaxord.projectsup.R.styleable.SupCalendarView)
-        val themeRes = getStyledAttributesTheme(a, com.ludaxord.projectsup.R.styleable.SupCalendarView_theme_res)
+        val themeRes = getStyledAttributesString(a, com.ludaxord.projectsup.R.styleable.SupCalendarView_theme_res)
         val colorSchemaRes =
-            getStyledAttributesColorSchema(a, com.ludaxord.projectsup.R.styleable.SupCalendarView_color_schema_res)
+            getStyledAttributesString(a, com.ludaxord.projectsup.R.styleable.SupCalendarView_color_schema_res)
         a.recycle()
         return SupStyledAttributes(themeRes, colorSchemaRes)
     }

@@ -167,11 +167,11 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
     override fun setViewUtilsFromStyledAttributes(context: Context, attrs: AttributeSet): StyledAttributes {
         val a = getStyledAttributes(context, attrs, com.ludaxord.projectsup.R.styleable.SupCalendarView)
 
-        val themeRes = getStyledAttributesTheme(a, com.ludaxord.projectsup.R.styleable.SupCalendarView_theme_res)
+        val themeRes = getStyledAttributesString(a, com.ludaxord.projectsup.R.styleable.SupCalendarView_theme_res)
         val colorSchemaRes =
-            getStyledAttributesColorSchema(a, com.ludaxord.projectsup.R.styleable.SupCalendarView_color_schema_res)
+            getStyledAttributesString(a, com.ludaxord.projectsup.R.styleable.SupCalendarView_color_schema_res)
         val languageRes =
-            getStyledAttributesLanguage(a, com.ludaxord.projectsup.R.styleable.SupCalendarView_language_res)
+            getStyledAttributesString(a, com.ludaxord.projectsup.R.styleable.SupCalendarView_language_res)
         val leftButtonRes =
             getStyledAttributesDrawable(a, com.ludaxord.projectsup.R.styleable.SupCalendarView_button_left_res)
         val rightButtonRes =

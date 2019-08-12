@@ -136,7 +136,10 @@ fun GridView.setSwipeGridView(
                     val enterAnimation =
                         AnimationUtils.loadAnimation(this.context, com.ludaxord.projectsup.R.anim.sup_animation_left)
                     val leaveAnimation =
-                        AnimationUtils.loadAnimation(this.context, com.ludaxord.projectsup.R.anim.sup_animation_left_end)
+                        AnimationUtils.loadAnimation(
+                            this.context,
+                            com.ludaxord.projectsup.R.anim.sup_animation_left_end
+                        )
                     this.startAnimation(enterAnimation)
                     calendarView.calendar.add(Calendar.MONTH, -1)
                     calendarView.setCalendar(newEvents)
@@ -145,7 +148,10 @@ fun GridView.setSwipeGridView(
                     val enterAnimation =
                         AnimationUtils.loadAnimation(this.context, com.ludaxord.projectsup.R.anim.sup_animation_right)
                     val leaveAnimation =
-                        AnimationUtils.loadAnimation(this.context, com.ludaxord.projectsup.R.anim.sup_animation_right_end)
+                        AnimationUtils.loadAnimation(
+                            this.context,
+                            com.ludaxord.projectsup.R.anim.sup_animation_right_end
+                        )
                     this.startAnimation(enterAnimation)
                     calendarView.calendar.add(Calendar.MONTH, 1)
                     calendarView.setCalendar(newEvents)
@@ -255,6 +261,39 @@ fun AbstractSupCalendarView.updateCalendarCells() {
 
 fun ArrayList<View>.setIds(rootView: View) {
     setViewsIds(rootView, this)
+}
+
+//ArrayListOfString extensions
+
+fun ArrayList<String>.refactorUrls() {
+    for ((index, url) in this.withIndex()) {
+
+        var u = url
+
+        Log.i(TAG, "indx => ${this[index]} u => $u index => $index url => $url")
+
+        if (u.startsWith("http://")) {
+
+            u = url.replace("http://", "")
+
+        }
+
+        if (u.startsWith("https://")) {
+
+            u = url.replace("https://", "")
+
+        }
+
+        if (u.lastIndexOf("/") > -1) {
+
+            u = url.replaceAfterLast("/", "")
+
+        }
+
+        this[index] = u
+
+        Log.w(TAG, "indx => ${this[index]} u => $u index => $index url => $url")
+    }
 }
 
 //Context extensions
