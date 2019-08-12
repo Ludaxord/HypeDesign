@@ -268,7 +268,7 @@ abstract class AbstractSupCalendarView : LinearLayout, ICalendar {
     open fun initListeners() {
         leftImageView.setMonthForCalendarView(this, null, -1)
         rightImageView.setMonthForCalendarView(this, null, 1)
-        calendarGridView.setSwipeGridView( null, this)
+        calendarGridView.setSwipeGridView(null, this)
     }
 
     private fun dynamicViews() {

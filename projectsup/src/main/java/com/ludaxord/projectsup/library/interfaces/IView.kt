@@ -14,14 +14,7 @@ import com.ludaxord.projectsup.library.utilities.themes.Theme
 
 interface IView : IDefaults {
 
-    fun setViewUtilsFromStyledAttributes(context: Context, attrs: AttributeSet): StyledAttributes {
-        val a = getStyledAttributes(context, attrs, com.ludaxord.projectsup.R.styleable.SupCalendarView)
-        val themeRes = getStyledAttributesTheme(a, com.ludaxord.projectsup.R.styleable.SupCalendarView_theme_res)
-        val colorSchemaRes =
-            getStyledAttributesColorSchema(a, com.ludaxord.projectsup.R.styleable.SupCalendarView_color_schema_res)
-        a.recycle()
-        return SupStyledAttributes(themeRes, colorSchemaRes)
-    }
+    fun setViewUtilsFromStyledAttributes(context: Context, attrs: AttributeSet): StyledAttributes
 
     fun getStyledAttributes(context: Context, attributeSet: AttributeSet, attrs: IntArray): TypedArray {
         return context.obtainStyledAttributes(attributeSet, attrs)

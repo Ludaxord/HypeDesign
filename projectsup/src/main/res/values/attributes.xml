@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <attr name="theme_res" format="string"/>
+    <attr name="color_schema_res" format="string"/>
+    <attr name="language_res" format="string"/>
+    <attr name="button_left_res" format="reference"/>
+    <attr name="button_right_res" format="reference"/>
+
     <declare-styleable name="SupCalendarView">
-        <attr name="theme_res" format="string"/>
-        <attr name="color_schema_res" format="string"/>
-        <attr name="language_res" format="string"/>
-        <attr name="button_left_res" format="reference"/>
-        <attr name="button_right_res" format="reference"/>
+        <attr name="theme_res"/>
+        <attr name="color_schema_res"/>
+        <attr name="language_res"/>
+        <attr name="button_left_res"/>
+        <attr name="button_right_res"/>
+    </declare-styleable>
+
+    <declare-styleable name="SupWebView">
+        <attr name="theme_res"/>
+        <attr name="color_schema_res"/>
+        <attr name="language_res"/>
     </declare-styleable>
 </resources>

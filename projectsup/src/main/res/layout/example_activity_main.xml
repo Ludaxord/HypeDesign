@@ -7,9 +7,16 @@
 
     <com.ludaxord.projectsup.library.widget.calendarview.SupCalendarView
             android:id="@+id/calendar_view"
+            app:theme_res="@string/key_sup_box_style"
             app:color_schema_res="@string/key_sup_box_color_schema"
             app:language_res="@string/language_option_pl"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"/>
+
+    <com.ludaxord.projectsup.library.widget.webkit.webview.SupWebView
+            android:id="@+id/web_view"
+            android:layout_below="@id/calendar_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
 </RelativeLayout>
