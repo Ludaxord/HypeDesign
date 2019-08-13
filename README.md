@@ -1,1 +1,1 @@
-![ProjectSup Logo Android](gfx/projectSup-logo-android.png "ProjectSup Android")
+![ProjectSup Logo Android](grafix/projectSup-logo-android.png "ProjectSup Android")
