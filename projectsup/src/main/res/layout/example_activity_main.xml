@@ -9,7 +9,7 @@
             android:id="@+id/calendar_view"
             app:theme_res="@string/key_sup_box_style"
             app:color_schema_res="@string/key_sup_box_color_schema"
-            app:language_res="@string/language_option_pl"
+            app:language_res="@string/language_option_no"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
