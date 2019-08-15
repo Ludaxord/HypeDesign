@@ -1,4 +1,4 @@
-package com.ludaxord.projectsup
+package com.ludaxord.projectsupexamples
 
 import org.junit.Test
 

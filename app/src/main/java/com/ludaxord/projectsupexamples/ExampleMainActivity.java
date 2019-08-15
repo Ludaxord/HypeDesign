@@ -1,8 +1,9 @@
-package com.ludaxord.projectsup;
+package com.ludaxord.projectsupexamples;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import com.ludaxord.projectsupexamples.R;
 import com.ludaxord.projectsup.library.widget.webkit.webview.SupWebView;
 
 import java.util.ArrayList;
